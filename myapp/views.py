@@ -9,5 +9,5 @@ from django.http import HttpResponse
 def index(request):
     # return HttpResponse(u"欢迎你谢振乾1")
     context={}
-    context['hello']='hello 谢岸马'
+    context['hello']='hello ddd 谢岸马'
     return render(request,'test.html',context)
