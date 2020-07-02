@@ -5,6 +5,7 @@ from django.db import models
 class Students(models.Model):
     name = models.CharField(max_length=20)
 
+
 class Biao4(models.Model):
     id = models.AutoField(primary_key=True)
     psxh = models.CharField(max_length=20)
@@ -20,4 +21,3 @@ class Biao4(models.Model):
     yjbz = models.CharField(max_length=100)
     xzfw = models.CharField(max_length=100)
     sm = models.CharField(max_length=50)
-

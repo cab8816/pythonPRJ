@@ -2,7 +2,9 @@ from django.http import HttpResponse
 
 from Myapp.models import Students
 from docx import Document
+from Myapp.models import Biao4
 from docx.shared import Inches
+
 
 def testdbadd(request):
     student = Students(name='谢振乾')
@@ -47,6 +49,7 @@ def testdoc(request):
         (7, '422', 'Eggs'),
         (4, '631', 'Spam, spam, eggs, and spam')
     )
+
     table = document.add_table(rows=1, cols=3)
     hdr_cells = table.rows[0].cells
     hdr_cells[0].text = 'Qty'
@@ -60,3 +63,26 @@ def testdoc(request):
     document.add_page_break()
     document.save('testdoc/demo.docx')
     return HttpResponse("<p>doc文件生成成功</p>")
+
+
+def readword(request):
+    document = Document('testdoc/psbg.docx')
+    table = document.tables[0]
+    for row in table.rows:
+        rowcells=row.cells
+        biao = Biao4(
+            # lyxh=rowcells[0],
+            lyname=rowcells[1],
+            # lbxh=rowcells[2],
+            lb=rowcells[3],
+            # dxxh=rowcells[4],
+            duixiang=rowcells[5],
+            # xmxh=rowcells[6],
+            csmc=rowcells[7],
+            yjbz=rowcells[8],
+            xzfw=rowcells[9],
+            sm=rowcells[10],
+        )
+    biao.save()
+    return HttpResponse("<p>doc读取成功</p>")
+
