@@ -23,6 +23,7 @@ urlpatterns = [
     path('testdbadd/',testdb.testdbadd),
     path('testdblst/',testdb.testdblst),
     path('testdbupd/',testdb.testdbupd),
+    path('testdoc/',testdb.testdoc),
 
 
 ]
