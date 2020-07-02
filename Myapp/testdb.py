@@ -84,5 +84,5 @@ def readword(request):
             sm=rowcells[10],
         )
     biao.save()
-    return HttpResponse("<p>doc读取成功</p>")
+    return HttpResponse("<p>doc读取ddddd成功</p>")
 
