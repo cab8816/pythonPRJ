@@ -58,5 +58,5 @@ def testdoc(request):
         row_cells[1].text = id
         row_cells[2].text = desc
     document.add_page_break()
-    document.save('demo.docx')
+    document.save('testdoc/demo.docx')
     return HttpResponse("<p>doc文件生成成功</p>")
