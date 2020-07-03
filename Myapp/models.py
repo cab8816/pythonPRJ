@@ -18,6 +18,6 @@ class Biao4(models.Model):
     xmxh = models.CharField(max_length=20)
     xmmc = models.CharField(max_length=50)
     csmc = models.CharField(max_length=50)
-    yjbz = models.CharField(max_length=100)
+    yjbz = models.CharField(max_length=200)
     xzfw = models.CharField(max_length=100)
-    sm = models.CharField(max_length=50)
+    sm = models.CharField(max_length=200)

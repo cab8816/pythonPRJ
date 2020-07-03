@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 from Myapp.models import Students
 from docx import Document
 from Myapp.models import Biao4
@@ -71,18 +71,26 @@ def readword(request):
     for row in table.rows:
         rowcells=row.cells
         biao = Biao4(
-            # lyxh=rowcells[0],
-            lyname=rowcells[1],
-            # lbxh=rowcells[2],
-            lb=rowcells[3],
-            # dxxh=rowcells[4],
-            duixiang=rowcells[5],
-            # xmxh=rowcells[6],
-            csmc=rowcells[7],
-            yjbz=rowcells[8],
-            xzfw=rowcells[9],
-            sm=rowcells[10],
+            lyxh=rowcells[0].text,
+            lyname=rowcells[1].text,
+            lbxh=rowcells[2].text,
+            lb=rowcells[3].text,
+            dxxh=rowcells[4].text,
+            duixiang=rowcells[5].text,
+            xmxh=rowcells[6].text,
+            csmc=rowcells[7].text,
+            yjbz=rowcells[8].text,
+            xzfw=rowcells[9].text,
+            sm=rowcells[10].text,
         )
-    biao.save()
-    return HttpResponse("<p>doc读取ddddd成功</p>")
+        biao.save()
+    context={}
+    context['msg'] = '读取word文档成功'
+    return render(request, 'test.html', context)
 
+
+def lstbiao4(request):
+    context = {}
+    list = Biao4.objects.all()
+
+    return render(request, 'biao4.html',{'biao4':list})
