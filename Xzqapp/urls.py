@@ -26,6 +26,8 @@ urlpatterns = [
     path('testdoc/',testdb.testdoc),
     path('readword/',testdb.readword),
     path('lstbiao4/',testdb.lstbiao4),
+    path('genbiao4/',testdb.genbiao4),
+    path('changeword/',testdb.changeword),
 
 
 ]

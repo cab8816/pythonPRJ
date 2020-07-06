@@ -1,7 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from Myapp.models import Students
-from docx import Document
+
+from docx import Document #导入库
+from docxtpl import DocxTemplate, InlineImage #导入模板库
+from docx.shared import Inches #支持修改文字大小的库
+
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
 from docx.shared import Inches
@@ -132,3 +136,58 @@ def lstbiao4(request):
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, 'biao4.html', data1)
+
+
+def genbiao4(request):
+    # install python-docx
+    document = Document()  #新建空文档
+    document.add_heading('4表   建议批准的检验检测能力表',0) #增加标题“Document Title”，第二个参数“0”表示是标题
+    p=document.add_paragraph('A')
+    p.add_run('检验检测场所地址:').bold = True
+    p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
+    mlstbiao4 = Biao4.objects.all()
+    datarow = mlstbiao4.count()
+    table = document.add_table(rows=1,cols=11)
+    hdr_cells = table.rows[0].cells
+    hdr_cells[0].text= '序号'
+    hdr_cells[1].text= '领域'
+    hdr_cells[2].text= '类别号'
+    hdr_cells[3].text= '类别'
+    hdr_cells[4].text= '对象号'
+    hdr_cells[5].text= '对象'
+    hdr_cells[6].text= '参数号'
+    hdr_cells[7].text= '参数'
+    hdr_cells[8].text= '标准'
+    hdr_cells[9].text= '限制'
+    hdr_cells[10].text= '说明'
+
+    for row in mlstbiao4:
+        row_cells = table.add_row().cells
+        row_cells[0].text = row.lyxh
+        row_cells[1].text = row.lyname
+        row_cells[2].text = row.lbxh
+        row_cells[3].text = row.lb
+        row_cells[4].text = row.dxxh
+        row_cells[5].text = row.duixiang
+        row_cells[6].text = row.xmxh
+        row_cells[7].text = row.csmc
+        row_cells[8].text = row.yjbz
+        row_cells[9].text = row.xzfw
+        row_cells[10].text = row.sm
+    document.add_page_break()
+    document.save('testdoc/genword.docx')
+    context = {}
+    context['msg'] = '生成word文档成功'
+    return render(request, 'test.html', context)
+
+
+def changeword(request):
+    # 在cmd中使用pip3  install docxtpl
+    doc = DocxTemplate('testdoc/changeword.docx')
+    content = {'mycontent': 'hello xie an ma'}
+    doc.render(content)
+    doc.save('testdoc/changeword.docx')
+
+    context = {}
+    context['msg'] = '替换word文档内容成功'
+    return render(request, 'test.html', context)
