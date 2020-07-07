@@ -5,6 +5,9 @@ from Myapp.models import Students
 from docx import Document #导入库
 from docxtpl import DocxTemplate, InlineImage #导入模板库
 from docx.shared import Inches #支持修改文字大小的库
+from docx.shared import Pt
+from docx.shared import RGBColor
+from docx.oxml.ns import qn
 
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
@@ -139,8 +142,24 @@ def lstbiao4(request):
 
 
 def genbiao4(request):
-    # install python-docx
+    # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
     document = Document()  #新建空文档
+    #设置正文颜色，大小，粗体
+    document.styles['Normal'].font.color.rgb = RGBColor(255,0,0)
+    document.styles['Normal'].font.size = Pt(10)
+    document.styles['Normal'].font.bold = False
+
+
+    section = document.sections[0]
+    header = section.header
+    paragraph = header.paragraphs[0]
+    paragraph.text = "title of my document"
+  #  header.is_linked_to_previous = True
+
+    footer = section.footer
+    paragraph1 = footer.paragraphs[0]
+    paragraph1.text = "foooter is xzq"
+
     document.add_heading('4表   建议批准的检验检测能力表',0) #增加标题“Document Title”，第二个参数“0”表示是标题
     p=document.add_paragraph('A')
     p.add_run('检验检测场所地址:').bold = True
@@ -174,7 +193,7 @@ def genbiao4(request):
         row_cells[8].text = row.yjbz
         row_cells[9].text = row.xzfw
         row_cells[10].text = row.sm
-    document.add_page_break()
+    # document.add_page_break()
     document.save('testdoc/genword.docx')
     context = {}
     context['msg'] = '生成word文档成功'
