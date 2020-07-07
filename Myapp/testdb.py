@@ -2,9 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from Myapp.models import Students
 
-from docx import Document #导入库
-from docxtpl import DocxTemplate, InlineImage #导入模板库
-from docx.shared import Inches #支持修改文字大小的库
+from docx import Document  # 导入库
+from docxtpl import DocxTemplate, InlineImage  # 导入模板库
+from docx.shared import Inches  # 支持修改文字大小的库
 from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.oxml.ns import qn
@@ -144,31 +144,30 @@ def lstbiao4(request):
 
 def genbiao4(request):
     # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
-    document = Document()  #新建空文档
-    #设置正文颜色，大小，粗体
-    document.styles['Normal'].font.color.rgb = RGBColor(0,0,0)
+    document = Document()  # 新建空文档
+    # 设置正文颜色，大小，粗体
+    document.styles['Normal'].font.color.rgb = RGBColor(0, 0, 0)
     document.styles['Normal'].font.size = Pt(10)
     document.styles['Normal'].font.bold = False
-
 
     section = document.sections[0]
     header = section.header
     paragraph = header.paragraphs[0]
     paragraph.text = "title of my document"
-  #  header.is_linked_to_previous = True
+    #  header.is_linked_to_previous = True
 
     footer = section.footer
     p1 = footer.paragraphs[0]
     p1.text = "foooter is xzq"
 
-   # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
-    p=document.add_paragraph()
+    # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
+    p = document.add_paragraph()
 
     p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
     run = p.add_run('4表')
     font = run.font
     font.name = u'黑体'
-    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
+    # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
     font.size = Pt(13)
     p = document.add_paragraph()
     p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
@@ -177,44 +176,53 @@ def genbiao4(request):
     font.name = '黑体'
 
     font.size = Pt(13)
-    font.bold =True
+    font.bold = True
 
     p = document.add_paragraph()
     p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-    run =p.add_run('检验检测场所地址:')
-    font= run.font
+    run = p.add_run('检验检测场所地址:')
+    font = run.font
     font.name = '黑体'
     font.size = Pt(13)
     font.italic = True
 
     p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
     mlstbiao4 = Biao4.objects.all()[:5]
-    datarow = mlstbiao4.count()
-    table = document.add_table(rows=1,cols=11)
+    table = document.add_table(rows=1, cols=11,style='Table Grid')
+    table.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    table.width = Inches(200)
     hdr_cells = table.rows[0].cells
-    hdr_cells[0].text= '序号'
-    hdr_cells[1].text= '领域'
-    hdr_cells[2].text= '类别号'
-    hdr_cells[3].text= '类别'
-    hdr_cells[4].text= '对象号'
-    hdr_cells[5].text= '对象'
-    hdr_cells[6].text= '参数号'
-    hdr_cells[7].text= '参数'
-    hdr_cells[8].text= '标准'
-    hdr_cells[9].text= '限制'
-    hdr_cells[10].text= '说明'
+    hdr_cells[0].text = '序号'
+    hdr_cells[1].text = '领域'
+    hdr_cells[2].text = '类别号'
+    hdr_cells[3].text = '类别'
+    hdr_cells[4].text = '对象号'
+    hdr_cells[5].text = '对象'
+    hdr_cells[6].text = '参数号'
+    hdr_cells[7].text = '参数'
+    hdr_cells[8].text = '标准'
+    hdr_cells[9].text = '限制'
+    hdr_cells[10].text = '说明'
 
     for row in mlstbiao4:
         row_cells = table.add_row().cells
         row_cells[0].text = row.lyxh
+        row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        row_cells[0].width = Inches(4)
         row_cells[1].text = row.lyname
+        row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        row_cells[1].width = Inches(6)
         row_cells[2].text = row.lbxh
+        row_cells[2].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[2].width = Inches(6)
         row_cells[3].text = row.lb
         row_cells[4].text = row.dxxh
         row_cells[5].text = row.duixiang
         row_cells[6].text = row.xmxh
         row_cells[7].text = row.csmc
         row_cells[8].text = row.yjbz
+        row_cells[8].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[8].width = Inches(12)
         row_cells[9].text = row.xzfw
         row_cells[10].text = row.sm
     # document.add_page_break()
