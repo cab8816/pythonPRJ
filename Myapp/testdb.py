@@ -8,6 +8,7 @@ from docx.shared import Inches #支持修改文字大小的库
 from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.oxml.ns import qn
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
@@ -135,7 +136,7 @@ def split_page(object_list, request, per_page=8):
 
 
 def lstbiao4(request):
-    mlstbiao4 = Biao4.objects.all()
+    mlstbiao4 = Biao4.objects.all()[:5]
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, 'biao4.html', data1)
@@ -145,7 +146,7 @@ def genbiao4(request):
     # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
     document = Document()  #新建空文档
     #设置正文颜色，大小，粗体
-    document.styles['Normal'].font.color.rgb = RGBColor(255,0,0)
+    document.styles['Normal'].font.color.rgb = RGBColor(0,0,0)
     document.styles['Normal'].font.size = Pt(10)
     document.styles['Normal'].font.bold = False
 
@@ -157,14 +158,37 @@ def genbiao4(request):
   #  header.is_linked_to_previous = True
 
     footer = section.footer
-    paragraph1 = footer.paragraphs[0]
-    paragraph1.text = "foooter is xzq"
+    p1 = footer.paragraphs[0]
+    p1.text = "foooter is xzq"
 
-    document.add_heading('4表   建议批准的检验检测能力表',0) #增加标题“Document Title”，第二个参数“0”表示是标题
-    p=document.add_paragraph('A')
-    p.add_run('检验检测场所地址:').bold = True
+   # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
+    p=document.add_paragraph()
+
+    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    run = p.add_run('4表')
+    font = run.font
+    font.name = u'黑体'
+    document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
+    font.size = Pt(13)
+    p = document.add_paragraph()
+    p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    run = p.add_run('建议批准的检验检测能力表')
+    font = run.font
+    font.name = '黑体'
+
+    font.size = Pt(13)
+    font.bold =True
+
+    p = document.add_paragraph()
+    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    run =p.add_run('检验检测场所地址:')
+    font= run.font
+    font.name = '黑体'
+    font.size = Pt(13)
+    font.italic = True
+
     p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
-    mlstbiao4 = Biao4.objects.all()
+    mlstbiao4 = Biao4.objects.all()[:5]
     datarow = mlstbiao4.count()
     table = document.add_table(rows=1,cols=11)
     hdr_cells = table.rows[0].cells
