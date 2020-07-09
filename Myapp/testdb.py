@@ -9,6 +9,9 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from docx.enum.table import WD_ROW_HEIGHT_RULE , WD_CELL_VERTICAL_ALIGNMENT,WD_TABLE_ALIGNMENT
+from docx.enum.section import WD_ORIENTATION
+
 
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
@@ -141,6 +144,10 @@ def lstbiao4(request):
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, 'biao4.html', data1)
 
+# def cellformat(row_cells,col=0,width=2):
+#     row_cells[col].paragraphs[0].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+#     row_cells[col].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+#     row_cells[col].width = Inches(width)
 
 def genbiao4(request):
     # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
@@ -151,6 +158,7 @@ def genbiao4(request):
     document.styles['Normal'].font.bold = False
 
     section = document.sections[0]
+    section.orientation = WD_ORIENTATION.PORTRAIT  # LANDSCAPE
     header = section.header
     paragraph = header.paragraphs[0]
     paragraph.text = "title of my document"
@@ -188,9 +196,10 @@ def genbiao4(request):
 
     p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
     mlstbiao4 = Biao4.objects.all()[:5]
-    table = document.add_table(rows=1, cols=11,style='Table Grid')
-    table.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    table = document.add_table(rows=1, cols=11, style='Table Grid')
     table.width = Inches(200)
+    table.autofit =True
+
     hdr_cells = table.rows[0].cells
     hdr_cells[0].text = '序号'
     hdr_cells[1].text = '领域'
@@ -204,27 +213,68 @@ def genbiao4(request):
     hdr_cells[9].text = '限制'
     hdr_cells[10].text = '说明'
 
+
+
     for row in mlstbiao4:
-        row_cells = table.add_row().cells
+        nrow = table.add_row()
+        row_cells = nrow.cells
+        nrow.height_rule = WD_ROW_HEIGHT_RULE.EXACTLY
+
         row_cells[0].text = row.lyxh
-        row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        row_cells[0].width = Inches(4)
+        row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[0].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[0].width = Inches(3)
+
         row_cells[1].text = row.lyname
-        row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        row_cells[1].width = Inches(6)
+        row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[1].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[1].width = Inches(12)
+
         row_cells[2].text = row.lbxh
         row_cells[2].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[2].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         row_cells[2].width = Inches(6)
+
         row_cells[3].text = row.lb
+        row_cells[3].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[3].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[3].width = Inches(12)
+
         row_cells[4].text = row.dxxh
+        row_cells[4].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[4].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[4].width = Inches(6)
+
         row_cells[5].text = row.duixiang
+        row_cells[5].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[5].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[5].width = Inches(12)
+
         row_cells[6].text = row.xmxh
+        row_cells[6].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[6].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[6].width = Inches(5)
+
         row_cells[7].text = row.csmc
+        row_cells[7].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[7].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[7].width = Inches(8)
+
         row_cells[8].text = row.yjbz
         row_cells[8].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[8].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         row_cells[8].width = Inches(12)
+
         row_cells[9].text = row.xzfw
+        row_cells[9].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[9].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[9].width = Inches(6)
+
         row_cells[10].text = row.sm
+        row_cells[10].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[10].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[10].width = Inches(6)
+
     # document.add_page_break()
     document.save('testdoc/genword.docx')
     context = {}
