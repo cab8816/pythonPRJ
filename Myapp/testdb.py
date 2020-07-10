@@ -202,7 +202,7 @@ def genbiao4(request):
     hdr_cells[7].text = '参数'
     hdr_cells[8].text = '标准'
     hdr_cells[9].text = '限制'
-    hdr_cells[10].text = '说明啊啊'
+    hdr_cells[10].text = '说明'
 
     for row in mlstbiao4:
         row_cells = table.add_row().cells
