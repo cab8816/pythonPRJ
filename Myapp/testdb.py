@@ -4,14 +4,13 @@ from Myapp.models import Students
 
 from docx import Document  # 导入库
 from docxtpl import DocxTemplate, InlineImage  # 导入模板库
-from docx.shared import Inches  # 支持修改文字大小的库
+from docx.shared import Inches, Cm  # 支持修改文字大小的库
 from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
-from docx.enum.table import WD_ROW_HEIGHT_RULE , WD_CELL_VERTICAL_ALIGNMENT,WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_ROW_HEIGHT_RULE, WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
 from docx.enum.section import WD_ORIENTATION
-
 
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
@@ -144,6 +143,7 @@ def lstbiao4(request):
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, 'biao4.html', data1)
 
+
 # def cellformat(row_cells,col=0,width=2):
 #     row_cells[col].paragraphs[0].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 #     row_cells[col].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
@@ -156,6 +156,14 @@ def genbiao4(request):
     document.styles['Normal'].font.color.rgb = RGBColor(0, 0, 0)
     document.styles['Normal'].font.size = Pt(10)
     document.styles['Normal'].font.bold = False
+
+    # 设置页边距
+    sections = document.sections
+    for section in sections:
+        section.top_margin = Cm(1)
+        section.bottom_margin = Cm(1)
+        section.left_margin = Cm(1)
+        section.right_margin = Cm(1)
 
     section = document.sections[0]
     section.orientation = WD_ORIENTATION.PORTRAIT  # LANDSCAPE
@@ -198,22 +206,48 @@ def genbiao4(request):
     mlstbiao4 = Biao4.objects.all()[:5]
     table = document.add_table(rows=1, cols=11, style='Table Grid')
     table.width = Inches(200)
-    table.autofit =True
+    table.autofit = True
 
     hdr_cells = table.rows[0].cells
-    hdr_cells[0].text = '序号'
+    hdr_cells[0].text = '领域序号'
     hdr_cells[1].text = '领域'
-    hdr_cells[2].text = '类别号'
+    hdr_cells[2].text = '类别序号'
     hdr_cells[3].text = '类别'
-    hdr_cells[4].text = '对象号'
-    hdr_cells[5].text = '对象'
-    hdr_cells[6].text = '参数号'
-    hdr_cells[7].text = '参数'
-    hdr_cells[8].text = '标准'
-    hdr_cells[9].text = '限制'
+    hdr_cells[4].text = '对象序号'
+    hdr_cells[5].text = '检测对象'
+    hdr_cells[6].text = '项目/参数'
+    # hdr_cells[7].text = ''
+    hdr_cells[8].text = '依据的标准（方法）名称及编号（含年号）'
+    hdr_cells[9].text = '限制范围'
     hdr_cells[10].text = '说明'
-
-
+    hdr_cells = table.add_row().cells
+    # hdr_cells[0].text = ''
+    # hdr_cells[1].text = ''
+    # hdr_cells[2].text = ''
+    # hdr_cells[3].text = ''
+    # hdr_cells[4].text = ''
+    # hdr_cells[5].text = ''
+    hdr_cells[6].text = '序号'
+    hdr_cells[7].text = '名称'
+    # hdr_cells[8].text = ''
+    # hdr_cells[9].text = ''
+    # hdr_cells[10].text = ''
+    table.cell(0, 0).merge(table.cell(1, 0))
+    table.cell(0, 1).merge(table.cell(1, 1))
+    table.cell(0, 2).merge(table.cell(1, 2))
+    table.cell(0, 3).merge(table.cell(1, 3))
+    table.cell(0, 4).merge(table.cell(1, 4))
+    table.cell(0, 5).merge(table.cell(1, 5))
+    table.cell(0, 6).merge(table.cell(0, 7))
+    table.cell(0, 8).merge(table.cell(1, 8))
+    table.cell(0, 9).merge(table.cell(1, 9))
+    table.cell(0, 10).merge(table.cell(1, 10))
+    for cell in table.rows[0].cells:
+        cell.paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    for cell in table.rows[1].cells:
+        cell.paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
     for row in mlstbiao4:
         nrow = table.add_row()
@@ -223,7 +257,7 @@ def genbiao4(request):
         row_cells[0].text = row.lyxh
         row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
         row_cells[0].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
-        row_cells[0].width = Inches(3)
+        row_cells[0].width = Inches(4)
 
         row_cells[1].text = row.lyname
         row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
