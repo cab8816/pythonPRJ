@@ -24,7 +24,7 @@ document.add_picture('monty-truth.png', width=Inches(1.25))
 records = (
     (3, '101', 'Spamaa'),
     (7, '422', 'Eggs'),
-    (4, '631', 'Spam, spam, eggs, and spam')
+    (4, '631', 'Spam, spam, eggs, and 啊spam')
 )
 
 table = document.add_table(rows=1, cols=3)
