@@ -201,7 +201,7 @@ def genbiao4(request):
     table.autofit =True
 
     hdr_cells = table.rows[0].cells
-    hdr_cells[0].text = '序号'
+    hdr_cells[0].text = '序d号'
     hdr_cells[1].text = '领域'
     hdr_cells[2].text = '类别号'
     hdr_cells[3].text = '类别'
