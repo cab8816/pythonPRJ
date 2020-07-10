@@ -22,7 +22,7 @@ document.add_paragraph(
 document.add_picture('monty-truth.png', width=Inches(1.25))
 
 records = (
-    (3, '101', 'Spam'),
+    (3, '101', 'Spamaa'),
     (7, '422', 'Eggs'),
     (4, '631', 'Spam, spam, eggs, and spam')
 )

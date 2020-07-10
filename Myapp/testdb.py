@@ -240,5 +240,5 @@ def changeword(request):
     doc.save('testdoc/changeword.docx')
 
     context = {}
-    context['msg'] = '替换word文档内容成功'
+    context['msg'] = '替换word文档内容成功！'
     return render(request, 'test.html', context)
