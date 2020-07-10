@@ -166,6 +166,10 @@ def genbiao4(request):
         section.right_margin = Cm(1)
 
     section = document.sections[0]
+    # 增加页码
+    document.settings.odd_and_even_pages_header_footer = False
+    section.even_page_header.is_linked_to_previous
+
     section.orientation = WD_ORIENTATION.PORTRAIT  # LANDSCAPE
     header = section.header
     paragraph = header.paragraphs[0]
@@ -174,7 +178,7 @@ def genbiao4(request):
 
     footer = section.footer
     p1 = footer.paragraphs[0]
-    p1.text = "foooter is xzq"
+    p1.text = footer.pageNumber.text
 
     # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
     p = document.add_paragraph()
