@@ -17,6 +17,8 @@ from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
 from docx.shared import Inches
 
 
+# git@github.com:cab8816/pythonPRJ.git
+
 def testdbadd(request):
     student = Students(name='谢振乾')
     student.save()
