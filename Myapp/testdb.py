@@ -153,7 +153,7 @@ def lstbiao4(request):
 
 def genbiao4(request):
     # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
-    document = Document()  # 新建空文档
+    document = Document('testdoc/b4t.docx')  # 新建空文档
     # 设置正文颜色，大小，粗体
     document.styles['Normal'].font.color.rgb = RGBColor(0, 0, 0)
     document.styles['Normal'].font.size = Pt(10)
@@ -173,43 +173,43 @@ def genbiao4(request):
     section.even_page_header.is_linked_to_previous
 
     section.orientation = WD_ORIENTATION.PORTRAIT  # LANDSCAPE
-    header = section.header
-    paragraph = header.paragraphs[0]
-    paragraph.text = "title of my document"
+    # header = section.header
+    # paragraph = header.paragraphs[0]
+    # paragraph.text = "title of my document"
     #  header.is_linked_to_previous = True
 
-    footer = section.footer
-    p1 = footer.paragraphs[0]
+    # footer = section.footer
+    # p1 = footer.paragraphs[0]
     # p1.text = footer.pageNumber.text
 
     # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
-    p = document.add_paragraph()
+    # p = document.add_paragraph()
 
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-    run = p.add_run('4表')
-    font = run.font
-    font.name = u'黑体'
-    # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
-    font.size = Pt(13)
-    p = document.add_paragraph()
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-    run = p.add_run('建议批准的检验检测能力表')
-    font = run.font
-    font.name = '黑体'
-
-    font.size = Pt(13)
-    font.bold = True
-
-    p = document.add_paragraph()
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-    run = p.add_run('检验检测场所地址:')
-    font = run.font
-    font.name = '黑体'
-    font.size = Pt(13)
-    font.italic = True
-
-    p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
-    mlstbiao4 = Biao4.objects.all()[:5]
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    # run = p.add_run('4表')
+    # font = run.font
+    # font.name = u'黑体'
+    # # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
+    # font.size = Pt(13)
+    # p = document.add_paragraph()
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    # run = p.add_run('建议批准的检验检测能力表')
+    # font = run.font
+    # font.name = '黑体'
+    #
+    # font.size = Pt(13)
+    # font.bold = True
+    #
+    # p = document.add_paragraph()
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    # run = p.add_run('检验检测场所地址:')
+    # font = run.font
+    # font.name = '黑体'
+    # font.size = Pt(13)
+    # font.italic = True
+    #
+    # p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
+    mlstbiao4 = Biao4.objects.all()[:50]
     table = document.add_table(rows=1, cols=11, style='Table Grid')
     table.width = Inches(200)
     table.autofit = True
