@@ -178,7 +178,7 @@ def genbiao4(request):
 
     footer = section.footer
     p1 = footer.paragraphs[0]
-    p1.text = footer.pageNumber.text
+    # p1.text = footer.pageNumber.text
 
     # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
     p = document.add_paragraph()
