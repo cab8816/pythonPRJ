@@ -4,16 +4,20 @@ from Myapp.models import Students
 
 from docx import Document  # 导入库
 from docxtpl import DocxTemplate, InlineImage  # 导入模板库
-from docx.shared import Inches  # 支持修改文字大小的库
+from docx.shared import Inches, Cm  # 支持修改文字大小的库
 from docx.shared import Pt
 from docx.shared import RGBColor
 from docx.oxml.ns import qn
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from docx.enum.table import WD_ROW_HEIGHT_RULE, WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
+from docx.enum.section import WD_ORIENTATION
 
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
 from docx.shared import Inches
 
+
+# git@github.com:cab8816/pythonPRJ.git
 
 def testdbadd(request):
     student = Students(name='谢振乾')
@@ -142,89 +146,175 @@ def lstbiao4(request):
     return render(request, 'biao4.html', data1)
 
 
+# def cellformat(row_cells,col=0,width=2):
+#     row_cells[col].paragraphs[0].alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+#     row_cells[col].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+#     row_cells[col].width = Inches(width)
+
 def genbiao4(request):
     # install python-docx https://python-docx.readthedocs.io/en/latest/index.html
-    document = Document()  # 新建空文档
+    document = Document('testdoc/b4t.docx')  # 新建空文档
     # 设置正文颜色，大小，粗体
     document.styles['Normal'].font.color.rgb = RGBColor(0, 0, 0)
     document.styles['Normal'].font.size = Pt(10)
     document.styles['Normal'].font.bold = False
 
+    # 设置页边距
+    sections = document.sections
+    for section in sections:
+        section.top_margin = Cm(1)
+        section.bottom_margin = Cm(1)
+        section.left_margin = Cm(1)
+        section.right_margin = Cm(1)
+
     section = document.sections[0]
-    header = section.header
-    paragraph = header.paragraphs[0]
-    paragraph.text = "title of my document"
+    # 增加页码
+    document.settings.odd_and_even_pages_header_footer = False
+    section.even_page_header.is_linked_to_previous
+
+    section.orientation = WD_ORIENTATION.PORTRAIT  # LANDSCAPE
+    # header = section.header
+    # paragraph = header.paragraphs[0]
+    # paragraph.text = "title of my document"
     #  header.is_linked_to_previous = True
 
-    footer = section.footer
-    p1 = footer.paragraphs[0]
-    p1.text = "foooter is xzq"
+    # footer = section.footer
+    # p1 = footer.paragraphs[0]
+    # p1.text = footer.pageNumber.text
 
     # document.add_heading('4表   建议批准的检验检测能力表',2) #增加标题“Document Title”，第二个参数“0”表示是标题
-    p = document.add_paragraph()
+    # p = document.add_paragraph()
 
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-    run = p.add_run('4表')
-    font = run.font
-    font.name = u'黑体'
-    # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
-    font.size = Pt(13)
-    p = document.add_paragraph()
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-    run = p.add_run('建议批准的检验检测能力表')
-    font = run.font
-    font.name = '黑体'
-
-    font.size = Pt(13)
-    font.bold = True
-
-    p = document.add_paragraph()
-    p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
-    run = p.add_run('检验检测场所地址:')
-    font = run.font
-    font.name = '黑体'
-    font.size = Pt(13)
-    font.italic = True
-
-    p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
-    mlstbiao4 = Biao4.objects.all()[:5]
-    table = document.add_table(rows=1, cols=11,style='Table Grid')
-    table.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    # run = p.add_run('4表')
+    # font = run.font
+    # font.name = u'黑体'
+    # # document.styles['Normal']._element.rPr.rFonts.set(qn('w:eastAsia'), u'黑体')
+    # font.size = Pt(13)
+    # p = document.add_paragraph()
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+    # run = p.add_run('建议批准的检验检测能力表')
+    # font = run.font
+    # font.name = '黑体'
+    #
+    # font.size = Pt(13)
+    # font.bold = True
+    #
+    # p = document.add_paragraph()
+    # p.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+    # run = p.add_run('检验检测场所地址:')
+    # font = run.font
+    # font.name = '黑体'
+    # font.size = Pt(13)
+    # font.italic = True
+    #
+    # p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
+    mlstbiao4 = Biao4.objects.all()[:50]
+    table = document.add_table(rows=1, cols=11, style='Table Grid')
     table.width = Inches(200)
+    table.autofit = True
+
     hdr_cells = table.rows[0].cells
-    hdr_cells[0].text = '序号'
+    hdr_cells[0].text = '领域序号'
     hdr_cells[1].text = '领域'
-    hdr_cells[2].text = '类别号'
+    hdr_cells[2].text = '类别序号'
     hdr_cells[3].text = '类别'
-    hdr_cells[4].text = '对象号'
-    hdr_cells[5].text = '对象'
-    hdr_cells[6].text = '参数号'
-    hdr_cells[7].text = '参数'
-    hdr_cells[8].text = '标准'
-    hdr_cells[9].text = '限制'
+    hdr_cells[4].text = '对象序号'
+    hdr_cells[5].text = '检测对象'
+    hdr_cells[6].text = '项目/参数'
+    # hdr_cells[7].text = ''
+    hdr_cells[8].text = '依据的标准（方法）名称及编号（含年号）'
+    hdr_cells[9].text = '限制范围'
     hdr_cells[10].text = '说明'
+    hdr_cells = table.add_row().cells
+    # hdr_cells[0].text = ''
+    # hdr_cells[1].text = ''
+    # hdr_cells[2].text = ''
+    # hdr_cells[3].text = ''
+    # hdr_cells[4].text = ''
+    # hdr_cells[5].text = ''
+    hdr_cells[6].text = '序号'
+    hdr_cells[7].text = '名称'
+    # hdr_cells[8].text = ''
+    # hdr_cells[9].text = ''
+    # hdr_cells[10].text = ''
+    table.cell(0, 0).merge(table.cell(1, 0))
+    table.cell(0, 1).merge(table.cell(1, 1))
+    table.cell(0, 2).merge(table.cell(1, 2))
+    table.cell(0, 3).merge(table.cell(1, 3))
+    table.cell(0, 4).merge(table.cell(1, 4))
+    table.cell(0, 5).merge(table.cell(1, 5))
+    table.cell(0, 6).merge(table.cell(0, 7))
+    table.cell(0, 8).merge(table.cell(1, 8))
+    table.cell(0, 9).merge(table.cell(1, 9))
+    table.cell(0, 10).merge(table.cell(1, 10))
+    for cell in table.rows[0].cells:
+        cell.paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    for cell in table.rows[1].cells:
+        cell.paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
     for row in mlstbiao4:
-        row_cells = table.add_row().cells
+        nrow = table.add_row()
+        row_cells = nrow.cells
+        nrow.height_rule = WD_ROW_HEIGHT_RULE.EXACTLY
+
         row_cells[0].text = row.lyxh
-        row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+        row_cells[0].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[0].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         row_cells[0].width = Inches(4)
+
         row_cells[1].text = row.lyname
-        row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
-        row_cells[1].width = Inches(6)
+        row_cells[1].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[1].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[1].width = Inches(12)
+
         row_cells[2].text = row.lbxh
         row_cells[2].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[2].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         row_cells[2].width = Inches(6)
+
         row_cells[3].text = row.lb
+        row_cells[3].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[3].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[3].width = Inches(12)
+
         row_cells[4].text = row.dxxh
+        row_cells[4].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[4].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[4].width = Inches(6)
+
         row_cells[5].text = row.duixiang
+        row_cells[5].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[5].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[5].width = Inches(12)
+
         row_cells[6].text = row.xmxh
+        row_cells[6].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[6].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[6].width = Inches(5)
+
         row_cells[7].text = row.csmc
+        row_cells[7].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[7].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[7].width = Inches(8)
+
         row_cells[8].text = row.yjbz
         row_cells[8].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[8].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         row_cells[8].width = Inches(12)
+
         row_cells[9].text = row.xzfw
+        row_cells[9].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[9].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[9].width = Inches(6)
+
         row_cells[10].text = row.sm
+        row_cells[10].paragraphs[0].paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        row_cells[10].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+        row_cells[10].width = Inches(6)
+
     # document.add_page_break()
     document.save('testdoc/genword.docx')
     context = {}

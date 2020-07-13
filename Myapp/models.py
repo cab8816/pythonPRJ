@@ -1,5 +1,16 @@
 from django.db import models
 
+#
+# # Assume you are activating Python 3 venv
+# $ brew install mysql-client
+# $ echo 'export PATH="/usr/local/opt/mysql-client/bin:$PATH"' >> ~/.bash_profile
+# $ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+# $ pip install mysqlclient
+
+# $ python3 manage.py migrate   # 创建表结构
+#
+# $ python3 manage.py makemigrations TestModel  # 让 Django 知道我们在我们的模型有一些变更
+# $ python3 manage.py migrate TestModel   # 创建表结构
 
 # Create your models here.
 class Students(models.Model):
