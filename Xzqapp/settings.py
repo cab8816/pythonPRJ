@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+#  ftp  账号：cab88  254613
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
