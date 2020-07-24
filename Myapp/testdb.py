@@ -111,6 +111,7 @@ def split_page(object_list, request, per_page=8):
         page = paginator.page(page_num)
     except PageNotAnInteger as e:
         # 不是整数返回第一页数据
+        # page = paginator.page('1')
         page = paginator.page('1')
         page_num = 1
     except EmptyPage as e:
@@ -140,7 +141,8 @@ def split_page(object_list, request, per_page=8):
 
 
 def lstbiao4(request):
-    mlstbiao4 = Biao4.objects.all()[:5]
+    # mlstbiao4 = Biao4.objects.all()[:5]
+    mlstbiao4 = Biao4.objects.all()
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, 'biao4.html', data1)
@@ -209,7 +211,8 @@ def genbiao4(request):
     # font.italic = True
     #
     # p.add_run('广州市南沙区东涌镇市南公路东涌段115号')
-    mlstbiao4 = Biao4.objects.all()[:50]
+    # mlstbiao4 = Biao4.objects.all()[:50]
+    mlstbiao4 = Biao4.objects.all()
     table = document.add_table(rows=1, cols=11, style='Table Grid')
     table.width = Inches(200)
     table.autofit = True
