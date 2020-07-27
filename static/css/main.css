@@ -1,0 +1,57 @@
+
+.headline{
+    vertical-align: center;
+    padding: 8px;
+}
+
+.lyxh {
+    width: 31px;
+    vertical-align: bottom;
+    text-align: center;
+    font-size: 12px;
+    height: 56px;
+    border: 1px,red,dashed;
+}
+
+.ly {
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+    height: 50px;
+    padding: 8px;
+}
+
+.lbxh {
+    width: 45px;
+    font-size: 10px;
+}
+.lb{
+    width: 20px;
+}
+.dxxh {
+    width: 50px;
+}
+
+.jcdx{
+    width: 50px;
+}
+
+.xmxh {
+    width: 50px;
+}
+
+.cxmc {
+    width: 50px;
+}
+
+.jcyj {
+    width: 100px;
+}
+
+.xzfw {
+    width: 50px;
+}
+
+.sm{
+    width: 50px;
+}
