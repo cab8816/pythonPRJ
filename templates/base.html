@@ -12,8 +12,9 @@
 <body>
 
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+{#    <div class="container-fluid">#}
         <div class="navbar-header">
             <a class="navbar-brand" href="/index/">资质报告主页</a>
         </div>
@@ -40,13 +41,8 @@
             </ul>
         </div>
     </div>
-  <ul class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">2013</a></li>
-    <li class="active">十一月</li>
-</ul>
 </nav>
-<div class="content" style="padding: 20px;margin: 10px">
+<div class="content" style="padding: 20px;margin: 10px;margin-top: 50px">
 {% block mainbody %}
 {% endblock %}
 </div>
