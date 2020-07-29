@@ -1,57 +1,83 @@
 
-.headline{
-    vertical-align: center;
-    padding: 8px;
+.table>thead>tr>th {
+    vertical-align: middle;
+
 }
 
+.table>tbody>tr>td {
+    vertical-align: middle;
+
+}
+
+.head {
+       vertical-align: middle;
+}
+
+.headline{
+      vertical-align: middle;
+      padding: 8px;
+}
+
+
+
+
 .lyxh {
-    width: 31px;
-    vertical-align: bottom;
+    width: 4%;
     text-align: center;
     font-size: 12px;
-    height: 56px;
-    border: 1px,red,dashed;
 }
 
 .ly {
     text-align: center;
-    vertical-align: middle;
-    width: 100px;
-    height: 50px;
+    width: 10%;
+    height: 73px;
     padding: 8px;
 }
 
 .lbxh {
-    width: 45px;
-    font-size: 10px;
+    width: 4%;
+    font-size: 13px;
 }
 .lb{
-    width: 20px;
+    width: 11%;
+    text-align: center;
 }
 .dxxh {
-    width: 50px;
+    width: 4%;
+    text-align: center;
 }
 
 .jcdx{
-    width: 50px;
+    width: 11%;
+    text-align: center;
 }
 
 .xmxh {
-    width: 50px;
+    width: 6%;
+    text-align: center;
 }
 
 .cxmc {
-    width: 50px;
+    width: 10%;
+    text-align: center;
 }
 
 .jcyj {
-    width: 100px;
+    width: 30%;
+    text-align: center;
 }
 
 .xzfw {
-    width: 50px;
+    width: 5%;
+    text-align: center;
 }
 
 .sm{
-    width: 50px;
+    width: 6%;
+    text-align: center;
+}
+.bsm {
+    font-size: 9px;
+    text-align: left;
+
 }
