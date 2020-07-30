@@ -19,9 +19,9 @@ class Students(models.Model):
 
 class Biao4(models.Model):
     id = models.AutoField(primary_key=True)
-    psxh = models.CharField(max_length=20)
+    psxh = models.CharField(max_length=20,verbose_name="评审编号")
     lyxh = models.CharField(max_length=20)
-    lyname = models.CharField(max_length=100)
+    lyname = models.CharField(max_length=100,verbose_name="领域名称")
     lbxh = models.CharField(max_length=20)
     lb = models.CharField(max_length=100)
     dxxh = models.CharField(max_length=20)

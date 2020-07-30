@@ -4,6 +4,7 @@ from Myapp.models import Biao4
 # Register your models here.
 # python manage.py createsuperuser
 # admin cab88 xzq254613
+# cab777  bbbb4321
 
 class Biao4Admin(admin.ModelAdmin):
     list_display = ('lyname','lb','duixiang','csmc')
