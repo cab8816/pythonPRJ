@@ -1,5 +1,6 @@
 from django.db import models
 
+
 #
 # # Assume you are activating Python 3 venv
 # $ brew install mysql-client
@@ -19,9 +20,9 @@ class Students(models.Model):
 
 class Biao4(models.Model):
     id = models.AutoField(primary_key=True)
-    psxh = models.CharField(max_length=20,verbose_name="评审编号")
+    psxh = models.CharField(max_length=20, verbose_name="评审编号")
     lyxh = models.CharField(max_length=20)
-    lyname = models.CharField(max_length=100,verbose_name="领域名称")
+    lyname = models.CharField(max_length=100, verbose_name="领域名称")
     lbxh = models.CharField(max_length=20)
     lb = models.CharField(max_length=100)
     dxxh = models.CharField(max_length=20)
@@ -33,5 +34,19 @@ class Biao4(models.Model):
     xzfw = models.CharField(max_length=100)
     sm = models.CharField(max_length=200)
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return self.csmc
+
+
+class ImportFile(models.Model):
+    file = models.FileField(upload_to='File', verbose_name=u'上传文件')
+    name = models.CharField(max_length=50, verbose_name='文件名')
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
