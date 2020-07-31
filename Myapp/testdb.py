@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from Myapp.models import Students
 
 from docx import Document  # 导入库
@@ -15,6 +15,8 @@ from docx.enum.section import WD_ORIENTATION
 from Myapp.models import Biao4
 from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
 from docx.shared import Inches
+
+import os
 
 
 # git@github.com:cab8816/pythonPRJ.git
@@ -335,3 +337,25 @@ def changeword(request):
     context = {}
     context['msg'] = '替换word文档内容成功！'
     return render(request, 'test.html', context)
+
+
+def downloadfile(request):
+    context = {}
+
+    return render(request, "downloadfile.html")
+
+
+def uploadfile(request):
+    context = {}
+    if request.method == 'POST':
+        myFile = request.FILES.get("myfile", None)
+        if not myFile:
+            return HttpResponse('没有文件来上传！')
+        destination = open(os.path.join("/medis/", myFile.name), 'wb+')
+        for chunk in myFile.chunk():
+            destination.write(chunk)
+        destination.close()
+        context['msg'] = '文件上传完成！'
+        return redirect('text.html',context)
+
+    return render(request, "uploadfile.html")

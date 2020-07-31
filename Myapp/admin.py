@@ -1,6 +1,6 @@
 from django.contrib import admin
-from Myapp.models import Biao4
-from .utils import import_user
+from Myapp.models import *
+# from .utils import import_user
 
 # Register your models here.
 # python manage.py createsuperuser
@@ -12,6 +12,7 @@ class Biao4Admin(admin.ModelAdmin):
 
 admin.site.register(Biao4,Biao4Admin)
 
+admin.site.register(ImportFile)
 
 # class KNImportFileAdmin(admin.ModelAdmin):
 #     list_display = ('file', 'name',)
