@@ -38,12 +38,13 @@ INSTALLED_APPS = [
     'Myapp.apps.MyappConfig',
 
 ]
-
+# python_django_禁止访问 _CSRF验证失败
+# 将settings.py文件的MIDDLEWARE中的csrf设置注掉后，再次运行，问题解决
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -140,6 +141,5 @@ STATICFILES_DIRS = [
     ('css', os.path.join(STATIC_ROOT, 'css')),
 ]
 
-
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

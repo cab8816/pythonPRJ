@@ -351,11 +351,12 @@ def uploadfile(request):
         myFile = request.FILES.get("myfile", None)
         if not myFile:
             return HttpResponse('没有文件来上传！')
-        destination = open(os.path.join("/medis/", myFile.name), 'wb+')
-        for chunk in myFile.chunk():
+        print(myFile.name)
+        destination = open(os.path.join("media/", myFile.name), 'wb+')
+        for chunk in myFile.chunks():
             destination.write(chunk)
         destination.close()
         context['msg'] = '文件上传完成！'
-        return redirect('text.html',context)
+        # return redirect('text.html',context)
 
     return render(request, "uploadfile.html")
