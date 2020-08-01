@@ -28,6 +28,8 @@ urlpatterns = [
     path('lstbiao4/',testdb.lstbiao4),
     path('genbiao4/',testdb.genbiao4),
     path('changeword/',testdb.changeword),
+    path('uploadfile/',testdb.uploadfile),
+    path('downloadfile/',testdb.downloadfile),
 
 
 ]
