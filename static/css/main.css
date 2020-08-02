@@ -201,7 +201,7 @@ fieldset[disabled] .btn-register.active {
 @font-face {
   font-family: 'weijinsuo';
   src: url('/static/fonts/MiFie-Web-Font.eot?6cyhth');
-  src: url('/static/fonts/MiFie-Web-Font.eot?6cyhth#iefix') format('embedded-opentype'), url('../fonts/MiFie-Web-Font.svg?6cyhth#MiFie-Web-Font') format('svg'), url('../fonts/MiFie-Web-Font.ttf?6cyhth') format('truetype'), url('../fonts/MiFie-Web-Font.woff?6cyhth') format('woff');
+  src: url('/static/fonts/MiFie-Web-Font.eot?6cyhth#iefix') format('embedded-opentype'), url('/static/fonts/MiFie-Web-Font.svg?6cyhth#MiFie-Web-Font') format('svg'), url('/static/fonts/MiFie-Web-Font.ttf?6cyhth') format('truetype'), url('/static/fonts/MiFie-Web-Font.woff?6cyhth') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -312,6 +312,14 @@ fieldset[disabled] .btn-register.active {
 }
 
 
+.glyphicon-scale:before {
+  content: "\e230";
+  font-size:15px ;
+}
+.glyphicon-class{
+    text-align: center;
+  font-style: normal;
+}
 /**
  * 通栏样式
  */
@@ -351,6 +359,8 @@ fieldset[disabled] .btn-register.active {
 .topbar .row > div + div {
   border-left: 1px solid #e0e0e0;
 }
+
+
 
 
 /**

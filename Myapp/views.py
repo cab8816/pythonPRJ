@@ -13,3 +13,7 @@ def index(request):
     context['msg'] = 'msgggggggg'
 
     return render(request, 'index.html', context)
+
+def zzindex(request):
+
+    return  render(request,'base.html')

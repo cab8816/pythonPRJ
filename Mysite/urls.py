@@ -20,6 +20,7 @@ from Myapp import views,testdb
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index),
+    path('zzindex/', views.zzindex),
     path('testdbadd/',testdb.testdbadd),
     path('testdblst/',testdb.testdblst),
     path('testdbupd/',testdb.testdbupd),
