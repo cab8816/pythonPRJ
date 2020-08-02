@@ -1,0 +1,83 @@
+
+.table>thead>tr>th {
+    vertical-align: middle;
+
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+
+}
+
+.head {
+       vertical-align: middle;
+}
+
+.headline{
+      vertical-align: middle;
+      padding: 8px;
+}
+
+
+
+
+.lyxh {
+    width: 4%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.ly {
+    text-align: center;
+    width: 10%;
+    height: 73px;
+    padding: 8px;
+}
+
+.lbxh {
+    width: 4%;
+    font-size: 13px;
+}
+.lb{
+    width: 11%;
+    text-align: center;
+}
+.dxxh {
+    width: 4%;
+    text-align: center;
+}
+
+.jcdx{
+    width: 11%;
+    text-align: center;
+}
+
+.xmxh {
+    width: 6%;
+    text-align: center;
+}
+
+.cxmc {
+    width: 10%;
+    text-align: center;
+}
+
+.jcyj {
+    width: 30%;
+    text-align: center;
+}
+
+.xzfw {
+    width: 5%;
+    text-align: center;
+}
+
+.sm{
+    width: 6%;
+    text-align: center;
+}
+.bsm {
+    font-size: 9px;
+    text-align: left;
+
+}

@@ -12,4 +12,4 @@ def index(request):
     context['hello'] = 'hello ddd 2020/06/24 10:05 dddddd777 hello tiskk 谢岸马'
     context['msg'] = 'msgggggggg'
 
-    return render(request, 'test.html', context)
+    return render(request, 'index.html', context)
