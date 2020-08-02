@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
 from Myapp.models import Students
 
@@ -341,6 +341,11 @@ def changeword(request):
 
 def downloadfile(request):
     context = {}
+    file = open('media/baojia.jpg','rb')
+    response = FileResponse(file)
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="mbaojia.jpg"'
+    return  response
 
     return render(request, "downloadfile.html")
 
@@ -359,4 +364,4 @@ def uploadfile(request):
         context['msg'] = '文件上传完成！'
         # return redirect('text.html',context)
 
-    return render(request, "uploadfile.html")
+    return render(request, "uploadfile.html",context)
