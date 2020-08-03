@@ -47,7 +47,22 @@ body {
 .nav > li {
     position: relative;
     display: block;
-    height: 71px;
+    height: 61px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.collapse>.nav > li,.col-sm-8 {
+padding-left: 21px;
+padding-right: 1px;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 1px;
+    width: 60px;
+
 }
 
 
