@@ -44,6 +44,12 @@ body {
   line-height: 38px;
 }
 
+.nav > li {
+    position: relative;
+    display: block;
+    height: 71px;
+}
+
 
 /*@media screen and (min-width: 992px) {
   .navbar-itcast .navbar-nav > li > a {
