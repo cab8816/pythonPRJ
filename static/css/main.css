@@ -53,8 +53,10 @@ body {
 }
 
 .collapse>.nav > li,.col-sm-8 {
-padding-left: 21px;
-padding-right: 1px;
+
+padding-left: 10px;
+
+padding-right: 1px;
 }
 
 .nav > li > a {
