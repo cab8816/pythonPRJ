@@ -68,6 +68,8 @@ padding-right: 1px;
 }
 
 
+
+
 /*@media screen and (min-width: 992px) {
   .navbar-itcast .navbar-nav > li > a {
     font-size: 1.6rem;
@@ -868,3 +870,5 @@ fieldset[disabled] .btn-register.active {
 .icon-uniE92D:before {
   content: "\e92d";
 }
+
+
