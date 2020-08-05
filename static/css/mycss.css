@@ -2,6 +2,18 @@
 /*  margin-top: 100px;*/
 /*}*/
 
+.nav>li>a{
+    width: 100px;
+    padding: 10px;
+}
+
+.container{
+    margin-left: -10px;
+}
+.pagination>li>a{
+
+    width: 30px;
+}
 
 .table>thead>tr>th {
     vertical-align: middle;

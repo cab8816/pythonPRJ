@@ -13,7 +13,7 @@
 <body>
 
 {#navbar-fixed-top#}
-<nav class="navbar navbar-default navbar-inverse " role="navigation">
+<nav class="navbar navbar-default navbar-inverse " role="navigation" style="padding: 5px;margin-bottom: 5px">
     <div class="container">
 {#    <div class="container-fluid">#}
         <div class="navbar-header col-md-2 hidden-sm hidden-xs">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-10">
             <ul class="nav navbar-nav">
-                <li class="active col-sm-4 col-xs-4 "><a href="/readword/">读取word</a></li>
+                <li  class="active col-sm-4 col-xs-4 "><a href="/readword/">读取word</a></li>
                 <li class="col-sm-4 col-xs-4"><a href="/lstbiao4/?page=1">表4列表</a></li>
                 <li class="col-sm-4 col-xs-4"><a href="/genbiao4/">生成表4</a></li>
                 <li class="col-sm-4 col-xs-4"><a href="/uploadfile/">传递文件</a></li>
@@ -46,7 +46,7 @@
         </div>
     </div>
 </nav>
-<div class="content" style="padding: 20px;margin: 10px;margin-top: 50px">
+<div class="content" style="padding: 1px;margin: 10px">
 {% block mainbody %}
 {% endblock %}
 </div>
