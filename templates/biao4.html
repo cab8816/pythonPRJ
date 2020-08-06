@@ -13,7 +13,7 @@
 	<thead class="head">
 		<tr class="headline">
 			<th class="lyxh">领域<br>序号</th>
-			<th class="ly">领域</th>
+			<th class="ly hidden-xs">领域</th>
 			<th class="lbxh">类别<br>序号</th>
 			<th class="lb">类别</th>
 			<th class="dxxh">对象<br>序号</th>
@@ -29,7 +29,7 @@
     {% for lst in page %}
 		<tr>
 			<td>{{lst.lyxh}}</td>
-			<td>{{lst.lyname}}</td>
+			<td class="hidden-xs">{{lst.lyname}}</td>
 			<td>{{lst.lbxh}}</td>
 			<td>{{lst.lb}}</td>
 			<td>{{lst.dxxh}}</td>
