@@ -32,5 +32,7 @@ urlpatterns = [
     path('uploadfile/', testdb.uploadfile),
     path('downloadfile/', testdb.downloadfile),
     path('beyindex/', beyindex.beyindex),
+    path('beybiao4/', beyindex.beybiao4),
+
 
 ]
