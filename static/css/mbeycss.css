@@ -1,0 +1,15 @@
+/*biao4 css*/
+
+
+
+.pagination > li > a, .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 5px 5px;
+    margin-left: -1px;
+    line-height: 1.4285;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
