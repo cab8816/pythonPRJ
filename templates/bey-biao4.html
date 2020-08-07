@@ -51,7 +51,7 @@
                                                     领域
                                                 </th>
 
-                                                <th class="sorting_disabled" tabindex="0" aria-controls="simpledatatable" rowspan="1" colspan="1" aria-label="
+                                                <th class="sorting_disabled hidden-xs" tabindex="0" aria-controls="simpledatatable" rowspan="1" colspan="1" aria-label="
                                                     Points
                                                 : activate to sort column ascending" style="width: 100px;">
                                                     类别<br>序号
@@ -61,9 +61,9 @@
                                                 " style="width: 156px;">
                                                     类别
                                                 </th>
-                                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                                 <th class="sorting_disabled hidden-xs" rowspan="1" colspan="1" aria-label="
                                                     Joined
-                                                " style="width: 156px;">
+                                                " style="width: 100px;">
                                                     对象<br>序号
                                                  </th>
 
@@ -74,7 +74,7 @@
                                                 </th>
                                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
                                                     Joined
-                                                " style="width: 156px;">
+                                                " style="width: 80px;">
                                                     项目<br>序号
                                                 </th>
                                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
@@ -87,12 +87,12 @@
                                                 " style="width: 156px;font-size: 8px">
                                                     依据的标准（方法）<br>名称及编号（含年号）
                                                 </th>
-                                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                                 <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
                                                     限制<br>范围
                                                 </th>
-                                                 <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                                 <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
                                                     说明
@@ -106,15 +106,15 @@
                                         <tr class="odd">
                                             <td>{{lst.lyxh}}</td>
                                             <td class="hidden-xs">{{lst.lyname}}</td>
-                                            <td>{{lst.lbxh}}</td>
+                                            <td class="hidden-xs">{{lst.lbxh}}</td>
                                             <td>{{lst.lb}}</td>
-                                            <td>{{lst.dxxh}}</td>
+                                            <td class="hidden-xs">{{lst.dxxh}}</td>
                                             <td>{{lst.duixiang}}</td>
-                                            <td>{{lst.xmxh}}</td>
+                                            <td style="width: 80px">{{lst.xmxh}}</td>
                                             <td>{{lst.csmc}}</td>
                                             <td  class="hidden-xs">{{lst.yjbz}}</td>
-                                            <td>{{lst.xzfw}}</td>
-                                            <td class="bsm">{{lst.sm}}</td>
+                                            <td class="hidden-xs">{{lst.xzfw}}</td>
+                                            <td class="bsm  hidden-xs ">{{lst.sm}}</td>
                                             </tr>
                                     {% endfor %}
 
