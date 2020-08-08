@@ -50,3 +50,10 @@ class ImportFile(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Biao5(models.Model):
+    name = models.CharField(max_length=10)
+    ziwuzicheng = models.CharField(max_length=30)
+    sqqzly = models.CharField(max_length=500)
+    beizu = models.CharField(max_length=300)
