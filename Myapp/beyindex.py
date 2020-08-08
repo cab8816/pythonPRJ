@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
@@ -8,11 +9,12 @@ def beyindex(request):
     return render(request, "beybase.html")
 
 
+@login_required
 def beybiao4(request):
     mlstbiao4 = Biao4.objects.all()
 
     data1 = split_page(mlstbiao4, request, 10)
-    return render(request, "bey-biao4.html",data1)
+    return render(request, "bey-biao4.html", data1)
 
 
 def split_page(object_list, request, per_page=8):
@@ -48,7 +50,6 @@ def split_page(object_list, request, per_page=8):
         dis_range = range(page_num - 5, page_num + 5)
     else:
         dis_range = range(paginator.num_pages - 9, paginator.num_pages + 1)
-
 
     data = {'page': page, 'paginator': paginator, 'dis_range': dis_range}
     return data
