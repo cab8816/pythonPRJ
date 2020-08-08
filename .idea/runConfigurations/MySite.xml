@@ -7,7 +7,7 @@
       <env name="PYTHONUNBUFFERED" value="1" />
       <env name="DJANGO_SETTINGS_MODULE" value="Mysite.settings" />
     </envs>
-    <option name="SDK_HOME" value="D:\PycharmProjects\Xzqapp\venv\Scripts\python.exe" />
+    <option name="SDK_HOME" value="C:\Users\Administrator\AppData\Local\Programs\Python\Python37\python.exe" />
     <option name="WORKING_DIRECTORY" value="" />
     <option name="IS_MODULE_SDK" value="false" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -16,7 +16,7 @@
     <option name="port" value="8000" />
     <option name="host" value="127.0.0.1" />
     <option name="additionalOptions" value="" />
-    <option name="browserUrl" value="http://127.0.0.1:8000/index" />
+    <option name="browserUrl" value="http://127.0.0.1:8000/myapp/index" />
     <option name="runTestServer" value="false" />
     <option name="runNoReload" value="false" />
     <option name="useCustomRunCommand" value="false" />

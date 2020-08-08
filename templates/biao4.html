@@ -53,7 +53,7 @@
         <!--上一页-->
         <li class="{% if not page.has_previous %}disabled{% endif %}">
           {% if page.has_previous %}
-            <a href="/lstbiao4/?page={{ page.previous_page_number }}" aria-label="Previous">
+            <a href="/myapp/lstbiao4/?page={{ page.previous_page_number }}" aria-label="Previous">
           {% endif %}
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -63,14 +63,14 @@
         <!--这里展示页码使用传递过来的dis_range -->
         {% for num in dis_range %}
         <li class="{% if num == page.number %}active{% else %}{% endif %}"  >
-          <a href="/lstbiao4/?page={{ num }}">{{ num }}</a>
+          <a href="/myapp/lstbiao4/?page={{ num }}">{{ num }}</a>
         </li>
         {% endfor %}
         <!--下一页-->
         <li class="{% if not page.has_next %}disabled{% endif %}" >
           {% if page.has_next %}
 {#            <a href="{% url 'index' %}?page={{ page.next_page_number }}" aria-label="Next">#}
-            <a href="/lstbiao4/?page={{ page.next_page_number }}" aria-label="Next">
+            <a href="/myapp/lstbiao4/?page={{ page.next_page_number }}" aria-label="Next">
           {% endif %}
             <span aria-hidden="true">&raquo;</span>
           </a>
