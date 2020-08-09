@@ -4,7 +4,6 @@ from django.contrib import admin
 
 from Myapp.models import *
 
-
 # from .utils import import_user
 
 # Register your models here.
@@ -18,6 +17,9 @@ from Myapp.models import *
 #
 # [global]
 # index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+from Myapp.utils import importpsymd
+
+
 def readed(modeladmin, request, queryset):
     queryset.update(sm='已点')
 
@@ -29,14 +31,15 @@ class Biao4Admin(admin.ModelAdmin):
     fields = ('xmxh', 'lb', 'duixiang', 'csmc',)
     actions = [readed]
 
-    def save_model(self, request, obj, form, change):
-        obj.sm = datetime.date.today()
-        super().save_model(request, obj, form, change)
-
 
 @admin.register(ImportFile)
 class ImportFileAdmin(admin.ModelAdmin):
-    list_display = ('file', 'name',)
+    list_display = ('file', 'filename',)
+
+    def save_model(self, request, obj, form, change):
+        re = super(ImportFileAdmin, self).save_model(request, obj, form, change)
+        importpsymd(self, request, obj, change)
+        return re
 
 
 # class KNImportFileAdmin(admin.ModelAdmin):
@@ -71,10 +74,20 @@ class Biao5admin(admin.ModelAdmin):
     # date_hierarchy = 'ziwuzicheng'  # 详细时间分层筛选　
 
 
-@admin.register(Psyuanxxb)
-class PsyuanxxbAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'sex', 'danwei', 'psybh')
+@admin.register(PsyuanDetail)
+class PsyuanDetailAdmin(admin.ModelAdmin):
+    list_display = ('name', 'gender', 'danwei', 'psybh',)
+
+    def save_model(self, request, obj, form, change):
+        obj.sm = datetime.date.today()
+        super().save_model(request, obj, form, change)
+
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
-    list_display = ('id','pstzh','psyh')
+    list_display = ('pstzh',)
+
+
+@admin.register(Psyuanb)
+class PsyuanbAdmin(admin.ModelAdmin):
+    list_display = ('name', 'psy_detail')

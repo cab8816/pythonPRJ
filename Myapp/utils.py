@@ -1,29 +1,20 @@
-# from openpyxl import Workbook, load_workbook
-# from openpyxl.utils import get_column_letter
-# from .models import KNSVNHistory
-# from openpyxl.compat import range
-#
-#
-# def import_user(self, request, obj, change):
-#     wb = load_workbook(filename=obj.YDUserFile.path)
-#     ws = wb.get_sheet_names()
-#     ws = wb.get_sheet_by_name(ws[0])
-#     headers = ['version', 'attr', 'value', 'addr']
-#     lists = []
-#     users = request.user
-#     for row in range(2, 5):
-#         r = {}
-#         for col in range(1, len(headers) + 1):
-#             key = headers[col - 1]
-#             r[key] = ws.cell(row=row, column=col).value
-#         lists.append(r)
-#     sqllist = []
-#     for cell in lists:
-#         # for header in headers:
-#         revision = cell['version']
-#         prop = cell['attr']
-#         value = cell['value']
-#         repo = cell['addr']
-#         sql = KNSVNHistory(revision=revision, prop=prop, value=value, repo=repo, editor=users)
-#         sqllist.append(sql)
-#     KNSVNHistory.objects.bulk_create(sqllist)
+from django.shortcuts import render
+from docx import Document
+
+from Myapp.models import PsyuanDetail
+
+
+def importpsymd(self, request, obj, change):  # 读入评审员名单
+    document = Document(obj.UserFile.path)
+    table = document.tables[0]
+    for row in table.rows:
+        rowcells = row.cells
+        biao = PsyuanDetail(
+            name=rowcells[1].text,
+            gender=rowcells[2].text,
+            danwei=rowcells[3].text,
+            psybh=rowcells[4].text,
+        )
+        biao.save()
+    context = {'msg': '读取word文档成功'}
+    return render(request, 'test.html', context)
