@@ -14,13 +14,44 @@ from django.db import models
 # $ python3 manage.py migrate TestModel   # 创建表结构
 
 # Create your models here.
+# 如果一个Story 对象既有frist_category 字段，又又second_category 字段，为确保Category 对象拥有正确的对象描述符，需要指定relate_name
+
+
 class Students(models.Model):
     name = models.CharField(max_length=20)
 
 
+class Psyuanxxb(models.Model):
+    name = models.CharField(max_length=8, verbose_name='姓名')
+    sex = models.CharField(max_length=2, verbose_name='性别')
+    danwei = models.CharField(max_length=100, verbose_name='工作单位')
+    psybh = models.CharField(max_length=15, verbose_name='评审员编号')
+
+    class Meta:
+        verbose_name = "评审员名单表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+class Psyuanb(models.Model):
+    psyname=models.CharField(max_length=10)
+
+
+class Pingshenxxb(models.Model):
+    pstzh = models.CharField(max_length=30, verbose_name='评审通知编号')
+    psyh = models.ForeignKey('Psyuanxxb', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "评审信息总表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.pstzh
+
+
 class Biao4(models.Model):
-    id = models.AutoField(primary_key=True, verbose_name='序号')
-    psxh = models.CharField(max_length=20, verbose_name="评审编号")
+    # pstzh = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
     lyxh = models.CharField(max_length=20, verbose_name="领域序号")
     lyname = models.CharField(max_length=100, verbose_name="领域")
     lbxh = models.CharField(max_length=20, verbose_name="类别序号")
@@ -57,7 +88,7 @@ class ImportFile(models.Model):
 
 
 class Biao5(models.Model):
-    psxh = models.CharField(max_length=20, verbose_name="评审编号")
+    # pstzh = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
     name = models.CharField(max_length=10, verbose_name="姓名")
     ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
     sqqzly = models.CharField(max_length=500, verbose_name="授权签字领域")

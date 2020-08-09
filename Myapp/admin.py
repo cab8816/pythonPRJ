@@ -2,7 +2,6 @@ import datetime
 
 from django.contrib import admin
 
-
 from Myapp.models import *
 
 
@@ -22,6 +21,7 @@ from Myapp.models import *
 def readed(modeladmin, request, queryset):
     queryset.update(sm='已点')
 
+
 @admin.register(Biao4)
 class Biao4Admin(admin.ModelAdmin):
     list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm')
@@ -31,15 +31,13 @@ class Biao4Admin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         obj.sm = datetime.date.today()
-        super().save_model(request,obj,form,change)
+        super().save_model(request, obj, form, change)
 
 
-
-
-# admin.site.register(ImportFile)
 @admin.register(ImportFile)
 class ImportFileAdmin(admin.ModelAdmin):
-    list_display = ('file','name',)
+    list_display = ('file', 'name',)
+
 
 # class KNImportFileAdmin(admin.ModelAdmin):
 #     list_display = ('file', 'name',)
@@ -71,3 +69,12 @@ class Biao5admin(admin.ModelAdmin):
     list_filter = ('name', 'ziwuzicheng',)  # 过滤器
     search_fields = ('beizu',)  # 搜索字段
     # date_hierarchy = 'ziwuzicheng'  # 详细时间分层筛选　
+
+
+@admin.register(Psyuanxxb)
+class PsyuanxxbAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'sex', 'danwei', 'psybh')
+
+@admin.register(Pingshenxxb)
+class PingshenxxbAdmin(admin.ModelAdmin):
+    list_display = ('id','pstzh','psyh')
