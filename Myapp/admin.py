@@ -37,7 +37,7 @@ class ImportFileAdmin(admin.ModelAdmin):
     list_display = ('file', 'filename',)
 
     def save_model(self, request, obj, form, change):
-        re = super(ImportFileAdmin, self).save_model(request, obj, form, change)
+        re = super().save_model(request, obj, form, change)
         importpsymd(self, request, obj, change)
         return re
 

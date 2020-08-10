@@ -16,6 +16,7 @@ from django.db import models
 # Create your models here.
 # 如果一个Story 对象既有frist_category 字段，又又second_category 字段，为确保Category 对象拥有正确的对象描述符，需要指定relate_name
 
+# utf8_general_ci
 
 class Students(models.Model):
     name = models.CharField(max_length=20)
@@ -23,12 +24,14 @@ class Students(models.Model):
 
 class PsyuanDetail(models.Model):
     name = models.CharField(max_length=8, verbose_name='姓名')
-    gender_choices = (
-        (0, "女"),
-        (1, "男"),
-        (2, "保密"),
-    )
-    gender = models.SmallIntegerField(choices=gender_choices, verbose_name='性别')
+    # gender_choices = (
+    #     (0, "女"),
+    #     (1, "男"),
+    #     (2, "保密"),
+    # )
+    # gender = models.SmallIntegerField(choices=gender_choices, verbose_name='性别')
+    gender = models.CharField(max_length=4,verbose_name="性别")
+
     danwei = models.CharField(max_length=100, verbose_name='工作单位')
     psybh = models.CharField(max_length=15, verbose_name='评审员编号')
 
