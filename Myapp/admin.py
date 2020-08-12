@@ -71,9 +71,7 @@ class Biao5admin(admin.ModelAdmin):
 class PsyuanDetailAdmin(admin.ModelAdmin):
     list_display = ('name', 'gender', 'danwei', 'psybh',)
 
-    def save_model(self, request, obj, form, change):
-        obj.sm = datetime.date.today()
-        super().save_model(request, obj, form, change)
+
 
 
 @admin.register(Pingshenxxb)
@@ -83,7 +81,7 @@ class PingshenxxbAdmin(admin.ModelAdmin):
 
 @admin.register(Psyuanb)
 class PsyuanbAdmin(admin.ModelAdmin):
-    list_display = ('name', 'psy_detail')
+    list_display = ('name',)
 
 @admin.register(Biao72)
 class Biao72Admin(admin.ModelAdmin):

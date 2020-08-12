@@ -50,7 +50,7 @@ class Psyuanb(models.Model):
     zwzc = models.CharField(max_length=40, verbose_name="职务/职称")
     gzdw = models.CharField(max_length=100, verbose_name="工作单位")
     tel = models.CharField(max_length=15, verbose_name="联系方式")
-    psy_detail = models.OneToOneField("PsyuanDetail", on_delete=models.CASCADE)
+    # psy_detail = models.OneToOneField("PsyuanDetail", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "评审员表"
@@ -62,7 +62,7 @@ class Psyuanb(models.Model):
 
 class Pingshenxxb(models.Model):
     pstzh = models.CharField(max_length=30, verbose_name='评审通知编号')
-    psyh = models.ManyToManyField('Psyuanb')
+    # psyh = models.ManyToManyField('Psyuanb')
 
     class Meta:
         verbose_name = "评审信息总表"
@@ -131,15 +131,15 @@ class Biao72(models.Model):
     xmxh = models.CharField(max_length=20, verbose_name="参数序号")
     csmc = models.CharField(max_length=100, verbose_name="参数名称")
     yjbztk = models.CharField(max_length=300, verbose_name="标准条款号")
-    xcsy = models.BooleanField(verbose_name="现场试验")
-    nlyz = models.BooleanField(verbose_name="利用能力验证结果")
-    clsh = models.BooleanField(verbose_name="测量审核盲样试验")
-    bdjg = models.BooleanField(verbose_name="利用实验室间比对结果", )
-    xcys = models.BooleanField(verbose_name="现场演示")
-    xctw = models.BooleanField(verbose_name="现场提问")
-    cyjlbg = models.BooleanField(verbose_name="查阅记录和报告")
-    hcyq = models.BooleanField(verbose_name="核查仪器设备配置")
-    sfqr = models.BooleanField(verbose_name="是否确认(Y/N)")
+    xcsy = models.BooleanField(verbose_name="现场试验",default=False)
+    nlyz = models.BooleanField(verbose_name="利用能力验证结果",default=False)
+    clsh = models.BooleanField(verbose_name="测量审核盲样试验",default=False)
+    bdjg = models.BooleanField(verbose_name="利用实验室间比对结果",default=False)
+    xcys = models.BooleanField(verbose_name="现场演示",default=False)
+    xctw = models.BooleanField(verbose_name="现场提问",default=False)
+    cyjlbg = models.BooleanField(verbose_name="查阅记录和报告",default=False)
+    hcyq = models.BooleanField(verbose_name="核查仪器设备配置",default=False)
+    sfqr = models.BooleanField(verbose_name="是否确认(Y/N)",default=False)
     beizu = models.CharField(max_length=200, verbose_name="备注")
 
     class Meta:

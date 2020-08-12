@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from docx import Document
 
-from Myapp.models import PsyuanDetail, Biao4, Pstz
+from Myapp.models import PsyuanDetail, Biao4, Pstz, Biao5, Biao72
 
 
 def importpsymd(self, request, obj, change):  #
@@ -23,11 +23,10 @@ def importpsymd(self, request, obj, change):  #
                         dxxh=rowcells[4].text,
                         duixiang=rowcells[5].text,
                         xmxh=rowcells[6].text,
-                        xmmc=rowcells[7].text,
-                        csmc=rowcells[8].text,
-                        yjbz=rowcells[9].text,
-                        xzfw=rowcells[10].text,
-                        sm=rowcells[11].text,
+                        csmc=rowcells[7].text,
+                        yjbz=rowcells[8].text,
+                        xzfw=rowcells[9].text,
+                        sm=rowcells[10].text,
                     )
                     biao.save()
 
@@ -35,7 +34,7 @@ def importpsymd(self, request, obj, change):  #
             elif len(t.columns) == 6:  # 建议批准的授权签字人
                 for row in table.rows:
                     rowcells = row.cells
-                    biao = PsyuanDetail(
+                    biao = Biao5(
                         xuhao=rowcells[0].text,
                         name=rowcells[1].text,
                         ziwuzicheng=rowcells[3].text,
@@ -47,12 +46,12 @@ def importpsymd(self, request, obj, change):  #
             elif len(t.columns) == 16:  # 表7.2 现场评审能力确认方式及确认结果一览表
                 for row in table.rows:
                     rowcells = row.cells
-                    biao = PsyuanDetail(
+                    biao = Biao72(
                         xuhao=rowcells[0].text,
-                        xmmc=rowcells[0].text,
-                        yjbz=rowcells[0].text,
-                        xmxh=rowcells[0].text,
-                        csmc=rowcells[0].text,
+                        xmmc=rowcells[1].text,
+                        yjbz=rowcells[2].text,
+                        xmxh=rowcells[3].text,
+                        csmc=rowcells[4].text,
                         # yjbztk = rowcells[0].text,
                         # xcsy = rowcells[0].text,
                         # nlyz = rowcells[0].text,
