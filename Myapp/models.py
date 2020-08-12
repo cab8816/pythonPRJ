@@ -44,13 +44,12 @@ class PsyuanDetail(models.Model):
 
 
 class Psyuanb(models.Model):
-    name = models.CharField(max_length=20, verbose_name="姓"
-                                                        "名")
+    name = models.CharField(max_length=20, verbose_name="姓名")
     psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
     zwzc = models.CharField(max_length=40, verbose_name="职务/职称")
     gzdw = models.CharField(max_length=100, verbose_name="工作单位")
     tel = models.CharField(max_length=15, verbose_name="联系方式")
-    # psy_detail = models.OneToOneField("PsyuanDetail", on_delete=models.CASCADE)
+    psy_detail = models.ForeignKey('PsyuanDetail', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "评审员表"
@@ -59,21 +58,42 @@ class Psyuanb(models.Model):
     def __str__(self):
         return self.name
 
+class Pstz(models.Model):
+    psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
+    psname = models.CharField(max_length=10, verbose_name="姓名")
+    ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
+    gzdw = models.CharField(max_length=50, verbose_name="工作单位")
+    lxfs = models.CharField(max_length=18, verbose_name="联系方式")
+    psyuanb = models.ManyToManyField('Psyuanb')
+
+
+    class Meta:
+        verbose_name = "评审组组成表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.id
+
 
 class Pingshenxxb(models.Model):
-    pstzh = models.CharField(max_length=30, verbose_name='评审通知编号')
-    # psyh = models.ManyToManyField('Psyuanb')
+    pstzh = models.CharField(max_length=30,verbose_name="评审通知号")
+    jcjgmc = models.CharField(max_length=100,verbose_name="检测机构名称")
+    psslh = models.CharField(max_length=50,verbose_name="受理号")
+    sqsx = models.CharField(max_length=50,verbose_name="申请事项")
+    psdate = models.CharField(max_length=30,verbose_name="评审时间")
+    psadress = models.CharField(max_length=100,verbose_name="评审地点")
+    pstz = models.OneToOneField('Pstz',on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "评审信息总表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.pstzh
+        return self.psadress
 
 
 class Biao4(models.Model):
-    # pstzh = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
+    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
     lyxh = models.CharField(max_length=20, verbose_name="领域序号")
     lyname = models.CharField(max_length=100, verbose_name="领域")
     lbxh = models.CharField(max_length=20, verbose_name="类别序号")
@@ -109,7 +129,7 @@ class ImportFile(models.Model):
 
 
 class Biao5(models.Model):
-    # pstzh = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
+    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
     xuhao = models.CharField(max_length=2, verbose_name="序号")
     name = models.CharField(max_length=10, verbose_name="姓名")
     ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
@@ -125,6 +145,7 @@ class Biao5(models.Model):
 
 
 class Biao72(models.Model):
+    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
     xuhao = models.CharField(max_length=4, verbose_name="序号")
     xmmc = models.CharField(max_length=100, verbose_name="检测类别项目或产品名称")
     yjbz = models.CharField(max_length=300, verbose_name="依据标准及代号")
@@ -150,16 +171,4 @@ class Biao72(models.Model):
         return self.csmc
 
 
-class Pstz(models.Model):
-    psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
-    psname = models.CharField(max_length=10, verbose_name="姓名")
-    ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
-    gzdw = models.CharField(max_length=50, verbose_name="工作单位")
-    lxfs = models.CharField(max_length=18, verbose_name="联系方式")
 
-    class Meta:
-        verbose_name = "评审组组成表"
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.id

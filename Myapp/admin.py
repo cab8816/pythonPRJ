@@ -27,8 +27,8 @@ def readed(modeladmin, request, queryset):
 @admin.register(Biao4)
 class Biao4Admin(admin.ModelAdmin):
     list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm')
-    search_fields = ('duixiang', 'csmc', 'lb')  # 搜索字段
-    fields = ('xmxh', 'lb', 'duixiang', 'csmc',)
+    # search_fields = ('duixiang', 'csmc', 'lb')  # 搜索字段
+    # fields = ('xmxh', 'lb', 'duixiang', 'csmc',)
     actions = [readed]
 
 

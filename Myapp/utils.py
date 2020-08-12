@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from docx import Document
 
-from Myapp.models import PsyuanDetail, Biao4, Pstz, Biao5, Biao72
+from Myapp.models import PsyuanDetail, Biao4, Pstz, Biao5, Biao72, Pingshenxxb
 
 
 def importpsymd(self, request, obj, change):  #
 
     document = Document(obj.file)
+    if obj.importtype == '0':  # (0, "评审通知"),
+        biao = Pingshenxxb(
+            pstzh = document.paragraphs[2].text,
+        )
+        biao.save()
+
     for t in document.tables:
         table = t
-        print(obj.importtype)
         if obj.importtype == '1':  # (1, "认证现场评审报告"),
 
             if len(t.columns) == 11:  # 评审报告  表4 建议批准的检验检测能力表
@@ -66,12 +71,13 @@ def importpsymd(self, request, obj, change):  #
                     )
                     biao.save()
         if obj.importtype == '0':  # (0, "评审通知"),
+
             if len(t.columns) == 5:  # 评审通知
                 for row in table.rows:
                     rowcells = row.cells
                     biao = Pstz(
                         psyzc=rowcells[0].text,
-                        name=rowcells[1].text,
+                        psname=rowcells[1].text,
                         ziwuzicheng=rowcells[2].text,
                         gzdw=rowcells[3].text,
                         lxfs=rowcells[4].text,
