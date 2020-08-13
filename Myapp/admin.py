@@ -87,6 +87,6 @@ class PsyuanbAdmin(admin.ModelAdmin):
 class Biao72Admin(admin.ModelAdmin):
     list_display = ('xuhao', 'xmmc','yjbz','xmxh','csmc')
 
-@admin.register(Pstz)
+@admin.register(Pszcy)
 class PstzAdmin(admin.ModelAdmin):
-    list_display = ('psyzc', 'psname','ziwuzicheng','gzdw','lxfs')
+    list_display = ('psyzc', 'psname','ziwuzicheng','gzdw','lxfs','psxxb')

@@ -58,15 +58,14 @@ class Psyuanb(models.Model):
     def __str__(self):
         return self.name
 
-class Pstz(models.Model):
+class Pszcy(models.Model):
     psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
     psname = models.CharField(max_length=10, verbose_name="姓名")
     ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
     gzdw = models.CharField(max_length=50, verbose_name="工作单位")
     lxfs = models.CharField(max_length=18, verbose_name="联系方式")
     psyuanb = models.ManyToManyField('Psyuanb')
-
-
+    psxxb = models.OneToOneField('Pingshenxxb', on_delete=models.CASCADE,verbose_name="评审信息")
     class Meta:
         verbose_name = "评审组组成表"
         verbose_name_plural = verbose_name
@@ -82,7 +81,7 @@ class Pingshenxxb(models.Model):
     sqsx = models.CharField(max_length=50,verbose_name="申请事项")
     psdate = models.CharField(max_length=30,verbose_name="评审时间")
     psadress = models.CharField(max_length=100,verbose_name="评审地点")
-    pstz = models.OneToOneField('Pstz',on_delete=models.CASCADE)
+
 
     class Meta:
         verbose_name = "评审信息总表"
