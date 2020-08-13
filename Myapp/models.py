@@ -75,12 +75,12 @@ class Pszcy(models.Model):
 
 
 class Pingshenxxb(models.Model):
-    pstzh = models.CharField(max_length=30,verbose_name="评审通知号")
-    jcjgmc = models.CharField(max_length=100,verbose_name="检测机构名称")
-    psslh = models.CharField(max_length=50,verbose_name="受理号")
-    sqsx = models.CharField(max_length=50,verbose_name="申请事项")
-    psdate = models.CharField(max_length=30,verbose_name="评审时间")
-    psadress = models.CharField(max_length=100,verbose_name="评审地点")
+    pstzh = models.CharField(max_length=30,verbose_name="评审通知号",default="评审通知号")
+    jcjgmc = models.CharField(max_length=100,verbose_name="检测机构名称",default="检测机构名称")
+    psslh = models.CharField(max_length=50,verbose_name="受理号",default="受理号")
+    sqsx = models.CharField(max_length=50,verbose_name="申请事项",default="申请事项")
+    psdate = models.CharField(max_length=30,verbose_name="评审时间",default="评审时间")
+    psadress = models.CharField(max_length=100,verbose_name="评审地点",default="评审地点")
 
 
     class Meta:
@@ -88,7 +88,7 @@ class Pingshenxxb(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.psadress
+        return self.pstzh
 
 
 class Biao4(models.Model):

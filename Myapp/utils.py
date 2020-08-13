@@ -1,3 +1,4 @@
+from django.db import models
 from django.shortcuts import render
 from docx import Document
 
@@ -75,17 +76,17 @@ def importpsymd(self, request, obj, change):  #
         if obj.importtype == '0':  # (0, "评审通知文件"),
 
             if len(t.columns) == 5:  # 评审组成员表格
+                psxxb = Pingshenxxb.objects.get(pstzh=pstzh)
+                psz = Pszcy()
                 for row in table.rows:
                     rowcells = row.cells
-                    biao = Pszcy(
-                        psxxb=Pingshenxxb.objects.create(pstzh=pstzh),
-                        psyzc=rowcells[0].text,
-                        psname=rowcells[1].text,
-                        ziwuzicheng=rowcells[2].text,
-                        gzdw=rowcells[3].text,
-                        lxfs=rowcells[4].text,
-                    )
-                    biao.save()
+                    psz.psxxb = psxxb
+                    psz.psyzc = rowcells[0].text,
+                    psz.psname = rowcells[1].text,
+                    psz.ziwuzicheng = rowcells[2].text,
+                    psz.gzdw = rowcells[3].text,
+                    psz.lxfs = rowcells[4].text,
+                    psz.save()
         if obj.importtype == '2':  # (2, "资质认定评审员名单"),
             if len(t.columns) == 5:  # 评审员名单
                 for row in table.rows:
