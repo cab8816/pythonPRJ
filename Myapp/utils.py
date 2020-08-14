@@ -15,7 +15,7 @@ def importpsymd(self, request, obj, change):  #
             pstzh=pstzh,
         )
         biao.save()
-
+        psxxb = Pingshenxxb.objects.get(id=1)
     for t in document.tables:
         table = t
         if obj.importtype == '1':  # (1, "认证现场评审报告"),
@@ -24,6 +24,7 @@ def importpsymd(self, request, obj, change):  #
                 for row in table.rows:
                     rowcells = row.cells
                     biao = Biao4(
+                        psxxb=psxxb,
                         lyxh=rowcells[0].text,
                         lyname=rowcells[1].text,
                         lbxh=rowcells[2].text,
@@ -43,6 +44,7 @@ def importpsymd(self, request, obj, change):  #
                 for row in table.rows:
                     rowcells = row.cells
                     biao = Biao5(
+                        psxxb=psxxb,
                         xuhao=rowcells[0].text,
                         name=rowcells[1].text,
                         ziwuzicheng=rowcells[3].text,
@@ -55,6 +57,7 @@ def importpsymd(self, request, obj, change):  #
                 for row in table.rows:
                     rowcells = row.cells
                     biao = Biao72(
+                        psxxb=psxxb,
                         xuhao=rowcells[0].text,
                         xmmc=rowcells[1].text,
                         yjbz=rowcells[2].text,
@@ -73,21 +76,25 @@ def importpsymd(self, request, obj, change):  #
                         # beizu = rowcells[0].text,
                     )
                     biao.save()
-        if obj.importtype == '0':  # (0, "评审通知文件"),
+        elif obj.importtype == '0':  # (0, "评审通知文件"),
 
             if len(t.columns) == 5:  # 评审组成员表格
-                psxxb = Pingshenxxb.objects.get(pstzh=pstzh)
-                psz = Pszcy()
+
                 for row in table.rows:
+                    psydtl = Pingshenxxb.objects.get(name=rowcells[1].text)
                     rowcells = row.cells
-                    psz.psxxb = psxxb
-                    psz.psyzc = rowcells[0].text,
-                    psz.psname = rowcells[1].text,
-                    psz.ziwuzicheng = rowcells[2].text,
-                    psz.gzdw = rowcells[3].text,
-                    psz.lxfs = rowcells[4].text,
-                    psz.save()
-        if obj.importtype == '2':  # (2, "资质认定评审员名单"),
+                    biao = Pszcy(
+                        psxxb=psxxb,
+                        psydtl=psydtl,
+                        psyzc=rowcells[0].text,
+                        psname=rowcells[1].text,
+                        ziwuzicheng=rowcells[2].text,
+                        gzdw=rowcells[3].text,
+                        lxfs=rowcells[4].text,
+
+                    )
+                    biao.save(force_insert=True)
+        elif obj.importtype == '2':  # (2, "资质认定评审员信息名单"),
             if len(t.columns) == 5:  # 评审员名单
                 for row in table.rows:
                     rowcells = row.cells
@@ -97,7 +104,7 @@ def importpsymd(self, request, obj, change):  #
                         danwei=rowcells[3].text,
                         psybh=rowcells[4].text,
                     )
-                    biao.save()
+                    biao.save(force_insert=True)
 
     context = {'msg': '读取word文档成功'}
     return render(request, 'test.html', context)

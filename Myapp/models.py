@@ -21,42 +21,32 @@ from django.db import models
 class Students(models.Model):
     name = models.CharField(max_length=20)
 
+class ImportFile(models.Model):
+
+    importtype = models.CharField(max_length=1, verbose_name='导入类型')
+    file = models.FileField(upload_to='File')
+
+    class Meta:
+        verbose_name = "文件输入列表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.importtype
 
 class PsyuanDetail(models.Model):
     name = models.CharField(max_length=8, verbose_name='姓名')
-    # gender_choices = (
-    #     (0, "女"),
-    #     (1, "男"),
-    #     (2, "保密"),
-    # )
-    # gender = models.SmallIntegerField(choices=gender_choices, verbose_name='性别')
     gender = models.CharField(max_length=4, verbose_name="性别")
-
     danwei = models.CharField(max_length=100, verbose_name='工作单位')
     psybh = models.CharField(max_length=15, verbose_name='评审员编号')
-
     class Meta:
         verbose_name = "评审员信息表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 
-class Psyuanb(models.Model):
-    name = models.CharField(max_length=20, verbose_name="姓名")
-    psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
-    zwzc = models.CharField(max_length=40, verbose_name="职务/职称")
-    gzdw = models.CharField(max_length=100, verbose_name="工作单位")
-    tel = models.CharField(max_length=15, verbose_name="联系方式")
-    psy_detail = models.ForeignKey('PsyuanDetail', on_delete=models.CASCADE)
 
-    class Meta:
-        verbose_name = "评审员表"
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.name
 
 class Pszcy(models.Model):
     psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
@@ -64,14 +54,14 @@ class Pszcy(models.Model):
     ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
     gzdw = models.CharField(max_length=50, verbose_name="工作单位")
     lxfs = models.CharField(max_length=18, verbose_name="联系方式")
-    psyuanb = models.ManyToManyField('Psyuanb')
-    psxxb = models.OneToOneField('Pingshenxxb', on_delete=models.CASCADE,verbose_name="评审信息")
+    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE,verbose_name="评审通知号")
+    # psydtl = models.ForeignKey('PsyuanDetail', on_delete=models.CASCADE,verbose_name="评审员信息号")
     class Meta:
         verbose_name = "评审组组成表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Pingshenxxb(models.Model):
@@ -88,7 +78,7 @@ class Pingshenxxb(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.pstzh
+        return str(self.id)
 
 
 class Biao4(models.Model):
@@ -114,17 +104,7 @@ class Biao4(models.Model):
         return self.csmc
 
 
-class ImportFile(models.Model):
 
-    importtype = models.CharField(max_length=1, verbose_name='导入类型')
-    file = models.FileField(upload_to='File')
-
-    class Meta:
-        verbose_name = "文件输入列表"
-        verbose_name_plural = verbose_name
-
-    def __str__(self):
-        return self.importtype
 
 
 class Biao5(models.Model):

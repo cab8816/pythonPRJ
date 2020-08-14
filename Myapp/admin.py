@@ -26,7 +26,7 @@ def readed(modeladmin, request, queryset):
 
 @admin.register(Biao4)
 class Biao4Admin(admin.ModelAdmin):
-    list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm')
+    list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm','psxxb')
     # search_fields = ('duixiang', 'csmc', 'lb')  # 搜索字段
     # fields = ('xmxh', 'lb', 'duixiang', 'csmc',)
     actions = [readed]
@@ -47,7 +47,7 @@ class ImportFileAdmin(admin.ModelAdmin):
 @admin.register(Biao5)
 class Biao5admin(admin.ModelAdmin):
     # listdisplay设置要显示在列表中的字段（id字段是Django模型的默认主键）
-    list_display = ('id', 'name', 'ziwuzicheng', 'sqqzly', 'beizu',)
+    list_display = ('id', 'name', 'ziwuzicheng', 'sqqzly', 'beizu','psxxb')
 
     # # list_per_page设置每页显示多少条记录，默认是100条
     # list_per_page = 50
@@ -69,23 +69,17 @@ class Biao5admin(admin.ModelAdmin):
 
 @admin.register(PsyuanDetail)
 class PsyuanDetailAdmin(admin.ModelAdmin):
-    list_display = ('name', 'gender', 'danwei', 'psybh',)
-
-
-
+    list_display = ('id','name', 'gender', 'danwei', 'psybh',)
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
-    list_display = ('pstzh',)
+    list_display = ('id','pstzh',)
 
 
-@admin.register(Psyuanb)
-class PsyuanbAdmin(admin.ModelAdmin):
-    list_display = ('name',)
 
 @admin.register(Biao72)
 class Biao72Admin(admin.ModelAdmin):
-    list_display = ('xuhao', 'xmmc','yjbz','xmxh','csmc')
+    list_display = ('xuhao', 'xmmc','yjbz','xmxh','csmc','psxxb')
 
 @admin.register(Pszcy)
 class PstzAdmin(admin.ModelAdmin):
