@@ -18,6 +18,9 @@ urlpatterns = [
     path('downloadfile/', testdb.downloadfile),
     path('beyindex/', beyindex.beyindex),
     path('beybiao4/', beyindex.beybiao4),
+    path('signin/', beyindex.signin),
+    path('register/', beyindex.register),
+
 
 
 ]

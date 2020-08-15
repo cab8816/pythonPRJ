@@ -53,3 +53,13 @@ def split_page(object_list, request, per_page=8):
 
     data = {'page': page, 'paginator': paginator, 'dis_range': dis_range}
     return data
+
+
+def signin(request):
+
+    return render(request,"signin.html")
+
+
+def register(request):
+
+    return render(request, "register.html")
