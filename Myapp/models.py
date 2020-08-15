@@ -21,8 +21,8 @@ from django.db import models
 class Students(models.Model):
     name = models.CharField(max_length=20)
 
-class ImportFile(models.Model):
 
+class ImportFile(models.Model):
     importtype = models.CharField(max_length=1, verbose_name='导入类型')
     file = models.FileField(upload_to='File')
 
@@ -31,13 +31,15 @@ class ImportFile(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.importtype
+        return str(self.importtype)
+
 
 class PsyuanDetail(models.Model):
     name = models.CharField(max_length=8, verbose_name='姓名')
     gender = models.CharField(max_length=4, verbose_name="性别")
     danwei = models.CharField(max_length=100, verbose_name='工作单位')
     psybh = models.CharField(max_length=15, verbose_name='评审员编号')
+
     class Meta:
         verbose_name = "评审员信息表"
         verbose_name_plural = verbose_name
@@ -46,16 +48,15 @@ class PsyuanDetail(models.Model):
         return str(self.id)
 
 
-
-
 class Pszcy(models.Model):
     psyzc = models.CharField(max_length=10, verbose_name="评审员组成")
     psname = models.CharField(max_length=10, verbose_name="姓名")
     ziwuzicheng = models.CharField(max_length=30, verbose_name="职务/职称")
     gzdw = models.CharField(max_length=50, verbose_name="工作单位")
     lxfs = models.CharField(max_length=18, verbose_name="联系方式")
-    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE,verbose_name="评审通知号")
-    # psydtl = models.ForeignKey('PsyuanDetail', on_delete=models.CASCADE,verbose_name="评审员信息号")
+    psxxbs = models.ManyToManyField('Pingshenxxb', verbose_name="评审通知号")
+    psydtl = models.OneToOneField('PsyuanDetail', on_delete=models.CASCADE, verbose_name="评审员信息号",null=True)
+
     class Meta:
         verbose_name = "评审组组成表"
         verbose_name_plural = verbose_name
@@ -65,13 +66,12 @@ class Pszcy(models.Model):
 
 
 class Pingshenxxb(models.Model):
-    pstzh = models.CharField(max_length=30,verbose_name="评审通知号",default="评审通知号")
-    jcjgmc = models.CharField(max_length=100,verbose_name="检测机构名称",default="检测机构名称")
-    psslh = models.CharField(max_length=50,verbose_name="受理号",default="受理号")
-    sqsx = models.CharField(max_length=50,verbose_name="申请事项",default="申请事项")
-    psdate = models.CharField(max_length=30,verbose_name="评审时间",default="评审时间")
-    psadress = models.CharField(max_length=100,verbose_name="评审地点",default="评审地点")
-
+    pstzh = models.CharField(max_length=30, verbose_name="评审通知号", default="评审通知号")
+    jcjgmc = models.CharField(max_length=100, verbose_name="检测机构名称", default="检测机构名称")
+    psslh = models.CharField(max_length=50, verbose_name="受理号", default="受理号")
+    sqsx = models.CharField(max_length=50, verbose_name="申请事项", default="申请事项")
+    psdate = models.CharField(max_length=30, verbose_name="评审时间", default="评审时间")
+    psadress = models.CharField(max_length=100, verbose_name="评审地点", default="评审地点")
 
     class Meta:
         verbose_name = "评审信息总表"
@@ -104,9 +104,6 @@ class Biao4(models.Model):
         return self.csmc
 
 
-
-
-
 class Biao5(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
     xuhao = models.CharField(max_length=2, verbose_name="序号")
@@ -131,15 +128,15 @@ class Biao72(models.Model):
     xmxh = models.CharField(max_length=20, verbose_name="参数序号")
     csmc = models.CharField(max_length=100, verbose_name="参数名称")
     yjbztk = models.CharField(max_length=300, verbose_name="标准条款号")
-    xcsy = models.BooleanField(verbose_name="现场试验",default=False)
-    nlyz = models.BooleanField(verbose_name="利用能力验证结果",default=False)
-    clsh = models.BooleanField(verbose_name="测量审核盲样试验",default=False)
-    bdjg = models.BooleanField(verbose_name="利用实验室间比对结果",default=False)
-    xcys = models.BooleanField(verbose_name="现场演示",default=False)
-    xctw = models.BooleanField(verbose_name="现场提问",default=False)
-    cyjlbg = models.BooleanField(verbose_name="查阅记录和报告",default=False)
-    hcyq = models.BooleanField(verbose_name="核查仪器设备配置",default=False)
-    sfqr = models.BooleanField(verbose_name="是否确认(Y/N)",default=False)
+    xcsy = models.BooleanField(verbose_name="现场试验", default=False)
+    nlyz = models.BooleanField(verbose_name="利用能力验证结果", default=False)
+    clsh = models.BooleanField(verbose_name="测量审核盲样试验", default=False)
+    bdjg = models.BooleanField(verbose_name="利用实验室间比对结果", default=False)
+    xcys = models.BooleanField(verbose_name="现场演示", default=False)
+    xctw = models.BooleanField(verbose_name="现场提问", default=False)
+    cyjlbg = models.BooleanField(verbose_name="查阅记录和报告", default=False)
+    hcyq = models.BooleanField(verbose_name="核查仪器设备配置", default=False)
+    sfqr = models.BooleanField(verbose_name="是否确认(Y/N)", default=False)
     beizu = models.CharField(max_length=200, verbose_name="备注")
 
     class Meta:
@@ -148,6 +145,3 @@ class Biao72(models.Model):
 
     def __str__(self):
         return self.csmc
-
-
-

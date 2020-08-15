@@ -15,11 +15,11 @@ def importpsymd(self, request, obj, change):  #
             pstzh=pstzh,
         )
         biao.save()
-        psxxb = Pingshenxxb.objects.get(id=1)
+
     for t in document.tables:
         table = t
         if obj.importtype == '1':  # (1, "认证现场评审报告"),
-
+            psxxb = Pingshenxxb.objects.get(id=5)
             if len(t.columns) == 11:  # 评审报告  表4 建议批准的检验检测能力表
                 for row in table.rows:
                     rowcells = row.cells
@@ -75,25 +75,29 @@ def importpsymd(self, request, obj, change):  #
                         # sfqr = rowcells[0].text,
                         # beizu = rowcells[0].text,
                     )
+
                     biao.save()
         elif obj.importtype == '0':  # (0, "评审通知文件"),
-
+            psxxb = Pingshenxxb.objects.get(id=5)
             if len(t.columns) == 5:  # 评审组成员表格
-
                 for row in table.rows:
-                    psydtl = Pingshenxxb.objects.get(name=rowcells[1].text)
                     rowcells = row.cells
-                    biao = Pszcy(
-                        psxxb=psxxb,
-                        psydtl=psydtl,
-                        psyzc=rowcells[0].text,
-                        psname=rowcells[1].text,
-                        ziwuzicheng=rowcells[2].text,
-                        gzdw=rowcells[3].text,
-                        lxfs=rowcells[4].text,
+                    psname = rowcells[1].text
+                    if psname != "姓 名": #去除表格标题的影响
+                        psydtl = PsyuanDetail.objects.get(name=psname)
+                        biao = Pszcy(
+                            psydtl=psydtl,
+                            psyzc=rowcells[0].text,
+                            psname=psname,
+                            ziwuzicheng=rowcells[2].text,
+                            gzdw=rowcells[3].text,
+                            lxfs=rowcells[4].text,
+                        )
+                        biao.save()
+                        biao.psxxbs.add(psxxb)  #添加多到多的关系
 
-                    )
-                    biao.save(force_insert=True)
+
+
         elif obj.importtype == '2':  # (2, "资质认定评审员信息名单"),
             if len(t.columns) == 5:  # 评审员名单
                 for row in table.rows:

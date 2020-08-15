@@ -66,6 +66,8 @@ class Biao5admin(admin.ModelAdmin):
     # search_fields = ('beizu',)  # 搜索字段
     # # date_hierarchy = 'ziwuzicheng'  # 详细时间分层筛选　
 
+    # python - m django - -version
+
 
 @admin.register(PsyuanDetail)
 class PsyuanDetailAdmin(admin.ModelAdmin):
@@ -82,5 +84,5 @@ class Biao72Admin(admin.ModelAdmin):
     list_display = ('xuhao', 'xmmc','yjbz','xmxh','csmc','psxxb')
 
 @admin.register(Pszcy)
-class PstzAdmin(admin.ModelAdmin):
-    list_display = ('psyzc', 'psname','ziwuzicheng','gzdw','lxfs','psxxb')
+class PszcyAdmin(admin.ModelAdmin):
+    list_display = ('psyzc', 'psname','ziwuzicheng','gzdw','lxfs',)
