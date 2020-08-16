@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Myapp.apps.MyappConfig',
-
+    'captcha',
 ]
 # python_django_禁止访问 _CSRF验证失败
 # 将settings.py文件的MIDDLEWARE中的csrf设置注掉后，再次运行，问题解决
@@ -151,3 +151,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# # 设置 captcha 图片大小
+# CAPTCHA_IMAGE_SIZE = (80, 45)
+# # 字符个数
+# CAPTCHA_LENGTH = 4
+# # 超时(minutes)
+# CAPTCHA_TIMEOUT = 1

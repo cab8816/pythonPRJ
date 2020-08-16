@@ -19,12 +19,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('myapp/', include('Myapp.urls')),
 
+    # 图片验证码 路由
+    path('captcha/', include('captcha.urls'))
 
 
 ]

@@ -1,3 +1,5 @@
+from captcha.fields import CaptchaField
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -68,7 +70,7 @@ def signin(request):
         auth.login(request, user_obj)
         path = request.GET.get("next") or "/myapp/beyindex/"
         rep = redirect(path)
-        rep.set_cookie("is_login",True)
+        rep.set_cookie("is_login", True)
         return rep
 
 
@@ -77,9 +79,13 @@ def logout(request):
     return redirect("/myapp/signin/")
 
 
+
+
+
 def register(request):
     if request.method == "GET":
-        return render(request, "register.html")
+        captcha = CaptchaField(error_messages={"invalid": u"验证码错误"})
+        return render(request, "register.html", {'captcha': captcha})
     else:
         username = request.POST.get("username")
         password1 = request.POST.get("password1")
