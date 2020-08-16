@@ -1,45 +1,47 @@
-
-      {% extends "bey-page.html" %}
-            {% block mainbody %}
-                <div class="login-container animated fadeInDown">
-                    <div class="loginbox bg-white">
-                        <div class="loginbox-title">登 陆</div>
-                        <div class="loginbox-social">
-                            <div class="social-title ">Connect with Your Social Accounts</div>
-                            <div class="social-buttons">
-                                <a href="" class="button-facebook">
-                                    <i class="social-icon fa fa-facebook"></i>
-                                </a>
-                                <a href="" class="button-twitter">
-                                    <i class="social-icon fa fa-twitter"></i>
-                                </a>
-                                <a href="" class="button-google">
-                                    <i class="social-icon fa fa-google-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="loginbox-or">
-                            <div class="or-line"></div>
-                            <div class="or">OR</div>
-                        </div>
-                        <div class="loginbox-textbox">
-                            <input type="text" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="loginbox-textbox">
-                            <input type="text" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="loginbox-forgot">
-                            <a href="">Forgot Password?</a>
-                        </div>
-                        <div class="loginbox-submit">
-                            <input type="button" class="btn btn-primary btn-block" value="Login">
-                        </div>
-                        <div class="loginbox-signup">
-                            <a href="/myapp/register/">Sign Up With Email</a>
-                        </div>
-                    </div>
-                    <div class="logobox">
+{% extends "bey-page.html" %}
+{% block mainbody %}
+    <form action="/myapp/signin/" method="POST">
+        <div class="login-container animated fadeInDown">
+            <div class="loginbox bg-white">
+                <div class="loginbox-title">登 陆</div>
+                <div class="loginbox-social">
+                    <div class="social-title ">使用你的社交账户登录</div>
+                    <div class="social-buttons">
+                        <a href="" class="button-facebook">
+                            <i class="social-icon fa fa-facebook"></i>
+                        </a>
+                        <a href="" class="button-twitter">
+                            <i class="social-icon fa fa-twitter"></i>
+                        </a>
+                        <a href="" class="button-google">
+                            <i class="social-icon fa fa-google-plus"></i>
+                        </a>
                     </div>
                 </div>
+                <div class="loginbox-or">
+                    <div class="or-line"></div>
+                    <div class="or">或者</div>
+                </div>
+                <div class="loginbox-textbox">
+                    <input type="text" class="form-control" name="username" placeholder="用户名">
+                </div>
+                <div class="loginbox-textbox">
+                    <input type="password" name="password" class="form-control" placeholder="密码">
+                </div>
+                <div class="loginbox-forgot">
+                    <a href="">忘记密码?</a>
+                </div>
+                <div class="loginbox-submit">
+                    <input type="submit" class="btn btn-primary btn-block" value="登录">
+                </div>
+                <div class="loginbox-signup">
+                    <a href="/myapp/register/">注册新用户</a>
+                </div>
+            </div>
+            <div class="logobox">
 
-            {% endblock %}
+
+            </div>
+        </div>
+    </form>
+{% endblock %}

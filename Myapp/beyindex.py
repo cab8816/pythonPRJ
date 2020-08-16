@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.contrib import auth
 from Myapp.models import Biao4
 
 
@@ -9,7 +10,7 @@ def beyindex(request):
     return render(request, "beybase.html")
 
 
-@login_required
+@login_required(login_url='/myapp/signin/')
 def beybiao4(request):
     mlstbiao4 = Biao4.objects.all()
 
@@ -56,10 +57,41 @@ def split_page(object_list, request, per_page=8):
 
 
 def signin(request):
+    if request.method == "GET":
+        return render(request, "signin.html")
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    user_obj = auth.authenticate(username=username, password=password)
+    if not user_obj:
+        return redirect("/myapp/signin/")
+    else:
+        auth.login(request, user_obj)
+        path = request.GET.get("next") or "/myapp/beyindex/"
+        rep = redirect(path)
+        rep.set_cookie("is_login",True)
+        return rep
 
-    return render(request,"signin.html")
+
+def logout(request):
+    ppp = auth.logout(request)
+    return redirect("/myapp/signin/")
 
 
 def register(request):
+    if request.method == "GET":
+        return render(request, "register.html")
+    else:
+        username = request.POST.get("username")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+        if password1 == password2:
+            User.objects.create(username=username, password=password1)
+            return redirect("/myapp/signin/")
+        else:
+            return redirect("/myapp/register/")
 
-    return render(request, "register.html")
+
+def checkuser(request):
+    existuser = False
+
+    return existuser
