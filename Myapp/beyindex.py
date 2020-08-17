@@ -127,13 +127,20 @@ def register(request):
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
         if password1 == password2 and bashkey_isok:
-            User.objects.create(username=username, password=password1)
+            User.objects.create_user(username=username, password=password1)
             return redirect("/myapp/signin/")
         else:
             return redirect("/myapp/register/")
 
 
-def checkuser(request):
-    existuser = False
-
-    return existuser
+# 检测用户名是否已被注册
+def ajax_checkuser(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        try:
+            getusername = User.objects.get(username=username)
+            if getusername.username == username:
+                return HttpResponse("1")
+        except:
+            return HttpResponse("0")
+    return redirect("/myapp/register/")

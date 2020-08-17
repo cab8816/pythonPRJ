@@ -3,11 +3,16 @@
     <form action="/myapp/register/" method="POST">
         <div class="register-container animated fadeInDown">
             <div class="registerbox bg-white">
-                <div class="registerbox-title">用户注册1</div>
+                <div class="registerbox-title">用户注册1
 
-                <div class="registerbox-caption ">请填写您的注册信息1</div>
+                </div>
+
+                <div class="registerbox-caption ">请填写您的注册信息
+                 <div class="fa-hover pull-right signin" style="display: block;"><i class="fa fa-sign-in"></i><a href="/myapp/signin/">登录</a> </div>
+                </div>
                 <div class="registerbox-textbox">
-                    <input type="text" class="form-control" required name="username" placeholder="用户名">
+                    <input type="text" class="form-control" required name="username"  placeholder="用户名" onblur="func1(this)">
+
                 </div>
                 <div class="registerbox-textbox">
                     <input type="password" class="form-control" required name="password1" placeholder="请输入密码">
@@ -17,21 +22,21 @@
                 </div>
                 <hr class="wide">
                 <div class="registerbox-textbox">
-                    <input type="text" class="form-control" placeholder="请输入您的姓名">
+                    <input type="text" class="form-control" name="name" placeholder="请输入您的姓名">
                 </div>
                 <div class="registerbox-textbox">
-                    <input type="text" class="form-control" placeholder="请输入您的邮箱">
+                    <input type="text" class="form-control" name="email" placeholder="请输入您的邮箱">
                 </div>
                 <div class="registerbox-textbox">
                     <div class="row">
                         <div class="col-lg-6 col-sm-6 col-xs-6 padding-right-10">
-                            <input type="text" class="form-control" placeholder="月">
+                            <input type="text" class="form-control" placeholder="年" value="2020">
                         </div>
                         <div class="col-lg-3 col-sm-3 col-xs-3 no-padding padding-right-10">
-                            <input type="text" class="form-control" placeholder="日">
+                            <input type="text" class="form-control" placeholder="月">
                         </div>
                         <div class="col-lg-3 col-sm-3 col-xs-3 no-padding-left">
-                            <input type="text" class="form-control" placeholder="年">
+                            <input type="text" class="form-control" placeholder="日">
                         </div>
                     </div>
                 </div>
@@ -44,20 +49,21 @@
                     </div>
                 </div>
                 <div class="registerbox-submit">
-                    <label for="id_password">验证码</label>
-                <div id="captcha_div">
-                    <input type="text" name='captcha' class="form-control" placeholder="Captcha" required
-                           style="width: 30%;display: inline-block;margin-right: 2%;">
-                    <a href="#" class="captcha"><img src="{{ captcha.image_url }}" alt="点击换一张" id="id_captcha"></a>
-                    <input value="{{ captcha.hashkey }}" name="hashkey" type="hidden" id="id_captcha_0">
+                    {#                    <label for="id_password">验证码</label>#}
+                    <div id="captcha_div">
+                        <input type="text" name='captcha' class="form-control" placeholder="验证码" required
+                               style="width: 30%;display: inline-block;margin-right: 2%;">
+                        <a href="#" class="captcha"><img src="{{ captcha.image_url }}" alt="点击换一张" id="id_captcha"></a>
+                        <input value="{{ captcha.hashkey }}" name="hashkey" type="hidden" id="id_captcha_0">
 
-                    <input type="submit" class="btn btn-primary pull-right" value="提交">
+                        <input id="submitid1"  type="submit" class="btn btn-primary pull-right"  value="提交">
+                    </div>
+
                 </div>
 
-                </div>
             </div>
             <div class="logobox">
-
+              <span id="error">sss</span>
 
             </div>
         </div>

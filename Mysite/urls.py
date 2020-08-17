@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 # python manage.py runserver 0.0.0.0:8000
-
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
@@ -24,7 +24,7 @@ urlpatterns = [
     path('myapp/', include('Myapp.urls')),
 
     # 图片验证码 路由
-    path('captcha/', include('captcha.urls'))
+    path('captcha/', include('captcha.urls')),
 
 
 ]

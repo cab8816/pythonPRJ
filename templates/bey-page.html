@@ -14,7 +14,7 @@
     <link href="/static/lib/beyond/css/dataTables.bootstrap.css" rel="stylesheet"/>
     <!-- 自定义样式表 -->
     <link id="beyond-link" href="/static/lib/beyond/css/beyond.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/static/css/mbeycss.css" rel="stylesheet">
+    <link href="/static/css/beypage.css" rel="stylesheet">
 
 
 </head>
@@ -50,17 +50,7 @@
 <script src="/static/lib/beyond/js/bootstrap.min.js"></script>
 <!-- 自定义js -->
 <script src="/static/lib/beyond/js/beyond.min.js"></script>
-<script>
-    <!-- 动态刷新验证码js -->
-    $(document).ready(function () {
-        $('.captcha').click(function () {
-            $.getJSON("/myapp/refresh_captcha/", function (result) {
-                $('#id_captcha').attr('src', result['image_url']);
-                $('#id_captcha_0').val(result['hashkey'])
-            });
-        });
-    });
-</script>
+<script src="/static/js/beypage.js"></script>
 
 </body>
 </html>
