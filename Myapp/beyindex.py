@@ -1,11 +1,13 @@
-from captcha.fields import CaptchaField
-from django import forms
+from captcha.helpers import captcha_image_url
+from captcha.models import CaptchaStore
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from Myapp.models import Biao4
+from django.urls import reverse
 
 
 def beyindex(request):
@@ -79,18 +81,52 @@ def logout(request):
     return redirect("/myapp/signin/")
 
 
+# 创建验证码
+def captcha():
+    # 验证码，第一次请求
+    hashkey = CaptchaStore.generate_key()
+    image_url = captcha_image_url(hashkey)
+    captcha = {'hashkey': hashkey, 'image_url': image_url}
+    return captcha
 
+
+# 验证验证码
+def jarge_captcha(captchaStr, captchaHashkey):
+    if captchaStr and captchaHashkey:
+        try:
+            # 获取根据hashkey获取数据库中的response值
+            get_captcha = CaptchaStore.objects.get(hashkey=captchaHashkey)
+            # 如果验证码匹配
+            if get_captcha.response == captchaStr.lower():
+                return True
+            else:
+                return False
+        except:
+            return False
+    else:
+        return False
+
+
+# 刷新验证码
+import json
+
+
+def refresh_captcha(request):
+    return HttpResponse(json.dumps(captcha()), content_type='application/json')
 
 
 def register(request):
     if request.method == "GET":
-        captcha = CaptchaField(error_messages={"invalid": u"验证码错误"})
-        return render(request, "register.html", {'captcha': captcha})
+
+        return render(request, "register.html")
     else:
+        captchaHashkey = request.POST.get("hashkey")
+        captchaStr = request.POST.get("captcha")
+        bashkey_isok = jarge_captcha(captchaStr, captchaHashkey)
         username = request.POST.get("username")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        if password1 == password2:
+        if password1 == password2 and bashkey_isok:
             User.objects.create(username=username, password=password1)
             return redirect("/myapp/signin/")
         else:

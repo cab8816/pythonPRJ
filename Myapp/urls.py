@@ -1,3 +1,4 @@
+
 from django.urls import path
 
 from Myapp import views, testdb, beyindex
@@ -21,6 +22,8 @@ urlpatterns = [
     path('signin/', beyindex.signin),
     path('register/', beyindex.register),
     path('logout/', beyindex.logout),
+    path('refresh_captcha/', beyindex.refresh_captcha),    # 刷新验证码，ajax
+
 
 
 

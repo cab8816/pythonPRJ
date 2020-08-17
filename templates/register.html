@@ -44,12 +44,21 @@
                     </div>
                 </div>
                 <div class="registerbox-submit">
+                    <label for="id_password">验证码</label>
+                <div id="captcha_div">
+                    <input type="text" name='captcha' class="form-control" placeholder="Captcha" required
+                           style="width: 30%;display: inline-block;margin-right: 2%;">
+                    <a href="#" class="captcha"><img src="{{ captcha.image_url }}" alt="点击换一张" id="id_captcha"></a>
+                    <input value="{{ captcha.hashkey }}" name="hashkey" type="hidden" id="id_captcha_0">
+
                     <input type="submit" class="btn btn-primary pull-right" value="提交">
+                </div>
+
                 </div>
             </div>
             <div class="logobox">
-              验证码
-                {{captcha1}}
+
+
             </div>
         </div>
 
