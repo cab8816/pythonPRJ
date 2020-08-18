@@ -6,7 +6,9 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from Myapp.models import Biao4
+
+from Myapp.My_forms import PsdwxxForm
+from Myapp.models import Biao4, Bpsdwxx
 from django.urls import reverse
 
 
@@ -145,4 +147,20 @@ def ajax_checkuser(request):
             return HttpResponse("0")
     return redirect("/myapp/register/")
 
+
 # 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$
+
+def add_Bpsdwxx(request):
+    if request.method == "GET":
+        form = PsdwxxForm()
+        return render(request, "bpsdwxx.html", {"form": form})
+    else:
+        form = PsdwxxForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            Bpsdwxx.objects.create(**data)
+            form = PsdwxxForm()
+            return render(request, "bpsdwxx.html", {"form": form})
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})

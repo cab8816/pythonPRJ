@@ -153,7 +153,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 设置 captcha 图片大小
-CAPTCHA_IMAGE_SIZE = (80, 40)
+CAPTCHA_IMAGE_SIZE = (80, 30)
 # 字符个数
 CAPTCHA_LENGTH = 4
 # 超时(minutes)

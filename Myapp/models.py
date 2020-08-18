@@ -1,5 +1,6 @@
 from django.db import models
 
+
 #
 # # Assume you are activating Python 3 venv
 # $ brew install mysql-client
@@ -58,6 +59,22 @@ class Pszcy(models.Model):
 
     class Meta:
         verbose_name = "评审组组成表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.id)
+
+
+class Bpsdwxx(models.Model):
+    jyjcjgmc = models.CharField(max_length=100, verbose_name="检验检测机构名称")
+    zcdz = models.CharField(max_length=100, verbose_name="注册地址")
+
+    # jydz = models.CharField(max_length=100, verbose_name="检验地址")
+    # yzbm = models.CharField(max_length=6, verbose_name="邮编")
+    # chuanz = models.CharField(max_length=20, verbose_name="传真")
+    # email = models.CharField(max_length=50,verbose_name="email")
+    class Meta:
+        verbose_name = "被评审单位信息表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
