@@ -1,6 +1,5 @@
 from django.db import models
 
-
 #
 # # Assume you are activating Python 3 venv
 # $ brew install mysql-client
@@ -55,7 +54,7 @@ class Pszcy(models.Model):
     gzdw = models.CharField(max_length=50, verbose_name="工作单位")
     lxfs = models.CharField(max_length=18, verbose_name="联系方式")
     psxxbs = models.ManyToManyField('Pingshenxxb', verbose_name="评审通知号")
-    psydtl = models.OneToOneField('PsyuanDetail', on_delete=models.CASCADE, verbose_name="评审员信息号",null=True)
+    psydtl = models.OneToOneField('PsyuanDetail', on_delete=models.CASCADE, verbose_name="评审员信息号", null=True)
 
     class Meta:
         verbose_name = "评审组组成表"

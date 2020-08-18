@@ -144,3 +144,5 @@ def ajax_checkuser(request):
         except:
             return HttpResponse("0")
     return redirect("/myapp/register/")
+
+# 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$

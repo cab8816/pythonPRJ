@@ -1,6 +1,8 @@
 {% extends "bey-page.html" %}
 {% block mainbody %}
     <form action="/myapp/register/" method="POST">
+{#  {% csrf_token %}   这是Django提供的防止伪装提交请求的功能。POST 方法提交的表格，必须有此标签。 #}
+        {% csrf_token %}
         <div class="register-container animated fadeInDown">
             <div class="registerbox bg-white">
                 <div class="registerbox-title">用户注册1
