@@ -18,49 +18,32 @@
             {% csrf_token %}
 
 
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-                <div class="widget">
-                    <div class="widget-header bordered-top bordered-palegreen">
-                        <span class="widget-caption">Default Inputs</span>
-                    </div>
-                    <div class="widget-body">
-                        <div class="collapse in">
-                            <form role="form">
+            <div class="widget">
+                <div class="widget-header bordered-top bordered-palegreen">
+                    <span class="widget-caption">Default Inputs</span>
+                </div>
+                <div class="widget-body">
+                    <div class="collapse in">
+                        <form role="form">
 
-                                {% for field in form %}
-                                    <div class="form-group col-xs-6 col-sm-6">
-                                        <div class=""><label for="id_{{ field.name }}">{{ field.label }}</label>
-                                        </div>
-                                        <div>{{ field }}
-                                        </div>
-                                        <div><span>{{ field.errors.0 }}</span>
-                                        </div>
+                            {% for field in form %}
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-3 col-md-3 ">
+                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
                                     </div>
+                                    <div class="col-xs-8 col-md-5 col-sm-5">
+                                        <div>{{ field }}</div>
+                                    </div>
+                                    <div class="hidden-xs col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
 
-                                {% endfor %}
-                                <div class="pull-right"><input type="submit"></div>
-                            </form>
-                        </div>
+                            <div class="row" ><input style="margin-right: 80px" class="btn btn-primary pull-right" type="submit"></div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-
-            {#                <div class="form-group">#}
-            {#                    <label for="id_{{ field.name }}">{{ field.label }}</label>#}
-            {#                    <div class="form-control input-xs">#}
-            {#                        {{ field }} <span>{{ field.errors.0 }}</span>#}
-            {#                    </div>#}
-            {##}
-            {##}
-            {#                    <input type="text" class="form-control input-xs" id="xsinput" placeholder="Extra Small Input">#}
-            {#                </div>#}
-
-
-            {#                <div>#}
-            {#                    <label for="id_{{ field.name }}">{{ field.label }}</label>#}
-            {#                    {{ field }} <span>{{ field.errors.0 }}</span>#}
-            {#                </div>#}
 
 
         </form>

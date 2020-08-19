@@ -17,6 +17,9 @@ from Myapp.models import *
 #
 # [global]
 # index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 按住ALT，用鼠标在需要的位置点击添加光标，然后输入内容即可
+
 from Myapp.utils import importpsymd
 
 

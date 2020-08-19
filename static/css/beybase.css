@@ -22,3 +22,16 @@
     border-top: 1px solid #ddd;
 }
 
+.row>div{
+    height: 38px;
+}
+.row>div>label {
+    font-weight: normal;
+    font-size: 13px;
+    vertical-align: middle;
+    text-align: right;
+    width: 100%;
+}
+.row>div>div>input{
+    width: 100%;
+}
