@@ -35,3 +35,21 @@
 .row>div>div>input{
     width: 100%;
 }
+
+
+.navbar > .navbar-inner> .navbar-container {
+      .navbar > .navbar-inner> .navbar-container {
+        padding-left: 10px;
+    }
+    }
+
+@media only screen and (max-width: 480px) {
+    .navbar > .navbar-inner> .navbar-container {
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 480px)
+.navbar .navbar-inner .navbar-container {
+    padding-left: 0;
+}
