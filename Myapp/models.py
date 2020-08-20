@@ -66,13 +66,30 @@ class Pszcy(models.Model):
 
 
 class Bpsdwxx(models.Model):
-    jyjcjgmc = models.CharField(max_length=100, verbose_name="检验检测机构名称")
-    zcdz = models.CharField(max_length=100, verbose_name="注册地址")
+    jyjcjgmc = models.CharField(max_length=100, verbose_name="检验检测机构名称",default="检验检测机构名称")
+    zcdz = models.CharField(max_length=100, verbose_name="注册地址",default="注册地址")
+    jydz = models.CharField(max_length=100, verbose_name="检验地址",default="检验地址")
+    yzbm = models.CharField(max_length=6, verbose_name="邮编",default="邮编")
+    chuanz = models.CharField(max_length=20, verbose_name="传真",default="传真")
+    email = models.CharField(max_length=50,verbose_name="email",default="email")
 
-    # jydz = models.CharField(max_length=100, verbose_name="检验地址")
-    # yzbm = models.CharField(max_length=6, verbose_name="邮编")
-    # chuanz = models.CharField(max_length=20, verbose_name="传真")
-    # email = models.CharField(max_length=50,verbose_name="email")
+    fzr = models.CharField(max_length=10, verbose_name="负责人", default="负责人")
+    fzrzw = models.CharField(max_length=20, verbose_name="负责人职务", default="负责人职务")
+    fzrgddh = models.CharField(max_length=20, verbose_name="负责人固定电话", default="负责人固定电话")
+    fzryddh = models.CharField(max_length=20, verbose_name="负责人移动电话", default="负责人移动电话")
+
+    llr = models.CharField(max_length=10, verbose_name="联络人", default="联络人")
+    llrzw = models.CharField(max_length=20, verbose_name="联络人职务", default="联络人职务")
+    llrgddh = models.CharField(max_length=20, verbose_name="联络人固定电话", default="联络人固定电话")
+    llryddh = models.CharField(max_length=20, verbose_name="联络人移动电话", default="联络人移动电话")
+
+    sfrdw = models.CharField(max_length=100, verbose_name="所属法人单位", default="所属法人单位")
+    sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
+    sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
+
+
+
+
     class Meta:
         verbose_name = "被评审单位信息表"
         verbose_name_plural = verbose_name
@@ -88,6 +105,8 @@ class Pingshenxxb(models.Model):
     sqsx = models.CharField(max_length=50, verbose_name="申请事项", default="申请事项")
     psdate = models.CharField(max_length=30, verbose_name="评审时间", default="评审时间")
     psadress = models.CharField(max_length=100, verbose_name="评审地点", default="评审地点")
+
+
 
     class Meta:
         verbose_name = "评审信息总表"
