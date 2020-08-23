@@ -23,14 +23,22 @@ class Students(models.Model):
 
 
 class ImportFile(models.Model):
-    importtype = models.CharField(max_length=1, verbose_name='导入类型')
-    file = models.FileField(upload_to='File')
+    importtype_choices = {
+        ('0',u'读取评审通知'),
+        ('1',u'读取评审报告'),
+        ('2',u'评审员信息表格'),
+    }
+    importtype = models.CharField(max_length=1,verbose_name='导入类型', choices=importtype_choices)
+    file = models.FileField(upload_to='File',verbose_name='文件名')
+    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
 
     class Meta:
         verbose_name = "文件输入列表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
+        # return self.get_importtype_display()
+
         return str(self.importtype)
 
 
@@ -41,7 +49,7 @@ class PsyuanDetail(models.Model):
     psybh = models.CharField(max_length=15, verbose_name='评审员编号')
 
     class Meta:
-        verbose_name = "评审员信息表"
+        verbose_name = "评审员个人信息表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -55,10 +63,10 @@ class Pszcy(models.Model):
     gzdw = models.CharField(max_length=50, verbose_name="工作单位")
     lxfs = models.CharField(max_length=18, verbose_name="联系方式")
     psxxbs = models.ManyToManyField('Pingshenxxb', verbose_name="评审通知号")
-    psydtl = models.OneToOneField('PsyuanDetail', on_delete=models.CASCADE, verbose_name="评审员信息号", null=True)
+    psydtl = models.ForeignKey('PsyuanDetail', on_delete=models.CASCADE, verbose_name="评审员信息号", null=True)
 
     class Meta:
-        verbose_name = "评审组组成表"
+        verbose_name = "评审组名单"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -66,12 +74,12 @@ class Pszcy(models.Model):
 
 
 class Bpsdwxx(models.Model):
-    jyjcjgmc = models.CharField(max_length=100, verbose_name="检验检测机构名称",default="检验检测机构名称")
-    zcdz = models.CharField(max_length=100, verbose_name="注册地址",default="注册地址")
-    jydz = models.CharField(max_length=100, verbose_name="检验地址",default="检验地址")
-    yzbm = models.CharField(max_length=6, verbose_name="邮编",default="邮编")
-    chuanz = models.CharField(max_length=20, verbose_name="传真",default="传真")
-    email = models.CharField(max_length=50,verbose_name="email",default="email")
+    jyjcjgmc = models.CharField(max_length=100, verbose_name="检验检测机构名称", default="检验检测机构名称")
+    zcdz = models.CharField(max_length=100, verbose_name="注册地址", default="注册地址")
+    jydz = models.CharField(max_length=100, verbose_name="检验地址", default="检验地址")
+    yzbm = models.CharField(max_length=6, verbose_name="邮编", default="邮编")
+    chuanz = models.CharField(max_length=20, verbose_name="传真", default="传真")
+    email = models.CharField(max_length=50, verbose_name="email", default="email")
 
     fzr = models.CharField(max_length=10, verbose_name="负责人", default="负责人")
     fzrzw = models.CharField(max_length=20, verbose_name="负责人职务", default="负责人职务")
@@ -86,9 +94,6 @@ class Bpsdwxx(models.Model):
     sfrdw = models.CharField(max_length=100, verbose_name="所属法人单位", default="所属法人单位")
     sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
     sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
-
-
-
 
     class Meta:
         verbose_name = "被评审单位信息表"
@@ -106,10 +111,8 @@ class Pingshenxxb(models.Model):
     psdate = models.CharField(max_length=30, verbose_name="评审时间", default="评审时间")
     psadress = models.CharField(max_length=100, verbose_name="评审地点", default="评审地点")
 
-
-
     class Meta:
-        verbose_name = "评审信息总表"
+        verbose_name = "评审任务信息总表"
         verbose_name_plural = verbose_name
 
     def __str__(self):

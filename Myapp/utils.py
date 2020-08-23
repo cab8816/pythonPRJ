@@ -10,16 +10,18 @@ def importpsymd(self, request, obj, change):  #
     global pstzh
     document = Document(obj.file)
     if obj.importtype == '0':  # (0, "评审通知"),
-        pstzh = document.paragraphs[2].text
+
         biao = Pingshenxxb(
-            pstzh=pstzh,
+            pstzh=document.paragraphs[2].text,
+            jcjgmc = document.paragraphs[4].text,
         )
         biao.save()
 
     for t in document.tables:
         table = t
         if obj.importtype == '1':  # (1, "认证现场评审报告"),
-            psxxb = Pingshenxxb.objects.get(id=5)
+            print(obj.psxxb.id)
+            psxxb = obj.psxxb
             if len(t.columns) == 11:  # 评审报告  表4 建议批准的检验检测能力表
                 for row in table.rows:
                     rowcells = row.cells
@@ -78,7 +80,8 @@ def importpsymd(self, request, obj, change):  #
 
                     biao.save()
         elif obj.importtype == '0':  # (0, "评审通知文件"),
-            psxxb = Pingshenxxb.objects.get(id=5)
+            psxxb = obj.psxxb
+            # psxxb = Pingshenxxb.objects.get(id=5)
             if len(t.columns) == 5:  # 评审组成员表格
                 for row in table.rows:
                     rowcells = row.cells

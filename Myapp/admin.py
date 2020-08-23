@@ -1,6 +1,8 @@
 import datetime
 
+from PIL._imagingmorph import apply
 from django.contrib import admin
+from django.template.defaultfilters import register
 
 from Myapp.models import *
 
@@ -29,15 +31,33 @@ def readed(modeladmin, request, queryset):
 
 @admin.register(Biao4)
 class Biao4Admin(admin.ModelAdmin):
-    list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm','psxxb')
+    list_display = ('id', 'xmxh', 'lb', 'duixiang', 'csmc', 'yjbz', 'xzfw', 'sm', 'dis_pstzh')
     # search_fields = ('duixiang', 'csmc', 'lb')  # 搜索字段
     # fields = ('xmxh', 'lb', 'duixiang', 'csmc',)
     actions = [readed]
 
+    def dis_pstzh(self, obj):
+        return obj.psxxb.pstzh
+    dis_pstzh.short_description = "评审通知号"
+
 
 @admin.register(ImportFile)
 class ImportFileAdmin(admin.ModelAdmin):
-    list_display = ('importtype', 'file',)
+    list_display = ('id','dis_psxxb_id','dis_pstzh','dis_importtype', 'file',)
+
+    def dis_pstzh(self, obj):
+        return obj.psxxb.pstzh
+    def dis_psxxb_id(self, obj):
+        return obj.psxxb.id
+
+    def dis_importtype(self,obj):
+        print(obj.importtype)
+        return obj.get_importtype_display()
+
+    dis_importtype.short_description ='读取文件类型'
+    dis_psxxb_id.short_description ="信息编号"
+    dis_pstzh.short_description = "评审通知号"
+
 
     def save_model(self, request, obj, form, change):
         re = super().save_model(request, obj, form, change)
@@ -46,11 +66,18 @@ class ImportFileAdmin(admin.ModelAdmin):
         return re
 
 
+@register.filter(name='displayname')
+def displayname(value, arg):
+    return apply(eval('value.get_' + arg + '_display'), ())
+
 
 @admin.register(Biao5)
 class Biao5admin(admin.ModelAdmin):
     # listdisplay设置要显示在列表中的字段（id字段是Django模型的默认主键）
-    list_display = ('id', 'name', 'ziwuzicheng', 'sqqzly', 'beizu','psxxb')
+    list_display = ('id', 'name', 'ziwuzicheng', 'sqqzly', 'beizu', 'dis_pstzh')
+    def dis_pstzh(self, obj):
+        return obj.psxxb.pstzh
+    dis_pstzh.short_description = "评审通知号"
 
     # # list_per_page设置每页显示多少条记录，默认是100条
     # list_per_page = 50
@@ -74,18 +101,26 @@ class Biao5admin(admin.ModelAdmin):
 
 @admin.register(PsyuanDetail)
 class PsyuanDetailAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'gender', 'danwei', 'psybh',)
+    list_display = ('id', 'name', 'gender', 'danwei', 'psybh',)
+
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
-    list_display = ('id','pstzh',)
-
+    list_display = ('id', 'pstzh','jcjgmc')
 
 
 @admin.register(Biao72)
 class Biao72Admin(admin.ModelAdmin):
-    list_display = ('xuhao', 'xmmc','yjbz','xmxh','csmc','psxxb')
+    list_display = ('xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'dis_pstzh')
+    def dis_pstzh(self, obj):
+        return obj.psxxb.pstzh
+    dis_pstzh.short_description = "评审通知号"
 
 @admin.register(Pszcy)
 class PszcyAdmin(admin.ModelAdmin):
-    list_display = ('psyzc', 'psname','ziwuzicheng','gzdw','lxfs',)
+    list_display = ('psyzc', 'psname', 'ziwuzicheng', 'gzdw', 'lxfs', 'dis_pstzh')
+
+    def dis_pstzh(self, obj):
+        return obj.psxxbs.first().pstzh
+    dis_pstzh.short_description = "评审通知号"
+
