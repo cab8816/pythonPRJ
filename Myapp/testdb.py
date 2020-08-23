@@ -1,6 +1,6 @@
 from django.http import HttpResponse, FileResponse
 from django.shortcuts import render, redirect
-from Myapp.models import Students
+from Myapp.models import Students, Pingshenxxb
 
 from docx import Document  # 导入库
 from docxtpl import DocxTemplate, InlineImage  # 导入模板库
@@ -83,9 +83,11 @@ def testdoc(request):
 def readword(request):
     document = Document('testdoc/psbg.docx')
     table = document.tables[0]
+    psxxb = Pingshenxxb.objects.get(id=5)
     for row in table.rows:
         rowcells = row.cells
         biao = Biao4(
+            psxxb=psxxb,
             lyxh=rowcells[0].text,
             lyname=rowcells[1].text,
             lbxh=rowcells[2].text,
