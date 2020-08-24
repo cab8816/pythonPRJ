@@ -1,5 +1,5 @@
+from django.contrib.auth.models import User
 from django.db import models
-
 
 #
 # # Assume you are activating Python 3 venv
@@ -93,7 +93,6 @@ class Bpsdwxx(models.Model):
 
     sfrdw = models.CharField(max_length=100, verbose_name="所属法人单位", default="所属法人单位")
     sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
-    sfrdwdz = models.CharField(max_length=100, verbose_name="法人单位地址", default="法人单位地址")
 
     class Meta:
         verbose_name = "被评审单位信息表"
@@ -110,6 +109,8 @@ class Pingshenxxb(models.Model):
     sqsx = models.CharField(max_length=50, verbose_name="申请事项", default="申请事项")
     psdate = models.CharField(max_length=30, verbose_name="评审时间", default="评审时间")
     psadress = models.CharField(max_length=100, verbose_name="评审地点", default="评审地点")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="用户Id", null=True)
+    bpsdwxx = models.ForeignKey('Bpsdwxx', on_delete=models.CASCADE, verbose_name="被评审单位Id", null=True)
 
     class Meta:
         verbose_name = "评审任务信息总表"

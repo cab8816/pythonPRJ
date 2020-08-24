@@ -124,3 +124,10 @@ class PszcyAdmin(admin.ModelAdmin):
         return obj.psxxbs.first().pstzh
     dis_pstzh.short_description = "评审通知号"
 
+@admin.register(Bpsdwxx)
+class BpsdwxxAdmin(admin.ModelAdmin):
+    list_display = ('jyjcjgmc', 'zcdz', 'jydz', 'yzbm')
+
+    # def dis_pstzh(self, obj):
+    #     return obj.psxxbs.first().pstzh
+    # dis_pstzh.short_description = "被评审单位信息"
