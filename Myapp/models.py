@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 #
 # # Assume you are activating Python 3 venv
 # $ brew install mysql-client
@@ -24,12 +25,12 @@ class Students(models.Model):
 
 class ImportFile(models.Model):
     importtype_choices = {
-        ('0',u'读取评审通知'),
-        ('1',u'读取评审报告'),
-        ('2',u'评审员信息表格'),
+        ('0', u'0_读取评审通知(docx格式)'),
+        ('1', u'1_读取评审报告(docx格式)'),
+        ('2', u'2_评审员信息表格(docx格式)'),
     }
-    importtype = models.CharField(max_length=1,verbose_name='导入类型', choices=importtype_choices)
-    file = models.FileField(upload_to='File',verbose_name='文件名')
+    importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices)
+    file = models.FileField(upload_to='File', verbose_name='文件名')
     psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
 
     class Meta:

@@ -38,26 +38,27 @@ class Biao4Admin(admin.ModelAdmin):
 
     def dis_pstzh(self, obj):
         return obj.psxxb.pstzh
+
     dis_pstzh.short_description = "评审通知号"
 
 
 @admin.register(ImportFile)
 class ImportFileAdmin(admin.ModelAdmin):
-    list_display = ('id','dis_psxxb_id','dis_pstzh','dis_importtype', 'file',)
+    list_display = ('id', 'dis_pstzh', 'dis_importtype', 'file',)
 
     def dis_pstzh(self, obj):
         return obj.psxxb.pstzh
-    def dis_psxxb_id(self, obj):
-        return obj.psxxb.id
 
-    def dis_importtype(self,obj):
-        print(obj.importtype)
+    # def dis_psxxb_id(self, obj):
+    #     return obj.psxxb.id
+
+    def dis_importtype(self, obj):
+        # print(obj.importtype)
         return obj.get_importtype_display()
 
-    dis_importtype.short_description ='读取文件类型'
-    dis_psxxb_id.short_description ="信息编号"
+    dis_importtype.short_description = '读取文件类型'
+    # dis_psxxb_id.short_description ="信息编号"
     dis_pstzh.short_description = "评审通知号"
-
 
     def save_model(self, request, obj, form, change):
         re = super().save_model(request, obj, form, change)
@@ -75,8 +76,10 @@ def displayname(value, arg):
 class Biao5admin(admin.ModelAdmin):
     # listdisplay设置要显示在列表中的字段（id字段是Django模型的默认主键）
     list_display = ('id', 'name', 'ziwuzicheng', 'sqqzly', 'beizu', 'dis_pstzh')
+
     def dis_pstzh(self, obj):
         return obj.psxxb.pstzh
+
     dis_pstzh.short_description = "评审通知号"
 
     # # list_per_page设置每页显示多少条记录，默认是100条
@@ -106,15 +109,18 @@ class PsyuanDetailAdmin(admin.ModelAdmin):
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
-    list_display = ('id', 'pstzh','jcjgmc')
+    list_display = ('id', 'pstzh', 'jcjgmc')
 
 
 @admin.register(Biao72)
 class Biao72Admin(admin.ModelAdmin):
     list_display = ('xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'dis_pstzh')
+
     def dis_pstzh(self, obj):
         return obj.psxxb.pstzh
+
     dis_pstzh.short_description = "评审通知号"
+
 
 @admin.register(Pszcy)
 class PszcyAdmin(admin.ModelAdmin):
@@ -122,7 +128,9 @@ class PszcyAdmin(admin.ModelAdmin):
 
     def dis_pstzh(self, obj):
         return obj.psxxbs.first().pstzh
+
     dis_pstzh.short_description = "评审通知号"
+
 
 @admin.register(Bpsdwxx)
 class BpsdwxxAdmin(admin.ModelAdmin):

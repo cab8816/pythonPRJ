@@ -71,10 +71,13 @@ def signin(request):
     if not user_obj:
         return redirect("/myapp/signin/")
     else:
+
         auth.login(request, user_obj)
         path = request.GET.get("next") or "/myapp/beyindex/"
         rep = redirect(path)
         rep.set_cookie("is_login", True)
+        request.session['is_login']=True
+        request.session['user1'] = username
         return rep
 
 
