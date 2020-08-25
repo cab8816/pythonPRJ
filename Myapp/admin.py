@@ -109,7 +109,12 @@ class PsyuanDetailAdmin(admin.ModelAdmin):
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
-    list_display = ('id', 'pstzh', 'jcjgmc')
+    list_display = ('id', 'dis_user', 'pstzh', 'jcjgmc')
+
+    def dis_user(self, obj):
+        return obj.user
+
+    dis_user.short_description = "用户名"
 
 
 @admin.register(Biao72)
