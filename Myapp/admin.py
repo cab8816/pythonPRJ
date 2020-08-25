@@ -2,6 +2,7 @@ import datetime
 
 from PIL._imagingmorph import apply
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 from django.template.defaultfilters import register
 
 from Myapp.models import *
@@ -23,6 +24,26 @@ from Myapp.models import *
 # 按住ALT，用鼠标在需要的位置点击添加光标，然后输入内容即可
 
 from Myapp.utils import importpsymd
+
+
+class UsersFilter(SimpleListFilter):
+    title = '用户名'
+    parameter_name = 'user'
+
+    def lookups(self, request, model_admin):
+        return [(1, '已下线'), (2, '进行中'), (3, '未到测试区间')]
+
+    def queryset(self, request, queryset):
+        # this_day = datetime.date.today()
+        # pdb.set_trace()
+        return queryset.filter(user = 'cab88')
+        #
+        # if self.value() == '3':
+        #     return queryset.filter(test_start_date__gt=this_day)
+        # elif self.value() == '1':
+        #     return queryset.filter(test_end_date__lt=this_day)
+        # elif self.value() == '2':
+        #     return queryset.filter(test_end_date__gte=this_day, test_start_date__lte=this_day)
 
 
 def readed(modeladmin, request, queryset):
@@ -110,6 +131,7 @@ class PsyuanDetailAdmin(admin.ModelAdmin):
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
     list_display = ('id', 'dis_user', 'pstzh', 'jcjgmc')
+    list_filter = ('pstzh',)
 
     def dis_user(self, obj):
         return obj.user

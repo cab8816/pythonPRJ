@@ -29,12 +29,12 @@ class ImportFile(models.Model):
         ('1', u'1_读取评审报告(docx格式)'),
         ('2', u'2_评审员信息表格(docx格式)'),
     }
-    importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices)
+    importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices,default=0)
     file = models.FileField(upload_to='File', verbose_name='文件名')
-    psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
+    psxxb = models.ForeignKey('Pingshenxxb',verbose_name='评审信息ID', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
 
     class Meta:
-        verbose_name = "文件输入列表"
+        verbose_name = "从文件导入数据"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -118,7 +118,7 @@ class Pingshenxxb(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.id)
+        return str(self.pstzh)
 
 
 class Biao4(models.Model):
