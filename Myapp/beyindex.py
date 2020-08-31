@@ -24,6 +24,14 @@ def beybiao4(request):
     return render(request, "bey-biao4.html", data1)
 
 
+@login_required(login_url='/myapp/signin/')
+def beybiao71(request):
+    mlstbiao4 = Biao4.objects.all()
+
+    data1 = split_page(mlstbiao4, request, 10)
+    return render(request, "bey-biao71.html", data1)
+
+
 def split_page(object_list, request, per_page=8):
     paginator = Paginator(object_list, per_page)
     # 取出当前需要展示的页码, 默认为1
