@@ -1,0 +1,16 @@
+asgiref==3.2.10
+contextvars==2.4
+Django==3.1.1
+django-ranged-response==0.2.0
+django-simple-captcha==0.5.12
+docxtpl==0.10.0
+immutables==0.14
+Jinja2==2.11.2
+lxml==4.5.2
+MarkupSafe==1.1.1
+mysqlclient==2.0.1
+Pillow==7.2.0
+python-docx==0.8.10
+pytz==2020.1
+six==1.15.0
+sqlparse==0.3.1
