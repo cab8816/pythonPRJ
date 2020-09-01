@@ -23,6 +23,19 @@ from Myapp.models import *
 
 # 按住ALT，用鼠标在需要的位置点击添加光标，然后输入内容即可
 
+# pip freeze > requirements.txt
+# cd
+# python -m venv scrapy_env
+# cd scrapy_env/scripts
+# activate
+# pip install -r requirements.txt
+
+
+
+
+
+
+
 from Myapp.utils import importpsymd
 
 

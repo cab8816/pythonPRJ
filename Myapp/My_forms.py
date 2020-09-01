@@ -8,3 +8,4 @@ class PsdwxxForm(forms.Form):
     yzbm = forms.CharField(label="邮编")
     chuanz = forms.CharField(label="传真")
     email = forms.CharField(label="email")
+
