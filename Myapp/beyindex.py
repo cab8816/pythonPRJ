@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
-from Myapp.My_forms import PsdwxxForm
-from Myapp.models import Biao4, Bpsdwxx
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb
 from django.urls import reverse
 
 
@@ -30,6 +30,8 @@ def beybiao71(request):
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, "bey-biao71.html", data1)
+
+
 
 
 def split_page(object_list, request, per_page=8):
@@ -176,3 +178,20 @@ def add_Bpsdwxx(request):
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
+
+
+
+def add_Pingshenxxb(request):
+    if request.method == "GET":
+        form = PingshenxxbForm()
+        return render(request, "pingshengxxbForm.html", {"form": form})
+    else:
+        form = PingshenxxbForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            Pingshenxxb.objects.create(**data)
+            form = PingshenxxbForm()
+            return render(request, "pingshengxxbForm.html", {"form": form})
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})

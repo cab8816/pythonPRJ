@@ -4,34 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>自己揍得CMS</title>
-    <meta name="description" content="Dashboard" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Dashboard"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="shortcut icon" href="/static/lib/beyond/img/favicon.png" type="image/x-icon">
     <!-- 基本样式表 -->
-    <link href="/static/lib/beyond/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/static/lib/beyond/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="/static/lib/beyond/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="/static/lib/beyond/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/lib/beyond/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/static/lib/beyond/css/dataTables.bootstrap.css" rel="stylesheet"/>
     <!-- 自定义样式表 -->
-    <link id="beyond-link" href="/static/lib/beyond/css/beyond.min.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/beybase.css" rel="stylesheet" >
+    <link id="beyond-link" href="/static/lib/beyond/css/beyond.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/beybase.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- 页面加载样式容器 -->
-    <!--     <div class="loading-container">
-    <div class="loading-progress">
+<!-- 页面加载样式容器 -->
+<!--     <div class="loading-container">
+<div class="loading-progress">
+    <div class="rotator">
         <div class="rotator">
-            <div class="rotator">
-                <div class="rotator colored">
-                    <div class="rotator">
-                        <div class="rotator colored">
-                            <div class="rotator colored"></div>
-                            <div class="rotator"></div>
-                        </div>
+            <div class="rotator colored">
+                <div class="rotator">
+                    <div class="rotator colored">
                         <div class="rotator colored"></div>
+                        <div class="rotator"></div>
                     </div>
-                    <div class="rotator"></div>
+                    <div class="rotator colored"></div>
                 </div>
                 <div class="rotator"></div>
             </div>
@@ -39,328 +37,337 @@
         </div>
         <div class="rotator"></div>
     </div>
+    <div class="rotator"></div>
+</div>
 </div> -->
-    <!--  /结束 -->
-    <!-- 导航条 -->
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="navbar-container">
+<!--  /结束 -->
+<!-- 导航条 -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
 
 
-                <!-- 导航条 logo -->
+            <!-- 导航条 logo -->
 
-                <div class="navbar-header pull-left">
-                    <a href="#" class="navbar-brand">
-                        <small>
-                        <img src="/static/lib/beyond/img/logo.png" alt="" />
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <img src="/static/lib/beyond/img/logo.png" alt=""/>
                     </small>
-                    </a>
-                </div>
-                <!-- /导航条 logo -->
-                <!-- 侧边栏收起按钮 -->
-                <div class="sidebar-collapse active " id="sidebar-collapse">
-                    <i class="collapse-icon fa fa-bars"></i>
-                </div>
-                <!-- /侧边栏收起按钮 -->
-                <!-- 管理员和设置 -->
-                <div class="navbar-header pull-right">
-                    <div class="navbar-account">
-                        <ul class="account-area">
-                            <li>
-                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                    <div class="avatar" title="View your public profile">
-                                        <img src="/static/lib/beyond/img/avatars/adam-jansen.jpg">
+                </a>
+            </div>
+            <!-- /导航条 logo -->
+            <!-- 侧边栏收起按钮 -->
+            <div class="sidebar-collapse active " id="sidebar-collapse">
+                <i class="collapse-icon fa fa-bars"></i>
+            </div>
+            <!-- /侧边栏收起按钮 -->
+            <!-- 管理员和设置 -->
+            <div class="navbar-header pull-right">
+                <div class="navbar-account">
+                    <ul class="account-area">
+                        <li>
+                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                <div class="avatar" title="View your public profile">
+                                    <img src="/static/lib/beyond/img/avatars/adam-jansen.jpg">
+                                </div>
+                                <section>
+                                    <h2><span class="profile"><span>&nbsp;&nbsp;admina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
+                                    </h2>
+                                </section>
+                            </a>
+                            <!-- 用户登录信息下拉菜单 -->
+                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                <li class="username"><a>adminc</a></li>
+                                <li class="email"><a>2776332953@qq.com</a></li>
+                                <!-- 头像 -->
+                                <li>
+                                    <div class="avatar-area">
+                                        <img src="/static/lib/beyond/img/avatars/adam-jansen.jpg" class="avatar">
+                                        <span class="caption">换头像</span>
                                     </div>
-                                    <section>
-                                        <h2><span class="profile"><span>&nbsp;&nbsp;admina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></h2>
-                                    </section>
-                                </a>
-                                <!-- 用户登录信息下拉菜单 -->
-                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>adminc</a></li>
-                                    <li class="email"><a>2776332953@qq.com</a></li>
-                                    <!-- 头像 -->
-                                    <li>
-                                        <div class="avatar-area">
-                                            <img src="/static/lib/beyond/img/avatars/adam-jansen.jpg" class="avatar">
-                                            <span class="caption">换头像</span>
-                                        </div>
-                                    </li>
-                                    <!-- /头像 -->
-                                    <li class="edit">
-                                        <a href="#" class="pull-left">个人资料</a>
-                                        <a href="/myapp/register/" class="pull-right">注册</a>
-                                    </li>
+                                </li>
+                                <!-- /头像 -->
+                                <li class="edit">
+                                    <a href="#" class="pull-left">个人资料</a>
+                                    <a href="/myapp/register/" class="pull-right">注册</a>
+                                </li>
 
-                                    <li class="dropdown-footer">
-                                        <a href="/myapp/logout/">
+                                <li class="dropdown-footer">
+                                    <a href="/myapp/logout/">
                                         退出登录
                                     </a>
-                                    </li>
-                                </ul>
-                                <!-- /用户登录信息下拉菜单 -->
-                            </li>
-                        </ul>
-                    </div>
+                                </li>
+                            </ul>
+                            <!-- /用户登录信息下拉菜单 -->
+                        </li>
+                    </ul>
                 </div>
-                <!-- /管理员和设置 -->
             </div>
+            <!-- /管理员和设置 -->
         </div>
     </div>
-    <!-- /导航条 -->
+</div>
+<!-- /导航条 -->
 
-    <!-- 主体容器 -->
-    <div class="main-container container-fluid">
-        <!-- 页面容器 -->
-        <div class="page-container">
-            <!-- 侧边栏 -->
-            <div class="page-sidebar" id="sidebar">
-                <!-- 侧边栏头部 -->
-                <div class="sidebar-header-wrapper">
-                    <input type="text" class="searchinput" />
-                    <i class="searchicon fa fa-search"></i>
-                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
-                </div>
-                <!-- /侧边栏头部 -->
-                <!-- 侧边栏菜单 -->
-                <ul class="nav sidebar-menu">
-                    <!-- 控制面板 -->
-                    <li class="active">
-                        <a href="/myapp/index/">
-                            <i class="menu-icon glyphicon glyphicon-home"></i>
-                            <span class="menu-text"> 控制面板 </span>
-                        </a>
-                    </li>
-                    <!-- 系统配置 -->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa  fa-rub"></i>
-                            <span class="menu-text"> 系统配置 </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="{:url('admin/conf/confList','',false)}">
-                                    <span class="menu-text"> 配置列表 </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="elements.html">
-                                    <span class="menu-text"> 配置管理 </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Databoxes-->
-                    <li>
-                        <a href="/myapp/beybiao71/">
-                            <i class="menu-icon glyphicon glyphicon-tasks"></i>
-                            <span class="menu-text">  输入输入表7.1 </span>
-                        </a>
-                    </li>
-                    <!--Widgets-->
-                    <li>
-                        <a href="widgets.html">
-                            <i class="menu-icon fa fa-th"></i>
-                            <span class="menu-text"> Widgets </span>
-                        </a>
-                    </li>
-                    <!--UI Elements-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text"> 资质评审 </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="/myapp/beybiao4/">
-                                    <span class="menu-text">表4列表</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a href="/myapp/add_Bpsdwxx/">
-                                    <span class="menu-text">输入评审单位信息</span>
-                                </a>
-                            </li>
+<!-- 主体容器 -->
+<div class="main-container container-fluid">
+    <!-- 页面容器 -->
+    <div class="page-container">
+        <!-- 侧边栏 -->
+        <div class="page-sidebar" id="sidebar">
+            <!-- 侧边栏头部 -->
+            <div class="sidebar-header-wrapper">
+                <input type="text" class="searchinput"/>
+                <i class="searchicon fa fa-search"></i>
+                <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
+            </div>
+            <!-- /侧边栏头部 -->
+            <!-- 侧边栏菜单 -->
+            <ul class="nav sidebar-menu">
+                <!-- 控制面板 -->
+                <li class="active">
+                    <a href="/myapp/index/">
+                        <i class="menu-icon glyphicon glyphicon-home"></i>
+                        <span class="menu-text"> 控制面板 </span>
+                    </a>
+                </li>
+                <!-- 系统配置 -->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa  fa-rub"></i>
+                        <span class="menu-text"> 系统配置 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="{:url('admin/conf/confList','',false)}">
+                                <span class="menu-text"> 配置列表 </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text"> 配置管理 </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Databoxes-->
+                <li>
+                    <a href="/myapp/beybiao71/">
+                        <i class="menu-icon glyphicon glyphicon-tasks"></i>
+                        <span class="menu-text">  输入输入表7.1 </span>
+                    </a>
+                </li>
+                <!--Widgets-->
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Widgets </span>
+                    </a>
+                </li>
+                <!--UI Elements-->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 资质评审 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="/myapp/beybiao4/">
+                                <span class="menu-text">表4列表</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/myapp/add_Bpsdwxx/">
+                                <span class="menu-text">输入评审单位信息</span>
+                            </a>
+                        </li>
 
-                            <li>
-                                <a href="#" class="menu-dropdown">
+                             <li>
+                            <a href="/myapp/add_Pingshenxxb/">
+                                <span class="menu-text">输入评审任务信息</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="menu-dropdown">
                                     <span class="menu-text">
 
                                     </span>
-                                    <i class="menu-expand"></i>
-                                </a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="font-awesome.html">
-                                            <i class="menu-icon fa fa-rocket"></i>
-                                            <span class="menu-text">Font Awesome</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="glyph-icons.html">
-                                            <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                            <span class="menu-text">Glyph Icons</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="typicon.html">
-                                            <i class="menu-icon typcn typcn-location-outline"></i>
-                                            <span class="menu-text"> Typicons</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="weather-icons.html">
-                                            <i class="menu-icon wi-day-snow"></i>
-                                            <span class="menu-text">Weather Icons</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="tabs.html">
-                                    <span class="menu-text">Tabs & Accordions</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="alerts.html">
-                                    <span class="menu-text">Alerts & Tooltips</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modals.html">
-                                    <span class="menu-text">Modals & Wells</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">
-                                    <span class="menu-text">Buttons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="nestable-list.html">
-                                    <span class="menu-text"> Nestable List</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="treeview.html">
-                                    <span class="menu-text">Treeview</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Tables-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-table"></i>
-                            <span class="menu-text"> Tables </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="tables-simple.html">
-                                    <span class="menu-text">Simple & Responsive</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-data.html">
-                                    <span class="menu-text">Data Tables</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Forms-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-pencil-square-o"></i>
-                            <span class="menu-text"> Forms </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="form-layouts.html">
-                                    <span class="menu-text">Form Layouts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-inputs.html">
-                                    <span class="menu-text">Form Inputs</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-pickers.html">
-                                    <span class="menu-text">Data Pickers</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-wizard.html">
-                                    <span class="menu-text">Wizard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-validation.html">
-                                    <span class="menu-text">Validation</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-editors.html">
-                                    <span class="menu-text">Editors</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Charts-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-bar-chart-o"></i>
-                            <span class="menu-text"> Charts </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="flot.html">
-                                    <span class="menu-text">Flot Charts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="morris.html">
-                                    <span class="menu-text"> Morris Charts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sparkline.html">
-                                    <span class="menu-text">Sparkline Charts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="easypiecharts.html">
-                                    <span class="menu-text">Easy Pie Charts</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="chartjs.html">
-                                    <span class="menu-text"> ChartJS</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--Profile-->
-                    <li>
-                        <a href="profile.html">
-                            <i class="menu-icon fa fa-picture-o"></i>
-                            <span class="menu-text">Profile</span>
-                        </a>
-                    </li>
+                                <i class="menu-expand"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="font-awesome.html">
+                                        <i class="menu-icon fa fa-rocket"></i>
+                                        <span class="menu-text">Font Awesome</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="glyph-icons.html">
+                                        <i class="menu-icon glyphicon glyphicon-stats"></i>
+                                        <span class="menu-text">Glyph Icons</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="typicon.html">
+                                        <i class="menu-icon typcn typcn-location-outline"></i>
+                                        <span class="menu-text"> Typicons</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="weather-icons.html">
+                                        <i class="menu-icon wi-day-snow"></i>
+                                        <span class="menu-text">Weather Icons</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="tabs.html">
+                                <span class="menu-text">Tabs & Accordions</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="alerts.html">
+                                <span class="menu-text">Alerts & Tooltips</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="modals.html">
+                                <span class="menu-text">Modals & Wells</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="buttons.html">
+                                <span class="menu-text">Buttons</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="nestable-list.html">
+                                <span class="menu-text"> Nestable List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="treeview.html">
+                                <span class="menu-text">Treeview</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Tables-->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-table"></i>
+                        <span class="menu-text"> Tables </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="tables-simple.html">
+                                <span class="menu-text">Simple & Responsive</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tables-data.html">
+                                <span class="menu-text">Data Tables</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Forms-->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> Forms </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="form-layouts.html">
+                                <span class="menu-text">Form Layouts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form-inputs.html">
+                                <span class="menu-text">Form Inputs</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form-pickers.html">
+                                <span class="menu-text">Data Pickers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form-wizard.html">
+                                <span class="menu-text">Wizard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form-validation.html">
+                                <span class="menu-text">Validation</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form-editors.html">
+                                <span class="menu-text">Editors</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Charts-->
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-bar-chart-o"></i>
+                        <span class="menu-text"> Charts </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="flot.html">
+                                <span class="menu-text">Flot Charts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="morris.html">
+                                <span class="menu-text"> Morris Charts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sparkline.html">
+                                <span class="menu-text">Sparkline Charts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="easypiecharts.html">
+                                <span class="menu-text">Easy Pie Charts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="chartjs.html">
+                                <span class="menu-text"> ChartJS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Profile-->
+                <li>
+                    <a href="profile.html">
+                        <i class="menu-icon fa fa-picture-o"></i>
+                        <span class="menu-text">Profile</span>
+                    </a>
+                </li>
 
-                </ul>
-                <!-- /侧边栏菜单 -->
-            </div>
-            <!-- /侧边栏 -->
-             <!-- 页面内容 -->
+            </ul>
+            <!-- /侧边栏菜单 -->
+        </div>
+        <!-- /侧边栏 -->
+        <!-- 页面内容 -->
 
-            {% block mainbody %}
-           <div class="page-content">
+        {% block mainbody %}
+            <div class="page-content">
                 <!-- 面包屑导航 -->
                 <div class="page-breadcrumbs">
                     <ul class="breadcrumb">
@@ -381,24 +388,20 @@
                 </div>
                 <!-- /页面主体 -->
             </div>
-            {% endblock %}
+        {% endblock %}
 
 
-            <!-- /页面内容 -->
-        </div>
-        <!-- /页面容器 -->
+        <!-- /页面内容 -->
     </div>
-    <!-- /主体容器 -->
+    <!-- /页面容器 -->
+</div>
+<!-- /主体容器 -->
 
-    <!-- 基本js -->
-    <script src="/static/lib/beyond/js/jquery-2.0.3.min.js"></script>
-    <script src="/static/lib/beyond/js/bootstrap.min.js"></script>
-    <!-- 自定义js -->
-    <script src="/static/lib/beyond/js/beyond.min.js"></script>
-
-
-
-
+<!-- 基本js -->
+<script src="/static/lib/beyond/js/jquery-2.0.3.min.js"></script>
+<script src="/static/lib/beyond/js/bootstrap.min.js"></script>
+<!-- 自定义js -->
+<script src="/static/lib/beyond/js/beyond.min.js"></script>
 
 
 </body>
