@@ -36,7 +36,7 @@ from Myapp.models import *
 
 
 
-from Myapp.utils import importpsymd
+from Myapp.myutils import importpsymd
 
 
 class UsersFilter(SimpleListFilter):
