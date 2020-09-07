@@ -144,8 +144,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     ('css', os.path.join(STATIC_ROOT, 'css')),
     ('js', os.path.join(STATIC_ROOT, 'js')),
-    ('img', os.path.join(STATIC_ROOT, 'img')),
     ('lib', os.path.join(STATIC_ROOT, 'lib')),
+    ('img', os.path.join(STATIC_ROOT, 'img')),
+    ('lib/beyond', os.path.join(STATIC_ROOT, 'lib/beyond')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
 ]
 

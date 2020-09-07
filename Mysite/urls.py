@@ -15,14 +15,16 @@ Including another URLconf
 """
 
 # python manage.py runserver 0.0.0.0:8000
+from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('myapp/', include('Myapp.urls')),
-
+    url(r'^static/(?P<path>.*)$',serve,{'document_root': settings.STATIC_ROOT}),
     # 图片验证码 路由
     path('captcha/', include('captcha.urls')),
 

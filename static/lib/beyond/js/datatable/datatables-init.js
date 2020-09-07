@@ -9,7 +9,7 @@ var InitiateSimpleDataTable = function () {
                     "aButtons": [
                         "copy", "csv", "xls", "pdf", "print"
                     ],
-                    "sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "beyond/swf/copy_csv_xls_pdf.swf"
                 },
                 "language": {
                     "search": "",
@@ -74,7 +74,7 @@ var InitiateEditableDataTable = function () {
 				            "sButtonText": "Save <i class=\"fa fa-angle-down\"></i>",
 				            "aButtons": ["csv", "xls", "pdf"]
 				        }],
-                    "sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "beyond/swf/copy_csv_xls_pdf.swf"
                 },
                 "language": {
                     "search": "",
@@ -209,7 +209,7 @@ var InitiateExpandableDataTable = function () {
             function fnFormatDetails(oTable, nTr) {
                 var aData = oTable.fnGetData(nTr);
                 var sOut = '<table>';
-                sOut += '<tr><td rowspan="5" style="padding:0 10px 0 0;"><img src="assets/img/avatars/' + aData[6] + '"/></td><td>Name:</td><td>' + aData[1] + '</td></tr>';
+                sOut += '<tr><td rowspan="5" style="padding:0 10px 0 0;"><img src="beyond/img/avatars/' + aData[6] + '"/></td><td>Name:</td><td>' + aData[1] + '</td></tr>';
                 sOut += '<tr><td>Family:</td><td>' + aData[2] + '</td></tr>';
                 sOut += '<tr><td>Age:</td><td>' + aData[3] + '</td></tr>';
                 sOut += '<tr><td>Positon:</td><td>' + aData[4] + '</td></tr>';
@@ -257,7 +257,7 @@ var InitiateExpandableDataTable = function () {
 				            "sButtonText": "Save <i class=\"fa fa-angle-down\"></i>",
 				            "aButtons": ["csv", "xls", "pdf"]
 				        }],
-                    "sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "beyond/swf/copy_csv_xls_pdf.swf"
                 },
                 "language": {
                     "search": "",
@@ -316,7 +316,7 @@ var InitiateSearchableDataTable = function () {
 				            "sButtonText": "Save <i class=\"fa fa-angle-down\"></i>",
 				            "aButtons": ["csv", "xls", "pdf"]
 				        }],
-                    "sSwfPath": "assets/swf/copy_csv_xls_pdf.swf"
+                    "sSwfPath": "beyond/swf/copy_csv_xls_pdf.swf"
                 },
                 "language": {
                     "search": "",

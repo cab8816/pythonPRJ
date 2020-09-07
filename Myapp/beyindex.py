@@ -13,7 +13,7 @@ from django.urls import reverse
 
 
 def beyindex(request):
-    return render(request, "beybase.html")
+    return render(request, "bey-base.html")
 
 
 @login_required(login_url='/myapp/signin/')
