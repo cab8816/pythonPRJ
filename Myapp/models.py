@@ -29,9 +29,9 @@ class ImportFile(models.Model):
         ('1', u'1_读取评审报告(docx格式)'),
         ('2', u'2_评审员信息表格(docx格式)'),
     }
-    importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices,default=0)
+    importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices, default=0)
     file = models.FileField(upload_to='File', verbose_name='文件名')
-    psxxb = models.ForeignKey('Pingshenxxb',verbose_name='评审信息ID', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
+    psxxb = models.ForeignKey('Pingshenxxb', verbose_name='评审信息ID', on_delete=models.CASCADE)  # CASCADE：此值设置，是级联删除。
 
     class Meta:
         verbose_name = "从文件导入数据"
@@ -185,3 +185,20 @@ class Biao72(models.Model):
 
     def __str__(self):
         return self.csmc
+
+
+class Xcpshcb71(models.Model):
+    psxxbs = models.ManyToManyField('Pingshenxxb', verbose_name="评审通知号")
+    zhangbh = models.CharField(max_length=3, verbose_name="条款章号")
+    zhangmc = models.CharField(max_length=8, verbose_name="条款章名")
+    tkhao = models.CharField(max_length=10, verbose_name="条款号")
+    psneirong = models.CharField(max_length=1000, verbose_name="评审内容")
+    psjg = models.CharField(max_length=1, verbose_name="评审结果")
+    pssm = models.CharField(max_length=500, verbose_name="评审说明")
+
+    class Meta:
+        verbose_name = "检验检测机构资质认定现场评审核查表7.1"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.tkhao
