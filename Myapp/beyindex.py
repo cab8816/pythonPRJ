@@ -131,6 +131,9 @@ def refresh_captcha(request):
     return HttpResponse(json.dumps(captcha()), content_type='application/json')
 
 
+def person(request):
+    return render(request,"demo.html")
+
 def register(request):
     if request.method == "GET":
 

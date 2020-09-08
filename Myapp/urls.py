@@ -21,6 +21,7 @@ urlpatterns = [
     path('beybiao4/', beyindex.beybiao4),
     path('beybiao71/', beyindex.beybiao71),
     path('signin/', beyindex.signin),
+    path('person/', beyindex.person),
     path('add_Bpsdwxx/', beyindex.add_Bpsdwxx),
     path('add_Pingshenxxb/', beyindex.add_Pingshenxxb),
     path('register/', beyindex.register),
