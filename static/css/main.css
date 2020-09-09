@@ -765,7 +765,7 @@ fieldset[disabled] .btn-register.active {
     float: left;
 }
 
-@media screen and (min-width: 970) {
+@media screen and (min-width: 970px) {
     #news .nav-stacked > li {
         float: none;
     }

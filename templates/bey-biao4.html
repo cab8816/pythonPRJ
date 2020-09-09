@@ -3,169 +3,239 @@
 {% extends "bey-base.html" %}
 {% block mainbody %}
 
-         <div class="page-content">
-                <!-- 面包屑导航 -->
-                <div class="page-breadcrumbs">
-                    <ul class="breadcrumb">
-                        <li>
-                            <i class="fa fa-home"></i>
-                            <a href="#">资质评审</a>
-                        </li>
+    <div class="page-content">
+        <!-- 面包屑导航 -->
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">资质评审</a>
+                </li>
 
-                        <li class="active"><i class="icon-joomla"></i>表4列表</li>
-                    </ul>
-                </div>
-                <!-- /面包屑导航 -->
-                <!-- 页面主体 -->
-                <div class="page-body">
-                    <div class="row">
+                <li class="active"><i class="icon-joomla"></i>表4列表</li>
+            </ul>
+        </div>
+        <!-- /面包屑导航 -->
+        <!-- 页面主体 -->
+        <div class="page-body">
+            <div class="row">
 
-                  <div class="col-xs-12 col-md-12">
-                            <div class="widget">
-                                <div class="widget-header ">
-                                    <span class="widget-caption"> <i class="icon-wordpress"></i>Simple DataTable</span>
-                                    <div class="widget-buttons">
-                                        <a href="#" data-toggle="maximize">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
-                                        <a href="#" data-toggle="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                        <a href="#" data-toggle="dispose">
-                                            <i class="fa fa-times"></i>
-                                        </a>
+                <div class="col-xs-12 col-md-12">
+                    <div class="widget">
+                        <div class="widget-header ">
+                            <span class="widget-caption"> <i class="icon-wordpress"></i>Simple DataTable</span>
+                            <div class="widget-buttons">
+                                <a href="#" data-toggle="maximize">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                                <a href="#" data-toggle="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                                <a href="#" data-toggle="dispose">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div role="grid" id="simpledatatable_wrapper"
+                                 class="dataTables_wrapper form-inline no-footer">
+                                <div class="DTTT btn-group"><a class="btn btn-default DTTT_button_copy"
+                                                               id="ToolTables_simpledatatable_0"><span>Copy</span>
+                                    <div style="position: absolute; left: 0px; top: 0px; width: 54px; height: 31px; z-index: 99;">
+                                        <embed id="ZeroClipboard_TableToolsMovie_1"
+                                               src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false"
+                                               menu="false" quality="best" bgcolor="#ffffff" width="54" height="31"
+                                               name="ZeroClipboard_TableToolsMovie_1" align="middle"
+                                               allowscriptaccess="always" allowfullscreen="false"
+                                               type="application/x-shockwave-flash"
+                                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                               flashvars="id=1&amp;width=54&amp;height=31" wmode="transparent">
                                     </div>
+                                </a><a class="btn btn-default DTTT_button_csv" id="ToolTables_simpledatatable_1"><span>CSV</span>
+                                    <div style="position: absolute; left: 0px; top: 0px; width: 46px; height: 31px; z-index: 99;">
+                                        <embed id="ZeroClipboard_TableToolsMovie_2"
+                                               src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false"
+                                               menu="false" quality="best" bgcolor="#ffffff" width="46" height="31"
+                                               name="ZeroClipboard_TableToolsMovie_2" align="middle"
+                                               allowscriptaccess="always" allowfullscreen="false"
+                                               type="application/x-shockwave-flash"
+                                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                               flashvars="id=2&amp;width=46&amp;height=31" wmode="transparent">
+                                    </div>
+                                </a><a class="btn btn-default DTTT_button_xls" id="ToolTables_simpledatatable_2"><span>Excel</span>
+                                    <div style="position: absolute; left: 0px; top: 0px; width: 52px; height: 31px; z-index: 99;">
+                                        <embed id="ZeroClipboard_TableToolsMovie_3"
+                                               src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false"
+                                               menu="false" quality="best" bgcolor="#ffffff" width="52" height="31"
+                                               name="ZeroClipboard_TableToolsMovie_3" align="middle"
+                                               allowscriptaccess="always" allowfullscreen="false"
+                                               type="application/x-shockwave-flash"
+                                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                               flashvars="id=3&amp;width=52&amp;height=31" wmode="transparent">
+                                    </div>
+                                </a><a class="btn btn-default DTTT_button_pdf" id="ToolTables_simpledatatable_3"><span>PDF</span>
+                                    <div style="position: absolute; left: 0px; top: 0px; width: 46px; height: 31px; z-index: 99;">
+                                        <embed id="ZeroClipboard_TableToolsMovie_4"
+                                               src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false"
+                                               menu="false" quality="best" bgcolor="#ffffff" width="46" height="31"
+                                               name="ZeroClipboard_TableToolsMovie_4" align="middle"
+                                               allowscriptaccess="always" allowfullscreen="false"
+                                               type="application/x-shockwave-flash"
+                                               pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                               flashvars="id=4&amp;width=46&amp;height=31" wmode="transparent">
+                                    </div>
+                                </a><a class="btn btn-default DTTT_button_print" id="ToolTables_simpledatatable_4"
+                                       title="View print view"><span>Print</span></a></div>
+                                <div id="simpledatatable_filter" class="dataTables_filter"><label><input type="search"
+                                                                                                         class="form-control input-sm"
+                                                                                                         aria-controls="simpledatatable"></label>
                                 </div>
-                                <div class="widget-body">
-                                    <div role="grid" id="simpledatatable_wrapper" class="dataTables_wrapper form-inline no-footer"><div class="DTTT btn-group"><a class="btn btn-default DTTT_button_copy" id="ToolTables_simpledatatable_0"><span>Copy</span><div style="position: absolute; left: 0px; top: 0px; width: 54px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="54" height="31" name="ZeroClipboard_TableToolsMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=54&amp;height=31" wmode="transparent"></div></a><a class="btn btn-default DTTT_button_csv" id="ToolTables_simpledatatable_1"><span>CSV</span><div style="position: absolute; left: 0px; top: 0px; width: 46px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_2" src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="46" height="31" name="ZeroClipboard_TableToolsMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=46&amp;height=31" wmode="transparent"></div></a><a class="btn btn-default DTTT_button_xls" id="ToolTables_simpledatatable_2"><span>Excel</span><div style="position: absolute; left: 0px; top: 0px; width: 52px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_3" src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="52" height="31" name="ZeroClipboard_TableToolsMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=52&amp;height=31" wmode="transparent"></div></a><a class="btn btn-default DTTT_button_pdf" id="ToolTables_simpledatatable_3"><span>PDF</span><div style="position: absolute; left: 0px; top: 0px; width: 46px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_4" src="../static/lib/beyond/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="46" height="31" name="ZeroClipboard_TableToolsMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=46&amp;height=31" wmode="transparent"></div></a><a class="btn btn-default DTTT_button_print" id="ToolTables_simpledatatable_4" title="View print view"><span>Print</span></a></div><div id="simpledatatable_filter" class="dataTables_filter"><label><input type="search" class="form-control input-sm" aria-controls="simpledatatable"></label></div><div class="dataTables_length" id="simpledatatable_length"><label><select name="simpledatatable_length" aria-controls="simpledatatable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label></div><table class="table table-striped table-bordered table-hover dataTable no-footer" id="simpledatatable" aria-describedby="simpledatatable_info">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_disabled" tabindex="0" aria-controls="simpledatatable" rowspan="1" colspan="1" aria-label="
+                                <div class="dataTables_length" id="simpledatatable_length"><label><select
+                                        name="simpledatatable_length" aria-controls="simpledatatable"
+                                        class="form-control input-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select></label></div>
+                                <table class="table table-striped table-bordered table-hover dataTable no-footer"
+                                       id="simpledatatable" aria-describedby="simpledatatable_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_disabled" tabindex="0" aria-controls="simpledatatable"
+                                            rowspan="1" colspan="1" aria-label="
                                                     Username
-                                                : activate to sort column ascending" style="width: 80px;font-size: 10px;">
-                                                    领域<br>序号
-                                                </th>
+                                                : activate to sort column ascending"
+                                            style="width: 80px;font-size: 10px;">
+                                            领域<br>序号
+                                        </th>
 
-                                                <th class="sorting_disabled hidden-xs" rowspan="1" colspan="1" aria-label="
+                                        <th class="sorting_disabled hidden-xs" rowspan="1" colspan="1" aria-label="
                                                     Email
                                                 " style="width: 300px;">
-                                                    领域
-                                                </th>
+                                            领域
+                                        </th>
 
-                                                <th class="sorting_disabled hidden-xs" tabindex="0" aria-controls="simpledatatable" rowspan="1" colspan="1" aria-label="
+                                        <th class="sorting_disabled hidden-xs" tabindex="0"
+                                            aria-controls="simpledatatable" rowspan="1" colspan="1" aria-label="
                                                     Points
                                                 : activate to sort column ascending" style="width: 100px;">
-                                                    类别<br>序号
-                                                </th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                            类别<br>序号
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
-                                                    类别
-                                                </th>
-                                                 <th class="sorting_disabled hidden-xs" rowspan="1" colspan="1" aria-label="
+                                            类别
+                                        </th>
+                                        <th class="sorting_disabled hidden-xs" rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 100px;">
-                                                    对象<br>序号
-                                                 </th>
+                                            对象<br>序号
+                                        </th>
 
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
-                                                    检测<br>对象
-                                                </th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                            检测<br>对象
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 80px;">
-                                                    项目<br>序号
-                                                </th>
-                                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
+                                            项目<br>序号
+                                        </th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
-                                                    参数<br>名称
-                                                </th>
-                                                <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
+                                            参数<br>名称
+                                        </th>
+                                        <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;font-size: 8px">
-                                                    依据的标准（方法）<br>名称及编号（含年号）
-                                                </th>
-                                                 <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
+                                            依据的标准（方法）<br>名称及编号（含年号）
+                                        </th>
+                                        <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
-                                                    限制<br>范围
-                                                </th>
-                                                 <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
+                                            限制<br>范围
+                                        </th>
+                                        <th class="sorting_disabled hidden-xs " rowspan="1" colspan="1" aria-label="
                                                     Joined
                                                 " style="width: 156px;">
-                                                    说明
-                                                </th>
+                                            说明
+                                        </th>
 
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                     {% for lst in page %}
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {% for lst in page %}
                                         <tr class="odd">
-                                            <td>{{lst.lyxh}}</td>
-                                            <td class="hidden-xs">{{lst.lyname}}</td>
-                                            <td class="hidden-xs">{{lst.lbxh}}</td>
-                                            <td>{{lst.lb}}</td>
-                                            <td class="hidden-xs">{{lst.dxxh}}</td>
-                                            <td>{{lst.duixiang}}</td>
-                                            <td style="width: 80px">{{lst.xmxh}}</td>
-                                            <td>{{lst.csmc}}</td>
-                                            <td  class="hidden-xs">{{lst.yjbz}}</td>
-                                            <td class="hidden-xs">{{lst.xzfw}}</td>
-                                            <td class="bsm  hidden-xs ">{{lst.sm}}</td>
-                                            </tr>
+                                            <td class="firstcol" ><span class="neirong"><i class="collapse-icon fa fa-bars"></i>{{ lst.lyxh }}</span></td>
+                                            <td class="hidden-xs">{{ lst.lyname }}</td>
+                                            <td class="hidden-xs">{{ lst.lbxh }}</td>
+                                            <td>{{ lst.lb }}</td>
+                                            <td class="hidden-xs">{{ lst.dxxh }}</td>
+                                            <td>{{ lst.duixiang }}</td>
+                                            <td style="width: 80px">{{ lst.xmxh }}</td>
+                                            <td>{{ lst.csmc }}</td>
+                                            <td class="hidden-xs">{{ lst.yjbz }}</td>
+                                            <td class="hidden-xs">{{ lst.xzfw }}</td>
+                                            <td class="bsm  hidden-xs ">{{ lst.sm }}</td>
+
+
+                                        </tr>
                                     {% endfor %}
 
 
-                                        </tbody>
-                                    </table>
-                                        <div class="row DTTTFooter">
-                                            <div class="col-sm-6 col-xs-1">
-                                                <div style="font-size: 10px" class="dataTables_info" id="simpledatatable_info" role="alert" aria-live="polite" aria-relevant="all">
-                                                    {{ page.number }}/{{ paginator.num_pages }}
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-xs-11">
-                                                <div class="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
-                                                    <ul class="pagination"  >
+                                    </tbody>
+                                </table>
+                                <div class="row DTTTFooter">
+                                    <div class="col-sm-6 col-xs-1">
+                                        <div style="font-size: 10px" class="dataTables_info" id="simpledatatable_info"
+                                             role="alert" aria-live="polite" aria-relevant="all">
+                                            {{ page.number }}/{{ paginator.num_pages }}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-11">
+                                        <div class="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+                                            <ul class="pagination">
 
-                                                        <li class="prev {% if not page.has_previous %}disabled{% endif %}">
-                                                         {% if page.has_previous %}
-                                                            <a href="/myapp/beybiao4/?page={{ page.previous_page_number }}"><</a>
-                                                          {% endif %}
-                                                        </li>
+                                                <li class="prev {% if not page.has_previous %}disabled{% endif %}">
+                                                    {% if page.has_previous %}
+                                                        <a href="/myapp/beybiao4/?page={{ page.previous_page_number }}"><</a>
+                                                    {% endif %}
+                                                </li>
 
-                                                     {% for num in dis_range %}
-                                                        <li>
-                                                            <a  href="/myapp/beybiao4/?page={{ num }}">{{ num }}</a>
-                                                        </li>
+                                                {% for num in dis_range %}
+                                                    <li>
+                                                        <a href="/myapp/beybiao4/?page={{ num }}">{{ num }}</a>
+                                                    </li>
 
-                                                       {% endfor %}
-                                                        <li class="next {% if not page.has_next %}disabled{% endif %}">
-                                                         {% if page.has_next %}
-                                                            <a href="/myapp/beybiao4/?page={{ page.next_page_number }}">></a>
-                                                         {% endif %}
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                {% endfor %}
+                                                <li class="next {% if not page.has_next %}disabled{% endif %}">
+                                                    {% if page.has_next %}
+                                                        <a href="/myapp/beybiao4/?page={{ page.next_page_number }}">></a>
+                                                    {% endif %}
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-                    <!-- \row -->
                 </div>
 
 
-
-                <!-- /页面主体 -->
             </div>
+
+
+            <!-- \row -->
+        </div>
+
+
+        <!-- /页面主体 -->
+    </div>
 
 {% endblock %}
