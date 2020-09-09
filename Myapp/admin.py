@@ -35,7 +35,6 @@ from Myapp.models import *
 
 
 
-
 from Myapp.myutils import importpsymd
 
 
