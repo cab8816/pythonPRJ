@@ -145,7 +145,7 @@ body {
 
 }
 
-.firstcol span:before{
+.firstcol  span:before{
     position: absolute;
       font-family: 'FontAwesome';
     content: '\f0c9';
