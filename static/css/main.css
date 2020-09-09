@@ -646,7 +646,7 @@ fieldset[disabled] .btn-register.active {
 .panel-product .panel-heading::before {
     background-color: #f0f0f0;
     border-radius: 7px;
-    content: ' ';
+    content: 'bb ';
     display: block;
     height: 14px;
     position: absolute;
@@ -658,7 +658,7 @@ fieldset[disabled] .btn-register.active {
 .panel-product .panel-heading::after {
     background-color: #f0f0f0;
     border-radius: 7px;
-    content: ' ';
+    content: 'aa ';
     display: block;
     height: 14px;
     position: absolute;
