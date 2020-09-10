@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
-from Myapp.My_forms import PsdwxxForm, PingshenxxbForm
-from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, Xcpshcb71Form
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71
 from django.urls import reverse
 
 
@@ -198,3 +198,9 @@ def add_Pingshenxxb(request):
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
+
+def add_Xcpshcb71(request):
+    mlstbiao4 = Xcpshcb71.objects.all()
+    data1 = split_page(mlstbiao4, request, 10)
+    return render(request, "Xcpshcb71.html", data1)
+

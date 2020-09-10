@@ -28,6 +28,7 @@ class ImportFile(models.Model):
         ('0', u'0_读取评审通知(docx格式)'),
         ('1', u'1_读取评审报告(docx格式)'),
         ('2', u'2_评审员信息表格(docx格式)'),
+        ('3', u'3_现场评审核查表(docx格式)'),
     }
     importtype = models.CharField(max_length=1, verbose_name='导入类型', choices=importtype_choices, default=0)
     file = models.FileField(upload_to='File', verbose_name='文件名')
@@ -188,7 +189,7 @@ class Biao72(models.Model):
 
 
 class Xcpshcb71(models.Model):
-    psxxbs = models.ManyToManyField('Pingshenxxb', verbose_name="评审通知号")
+    psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE,null=True)
     zhangbh = models.CharField(max_length=3, verbose_name="条款章号")
     zhangmc = models.CharField(max_length=8, verbose_name="条款章名")
     tkhao = models.CharField(max_length=10, verbose_name="条款号")
