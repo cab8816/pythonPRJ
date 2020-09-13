@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
-from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, Xcpshcb71Form
-from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb
 from django.urls import reverse
 
 
@@ -30,8 +30,6 @@ def beybiao71(request):
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, "bey-biao71.html", data1)
-
-
 
 
 def split_page(object_list, request, per_page=8):
@@ -87,7 +85,7 @@ def signin(request):
         rep = redirect(path)
         rep.set_cookie("is_login", True)
         rep.set_cookie("user1", username)
-        request.session['is_login']=True
+        request.session['is_login'] = True
         request.session['user1'] = username
         return rep
 
@@ -132,7 +130,8 @@ def refresh_captcha(request):
 
 
 def person(request):
-    return render(request,"demo.html")
+    return render(request, "demo.html")
+
 
 def register(request):
     if request.method == "GET":
@@ -183,7 +182,6 @@ def add_Bpsdwxx(request):
         return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
 
 
-
 def add_Pingshenxxb(request):
     if request.method == "GET":
         form = PingshenxxbForm()
@@ -199,8 +197,8 @@ def add_Pingshenxxb(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
 
-def add_Xcpshcb71(request):
-    mlstbiao4 = Xcpshcb71.objects.all()
-    data1 = split_page(mlstbiao4, request, 10)
-    return render(request, "Xcpshcb71.html", data1)
 
+def add_Xcpshcb(request):
+    mlstbiao = Xcpshcb.objects.all()
+    data1 = split_page(mlstbiao, request, 20)
+    return render(request, "Xcpshcb71.html", data1)

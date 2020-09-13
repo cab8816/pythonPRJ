@@ -47,8 +47,6 @@
                                      class="dataTables_wrapper form-inline no-footer">
 
 
-
-
                                     <table class="table table-striped table-hover table-bordered dataTable no-footer"
                                            id="editabledatatable" aria-describedby="editabledatatable_info">
                                         <thead>
@@ -82,6 +80,14 @@
                                                 : activate to sort column ascending">
                                                 评审结果
                                             </th>
+
+                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 150px;"
+                                                aria-label="
+
+                                                ">
+
+                                            </th>
+
                                             <th class="sorting" tabindex="0" aria-controls="editabledatatable"
                                                 rowspan="1"
                                                 colspan="1" style="width: 242px;" aria-label="
@@ -89,12 +95,7 @@
                                                 : activate to sort column ascending">
                                                 评审说明
                                             </th>
-                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 255px;"
-                                                aria-label="
 
-                                                ">
-
-                                            </th>
                                         </tr>
                                         </thead>
 
@@ -105,28 +106,45 @@
                                                 <td class="sorting_1">{{ lst.tkhao }}</td>
                                                 <td class=" ">{{ lst.zhangmc }}</td>
                                                 <td class=" ">{{ lst.psneirong }}</td>
-                                                <td class=" ">{{ lst.psjg }}</td>
-                                                <td class="center  ">{{ lst.pssm }}</td>
                                                 <td class=" ">
-                                                    <a href="#" class="btn btn-success btn-xs edit"><i
+                                                    <input type="text" class="form-control" id="definput"
+                                                           placeholder="Default Input">
+
+                                                </td>
+
+
+                                                <td class=" ">
+                                                    <a href="#" class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
                                                             class="glyphicon glyphicon-ok"></i>
-                                                        符合</a>
-                                                    <a href="#" class="btn btn-danger btn-xs delete"><i
-                                                            class=" glyphicon glyphicon-remove"></i> 不符合</a>
-                                                    <a href="#" class="btn btn-warning btn-xs delete"><i
-                                                            class=" glyphicon glyphicon-ban-circle"></i> 不适用</a>
+                                                    </a>
+                                                    <a href="#" class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
+                                                            class=" glyphicon glyphicon-remove"></i></a>
+                                                    <a href="#" class="btn btn-warning btn-xs  col-sm-4 col-xs-12"><i
+                                                            class=" glyphicon glyphicon-ban-circle"></i></a>
+                                                </td>
+                                                <td class="center  ">
+
+                                                    <textarea class="form-control" id="textareaanimated"
+                                                              placeholder="Write Something to See Autosize Function"
+                                                              style="overflow:hidden; overflow-wrap: break-word; resize: vertical; height: 68px;"
+                                                              ></textarea>
+
+                                                </td>
+
+
                                             </tr>
                                         {% endfor %}
 
                                         </tbody>
                                     </table>
                                     <div class="row DTTTFooter">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 col-xs-1">
                                             <div class="dataTables_info" id="editabledatatable_info" role="alert"
-                                                 aria-live="polite" aria-relevant="all">Showing 1 to 5 of 6 entries
+                                                 aria-live="polite"
+                                                 aria-relevant="all"> {{ page.number }}/{{ paginator.num_pages }}
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6 col-xs-11">
                                             <div class="dataTables_paginate paging_bootstrap"
                                                  id="editabledatatable_paginate">
                                                 <ul class="pagination">
@@ -149,11 +167,6 @@
                                                         {% endif %}
                                                     </li>
 
-
-                                                    {#                                                <li class="prev disabled"><a href="#">Prev</a></li>#}
-                                                    {#                                                <li class="active"><a href="#">1</a></li>#}
-                                                    {#                                                <li><a href="#">2</a></li>#}
-                                                    {#                                                <li class="next"><a href="#">Next</a></li>#}
 
                                                 </ul>
                                             </div>

@@ -188,18 +188,29 @@ class Biao72(models.Model):
         return self.csmc
 
 
-class Xcpshcb71(models.Model):
-    psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE,null=True)
+class Xcpshcb(models.Model):
     zhangbh = models.CharField(max_length=3, verbose_name="条款章号")
     zhangmc = models.CharField(max_length=8, verbose_name="条款章名")
     tkhao = models.CharField(max_length=10, verbose_name="条款号")
     psneirong = models.CharField(max_length=1000, verbose_name="评审内容")
-    psjg = models.CharField(max_length=1, verbose_name="评审结果")
-    pssm = models.CharField(max_length=500, verbose_name="评审说明")
 
     class Meta:
-        verbose_name = "检验检测机构资质认定现场评审核查表7.1"
+        verbose_name = "检验检测机构资质认定现场评审核查表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.tkhao
+
+
+class Xcpshcb71(models.Model):
+    psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE, null=True)
+    pshcxx = models.ForeignKey('Xcpshcb',verbose_name="核查信息",on_delete=models.CASCADE,null=True)
+    psjg = models.CharField(max_length=1, verbose_name="评审结果")
+    pssm = models.CharField(max_length=500, verbose_name="评审说明")
+
+    class Meta:
+        verbose_name = "现场评审核查表7.1"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.psjg

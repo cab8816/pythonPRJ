@@ -4,7 +4,7 @@ from django.db import models
 from django.shortcuts import render
 from docx import Document
 
-from Myapp.models import PsyuanDetail, Biao4, Pszcy, Biao5, Biao72, Pingshenxxb, Xcpshcb71
+from Myapp.models import PsyuanDetail, Biao4, Pszcy, Biao5, Biao72, Pingshenxxb, Xcpshcb71, Xcpshcb
 
 
 def importpsymd(self, request, obj, change):  # 从word文件导入信息
@@ -135,21 +135,18 @@ def importpsymd(self, request, obj, change):  # 从word文件导入信息
                     )
                     biao.save(force_insert=True)
 
-    elif obj.importtype == '3':  # (2, "检验检测机构资质认定现场评审核查表7.1"),
+    elif obj.importtype == '3':  # (2, "资质认定现场评审核查表"),
         for t in document.tables:
             table = t
-            psxxb = obj.psxxb  # 拿到评审信息表的一行对象
+
             if len(t.columns) == 4:  # 核查表
                 for row in table.rows:
                     rowcells = row.cells
-                    biao = Xcpshcb71(
-                        psxxb=psxxb,
+                    biao = Xcpshcb(
                         zhangbh=rowcells[0].text,
                         zhangmc=rowcells[1].text,
                         tkhao=rowcells[2].text,
                         psneirong=rowcells[3].text,
-                        psjg='1',
-                        pssm='',
                     )
                     biao.save()
 

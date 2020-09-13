@@ -34,11 +34,10 @@ from Myapp.models import *
 # https://icomoon.io/
 
 
-
-
-
-
 from Myapp.myutils import importpsymd
+
+# 从Django admin 中返回主页
+admin.site.site_url = "/myapp/index/"
 
 
 class UsersFilter(SimpleListFilter):
@@ -51,7 +50,7 @@ class UsersFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         # this_day = datetime.date.today()
         # pdb.set_trace()
-        return queryset.filter(user = 'cab88')
+        return queryset.filter(user='cab88')
         #
         # if self.value() == '3':
         #     return queryset.filter(test_start_date__gt=this_day)

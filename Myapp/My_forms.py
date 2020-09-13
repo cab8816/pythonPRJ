@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from Myapp.models import Pingshenxxb, Xcpshcb71
+from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb
 
 
 class PsdwxxForm(forms.Form):
@@ -32,15 +32,13 @@ class PingshenxxbForm(ModelForm):
         }
 
 
-class Xcpshcb71Form(ModelForm):
+class XcpshcbForm(ModelForm):
     class Meta:
-        model = Xcpshcb71
-        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong', 'psjg', 'pssm', 'psxxb']
+        model = Xcpshcb
+        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong']
 
         labels = {
             'zhangbh': '序号',
             'psneirong': '评审内容',
-            'psjg': '评审结果',
-            'pssm': '评审说明',
         }
 
