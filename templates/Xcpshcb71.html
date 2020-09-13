@@ -75,18 +75,12 @@
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="editabledatatable"
                                                 rowspan="1"
-                                                colspan="1" style="width: 70px;" aria-label="
+                                                colspan="1" style="width: 90px;" aria-label="
                                                     Points
                                                 : activate to sort column ascending">
                                                 评审结果
                                             </th>
 
-                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 150px;"
-                                                aria-label="
-
-                                                ">
-
-                                            </th>
 
                                             <th class="sorting" tabindex="0" aria-controls="editabledatatable"
                                                 rowspan="1"
@@ -94,6 +88,12 @@
                                                     Notes
                                                 : activate to sort column ascending">
                                                 评审说明
+                                            </th>
+                                            <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;"
+                                                aria-label="
+
+                                                ">
+
                                             </th>
 
                                         </tr>
@@ -106,31 +106,38 @@
                                                 <td class="sorting_1">{{ lst.tkhao }}</td>
                                                 <td class=" ">{{ lst.zhangmc }}</td>
                                                 <td class=" ">{{ lst.psneirong }}</td>
-                                                <td class=" ">
-                                                    <input type="text" class="form-control" id="definput"
-                                                           placeholder="Default Input">
+                                                <td class=" " style="padding: 1px">
+
+                                                    <select id="e1" style=" width:100%;">
+                                                        <option value="1"/>
+                                                        符合
+                                                        <option value="2"/>
+                                                        不符合
+                                                        <option value="0"/>
+                                                        不适用
+
+                                                    </select>
+
 
                                                 </td>
 
 
-                                                <td class=" ">
-                                                    <a href="#" class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
-                                                            class="glyphicon glyphicon-ok"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
-                                                            class=" glyphicon glyphicon-remove"></i></a>
-                                                    <a href="#" class="btn btn-warning btn-xs  col-sm-4 col-xs-12"><i
-                                                            class=" glyphicon glyphicon-ban-circle"></i></a>
-                                                </td>
-                                                <td class="center  ">
+                                                <td class="center" style="padding: 1px">
 
                                                     <textarea class="form-control" id="textareaanimated"
-                                                              placeholder="Write Something to See Autosize Function"
-                                                              style="overflow:hidden; overflow-wrap: break-word; resize: vertical; height: 68px;"
-                                                              ></textarea>
+                                                              placeholder="说明"
+                                                              style="width:100%;overflow:hidden; overflow-wrap: break-word; resize: vertical; height: 68px;"
+                                                    ></textarea>
 
                                                 </td>
+                                                <td class=" " style="padding: 1px">
+                                                    <a href="#" class="btn btn-success btn-xs  col-sm-6 col-xs-12"><i
+                                                            class="glyphicon glyphicon-ok"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-danger btn-xs  col-sm-6 col-xs-12"><i
+                                                            class=" glyphicon glyphicon-remove"></i></a>
 
+                                                </td>
 
                                             </tr>
                                         {% endfor %}
@@ -151,19 +158,19 @@
 
                                                     <li class="prev {% if not page.has_previous %}disabled{% endif %}">
                                                         {% if page.has_previous %}
-                                                            <a href="/myapp/add_Xcpshcb71/?page={{ page.previous_page_number }}"><</a>
+                                                            <a href="/myapp/add_Xcpshcb/?page={{ page.previous_page_number }}"><</a>
                                                         {% endif %}
                                                     </li>
 
                                                     {% for num in dis_range %}
                                                         <li>
-                                                            <a href="/myapp/add_Xcpshcb71/?page={{ num }}">{{ num }}</a>
+                                                            <a href="/myapp/add_Xcpshcb/?page={{ num }}">{{ num }}</a>
                                                         </li>
 
                                                     {% endfor %}
                                                     <li class="next {% if not page.has_next %}disabled{% endif %}">
                                                         {% if page.has_next %}
-                                                            <a href="/myapp/add_Xcpshcb71/?page={{ page.next_page_number }}">></a>
+                                                            <a href="/myapp/add_Xcpshcb/?page={{ page.next_page_number }}">></a>
                                                         {% endif %}
                                                     </li>
 

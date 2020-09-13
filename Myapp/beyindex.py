@@ -200,5 +200,5 @@ def add_Pingshenxxb(request):
 
 def add_Xcpshcb(request):
     mlstbiao = Xcpshcb.objects.all()
-    data1 = split_page(mlstbiao, request, 20)
+    data1 = split_page(mlstbiao, request, 200)
     return render(request, "Xcpshcb71.html", data1)
