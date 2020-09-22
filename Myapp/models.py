@@ -193,6 +193,9 @@ class Xcpshcb(models.Model):
     zhangmc = models.CharField(max_length=8, verbose_name="条款章名")
     tkhao = models.CharField(max_length=10, verbose_name="条款号")
     psneirong = models.CharField(max_length=1000, verbose_name="评审内容")
+    psjg = models.CharField(max_length=1, verbose_name="评审结果")
+    psyj = models.CharField(max_length=500, verbose_name="依据")
+    pssm = models.CharField(max_length=500, verbose_name="评审说明")
 
     class Meta:
         verbose_name = "检验检测机构资质认定现场评审核查表"
@@ -205,8 +208,14 @@ class Xcpshcb(models.Model):
 class Xcpshcb71(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE, null=True)
     pshcxx = models.ForeignKey('Xcpshcb',verbose_name="核查信息",on_delete=models.CASCADE,null=True)
+    psjd = models.CharField(max_length=1,verbose_name="不符合阶段")
+    psdate = models.DateField(verbose_name="日期",auto_now=True)
     psjg = models.CharField(max_length=1, verbose_name="评审结果")
+    psyj = models.CharField(max_length=500, verbose_name="依据")
     pssm = models.CharField(max_length=500, verbose_name="评审说明")
+    jzfs = models.CharField(max_length=1,verbose_name="纠正确认方式")
+    bsfyj = models.CharField(max_length=1 , verbose_name="被评审方确认意见")
+    pszzyj = models.CharField(max_length=1 , verbose_name="评审组长确认意见")
 
     class Meta:
         verbose_name = "现场评审核查表7.1"
