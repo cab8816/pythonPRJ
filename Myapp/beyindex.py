@@ -202,3 +202,19 @@ def add_Xcpshcb(request):
     mlstbiao = Xcpshcb.objects.all()
     data1 = split_page(mlstbiao, request, 20)
     return render(request, "Xcpshcb71.html", data1)
+
+
+def edit_bufuhexiang(request):
+    if request.method == "GET":
+        form = XcpshcbForm()
+        return render(request, "bufuhexiang.html", {"form": form})
+    else:
+        form = XcpshcbForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            Xcpshcb.objects.update(**data)
+            form = XcpshcbForm()
+            return render(request, "bufuhexiang.html", {"form": form})
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors})

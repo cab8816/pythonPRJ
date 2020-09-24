@@ -35,8 +35,17 @@ class PingshenxxbForm(ModelForm):
 class XcpshcbForm(ModelForm):
     class Meta:
         model = Xcpshcb
-        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong']
+        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong','psjg','psyj','pssm']
+        widgets = {
+            "pssm":forms.widgets.Textarea(
+                attrs={
+                    "placeholder":"jjjjjjjjjjj",
+                    'style':"height:100px;width:100%",
 
+                }
+
+            )
+        }
         labels = {
             'zhangbh': '序号',
             'psneirong': '评审内容',
