@@ -206,15 +206,20 @@ def add_Xcpshcb(request):
 
 def edit_bufuhexiang(request):
     if request.method == "GET":
-        form = XcpshcbForm()
+        id = request.GET.get('id')
+        obj = Xcpshcb.objects.filter(id=id).first()
+        form = XcpshcbForm(instance=obj)
         return render(request, "bufuhexiang.html", {"form": form})
     else:
         form = XcpshcbForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            Xcpshcb.objects.update(**data)
-            form = XcpshcbForm()
-            return render(request, "bufuhexiang.html", {"form": form})
+            print(data['tkhao'])
+            obj = Xcpshcb.objects.filter(tkhao=data['tkhao'])
+            obj.update(**data)
+            form = XcpshcbForm(instance=obj.first())
+            # return render(request, "bufuhexiang.html", {"form": form})
+            return  redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors})

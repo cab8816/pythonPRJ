@@ -35,16 +35,36 @@ class PingshenxxbForm(ModelForm):
 class XcpshcbForm(ModelForm):
     class Meta:
         model = Xcpshcb
-        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong','psjg','psyj','pssm']
+        fields = ['id','zhangbh', 'zhangmc', 'tkhao', 'psneirong','psjg','psyj','pssm']
+
         widgets = {
             "pssm":forms.widgets.Textarea(
                 attrs={
                     "placeholder":"jjjjjjjjjjj",
                     'style':"height:100px;width:100%",
-
                 }
 
-            )
+
+            ),
+            "psneirong": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
+                },
+            ),
+
+            "psjg": forms.widgets.Select(
+                choices=[(0,'符合'),(1,'不符合'),(2,'不适用')],
+
+
+            ),
+
+            "psyj": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
+                },
+            ),
         }
         labels = {
             'zhangbh': '序号',

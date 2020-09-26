@@ -77,7 +77,8 @@
                                                                       Username   : activate to sort column ascending">
                                                             序号
                                                         </th>
-                                                        <th class="sorting" tabindex="0"
+
+                                                        <th class="sorting  hidden-xs" tabindex="0"
                                                             aria-controls="editabledatatable"
                                                             rowspan="1"
                                                             colspan="1" style="width: 80px;" aria-label="
@@ -85,14 +86,14 @@
                                                             类别
                                                         </th>
 
-                                                        <th class="sorting" tabindex="0"
+                                                        <th class="sorting  hidden-xs" tabindex="0"
                                                             aria-controls="editabledatatable"
                                                             rowspan="1"
                                                             colspan="1" style="width: 199px;" aria-label="
                                                                   Full Name  : activate to sort column ascending">
                                                             评审内容
                                                         </th>
-                                                        <th class="sorting" tabindex="0"
+                                                        <th class="sorting  hidden-xs" tabindex="0"
                                                             aria-controls="editabledatatable"
                                                             rowspan="1"
                                                             colspan="1" style="width: 60px;" aria-label="
@@ -110,6 +111,7 @@
                                                         <th class="sorting" tabindex="0"
                                                             aria-controls="editabledatatable"
                                                             rowspan="1"
+                                                            style="width: 190px;"
                                                             colspan="1" aria-label="
                                                               Notes : activate to sort column ascending">
                                                             评审说明
@@ -127,23 +129,29 @@
 
                                                     {% for lst in page %}
                                                         <tr class="odd">
-                                                            <td class="sorting_1"><i class="icon-0"></i>{{ lst.tkhao }}
+                                                            <td class="sorting_1">
+                                                                {% if lst.psjg == '0' or lst.psjg == '' %}
+                                                                    <i class="icon-1"></i>
+                                                                {% elif lst.psjg == '1' %}
+                                                                    <i class="icon-2"></i>
+                                                                {% elif lst.psjg == '2' %}
+                                                                    <i class="icon-0"></i>
+                                                                {% endif %}
+                                                                {{ lst.tkhao }}
                                                             </td>
-                                                            <td class=" ">{{ lst.zhangmc }}</td>
-                                                            <td class=" "
+                                                            <td class=" hidden-xs ">{{ lst.zhangmc }}</td>
+                                                            <td class="hidden-xs "
                                                                 style="text-align: left">{{ lst.psneirong }}</td>
-                                                            <td class=" " style="padding: 1px;">
-                                                               {{ lst.psjg}}
-                                                                <select id="e1"
-                                                                        style=" width:100%; font-size: 8px;padding: 1px;">
-                                                                    <option value="1" />
+                                                            <td class="hidden-xs " style="padding: 1px;">
+                                                                {% if lst.psjg == '0' or lst.psjg == '' %}
                                                                     符合
-                                                                    <option value="2" selected/>
+                                                                {% elif lst.psjg == '1' %}
                                                                     不符合
-                                                                    <option value="0"/>
+                                                                {% elif lst.psjg == '2' %}
                                                                     不适用
 
-                                                                </select>
+
+                                                                {% endif %}
 
 
                                                             </td>
@@ -157,8 +165,7 @@
                                                                           resize: vertical;
                                                                           height: 68px;"
 
-                                                               >{{lst.psyj}}</textarea>
-
+                                                               >{{ lst.psyj }}</textarea>
 
 
                                                             </td>
@@ -168,11 +175,11 @@
                                                               <textarea class="form-control" id="textareaanimated"
                                                                         placeholder="说明"
                                                                         style="width:100%;overflow:hidden; overflow-wrap: break-word; resize: vertical; height: 68px;"
-                                                              >{{lst.pssm}}</textarea>
+                                                              >{{ lst.pssm }}</textarea>
 
                                                             </td>
                                                             <td class=" " style="padding: 1px">
-                                                                 <a href="/myapp/edit_bufuhexiang/"
+                                                                <a href="/myapp/edit_bufuhexiang/?id={{ lst.id }}"
                                                                    class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
                                                                         class="glyphicon glyphicon-pencil"></i>
                                                                 </a>
