@@ -1,6 +1,21 @@
 {% extends "bey-base.html" %}
 {% block mainbody %}
 
+
+{#tbody>tr>td{#}
+{#  position: relative;#}
+{#}#}
+{##}
+{##}
+{##}
+{#.icon-0,.icon-1,.icon-2{#}
+{#  position: absolute;#}
+{#  top: -1px;#}
+{#  left: -1px;#}
+{#  font-size: 40px;#}
+{#}    #}
+
+
     <div class="page-content">
         <!-- 面包屑导航 -->
         <div class="page-breadcrumbs">
@@ -131,11 +146,13 @@
                                                         <tr class="odd">
                                                             <td class="sorting_1">
                                                                 {% if lst.psjg == '0' or lst.psjg == '' %}
-                                                                    <i class="icon-1"></i>
+                                                                    <i class="icon-fhk"></i>
+
                                                                 {% elif lst.psjg == '1' %}
-                                                                    <i class="icon-2"></i>
+                                                                    <i class="icon-bfhk"></i>
                                                                 {% elif lst.psjg == '2' %}
-                                                                    <i class="icon-0"></i>
+                                                                    <i class="icon-bsyk"></i>
+
                                                                 {% endif %}
                                                                 {{ lst.tkhao }}
                                                             </td>

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'xzqicon';
-  src:  url('/static/fonts/xzqicon.eot?fet60z');
-  src:  url('/static/fonts/xzqicon.eot?fet60z#iefix') format('embedded-opentype'),
-    url('/static/fonts/xzqicon.ttf?fet60z') format('truetype'),
-    url('/static/fonts/xzqicon.woff?fet60z') format('woff'),
-    url('/static/fonts/xzqicon.svg?fet60z#xzqicon') format('svg');
+  src:  url('/static/fonts/xzqicon.eot?1k753m');
+  src:  url('/static/fonts/xzqicon.eot?1k753m#iefix') format('embedded-opentype'),
+    url('/static/fonts/xzqicon.ttf?1k753m') format('truetype'),
+    url('/static/fonts/xzqicon.woff?1k753m') format('woff'),
+    url('/static/fonts/xzqicon.svg?1k753m#xzqicon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'xzqicon' !important;
-  speak: none;
+  speak: normal;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,34 +25,75 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 tbody>tr>td{
   position: relative;
 }
 
 
 
-.icon-0,.icon-1,.icon-2{
-  position: absolute;
+.icon-bsyk,.icon-bfhk,.icon-fhk{
+  position: relative;
   top: -1px;
   left: -1px;
   font-size: 40px;
 }
 
-.icon-0:before {
+
+.icon-zym .path1:before {
+  content: "\e903";
+  color: rgb(255, 255, 255);
+}
+.icon-zym .path2:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-zym .path3:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-zym .path4:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(0, 153, 68);
+}
+.icon-zym .path5:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(29, 32, 136);
+}
+.icon-zym .path6:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(230, 0, 18);
+}
+.icon-zym .path7:before {
+  content: "\e909";
+  margin-left: -1em;
+  /*color: none;*/
+}
+.icon-bsyk:before {
+  content: "\e90a";
+  color: #fff100;
+}
+.icon-bfhk:before {
+  content: "\e90b";
+  color: #e60012;
+}
+.icon-fhk:before {
+  content: "\e90c";
+  color: #22ac38;
+}
+.icon-bsy:before {
   content: "\e900";
   color: #cf6;
-
 }
-
-
-.icon-1:before {
+.icon-fh:before {
   content: "\e901";
   color: #3f0;
 }
-
-
-.icon-2:before {
+.icon-bfh:before {
   content: "\e902";
   color: #e60012;
 }
