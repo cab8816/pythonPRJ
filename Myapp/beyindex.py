@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
-from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm
 from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb
 from django.urls import reverse
 
@@ -223,3 +223,27 @@ def edit_bufuhexiang(request):
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors})
+
+def add_bufuhexiang(request):
+    if request.method == "GET":
+
+        id = request.GET.get('id')
+        print(id)
+        obj = Xcpshcb.objects.filter(id=id).first()
+        obj2 = Pingshenxxb.objects.filter(id='1').first()
+        obj = Xcpshcb71.objects.create(psxxb=obj2,pshcxx=obj)
+        form = BFHXForm(instance=obj)
+        return render(request, "add-bufuhexiang.html", {"form": form})
+    else:
+        form = BFHXForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+
+            obj = Xcpshcb.objects.filter(tkhao=data['dis_tkhao'])
+            obj.update(**data)
+            form = XcpshcbForm(instance=obj.first())
+            # return render(request, "bufuhexiang.html", {"form": form})
+            return  redirect(add_Xcpshcb)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "add-bufuhexiang.html", {"form": form, "clean_errors": clean_errors})
