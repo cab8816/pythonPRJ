@@ -205,11 +205,13 @@ def add_Xcpshcb(request):
 
 
 def edit_bufuhexiang(request):
+    username = request.COOKIES.get("user1")
+    is_login = request.COOKIES.get("is_login")
     if request.method == "GET":
         id = request.GET.get('id')
         obj = Xcpshcb.objects.filter(id=id).first()
         form = XcpshcbForm(instance=obj)
-        return render(request, "bufuhexiang.html", {"form": form})
+        return render(request, "bufuhexiang.html", {"form": form, "username": username, "is_login": is_login})
     else:
         form = XcpshcbForm(request.POST)
         if form.is_valid():
@@ -219,19 +221,22 @@ def edit_bufuhexiang(request):
             obj.update(**data)
             form = XcpshcbForm(instance=obj.first())
             # return render(request, "bufuhexiang.html", {"form": form})
-            return  redirect(add_Xcpshcb)
+            return redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors, "username": username, "is_login": is_login})
+
 
 def add_bufuhexiang(request):
+
+    print (username,is_login)
     if request.method == "GET":
 
         id = request.GET.get('id')
         print(id)
         obj = Xcpshcb.objects.filter(id=id).first()
         obj2 = Pingshenxxb.objects.filter(id='1').first()
-        obj = Xcpshcb71.objects.create(psxxb=obj2,pshcxx=obj)
+        obj = Xcpshcb71.objects.create(psxxb=obj2, pshcxx=obj)
         form = BFHXForm(instance=obj)
         return render(request, "add-bufuhexiang.html", {"form": form})
     else:
@@ -243,7 +248,8 @@ def add_bufuhexiang(request):
             obj.update(**data)
             form = XcpshcbForm(instance=obj.first())
             # return render(request, "bufuhexiang.html", {"form": form})
-            return  redirect(add_Xcpshcb)
+            return redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "add-bufuhexiang.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "add-bufuhexiang.html",
+                      {"form": form, "clean_errors": clean_errors})
