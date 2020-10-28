@@ -35,15 +35,14 @@ class PingshenxxbForm(ModelForm):
 class XcpshcbForm(ModelForm):
     class Meta:
         model = Xcpshcb
-        fields = ['id','zhangbh', 'zhangmc', 'tkhao', 'psneirong','psjg','psyj','pssm']
+        fields = ['id', 'zhangbh', 'zhangmc', 'tkhao', 'psneirong', 'psjg', 'psyj', 'pssm']
 
         widgets = {
-            "pssm":forms.widgets.Textarea(
+            "pssm": forms.widgets.Textarea(
                 attrs={
-                    "placeholder":"jjjjjjjjjjj",
-                    'style':"height:100px;width:100%",
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
                 }
-
 
             ),
             "psneirong": forms.widgets.Textarea(
@@ -54,8 +53,7 @@ class XcpshcbForm(ModelForm):
             ),
 
             "psjg": forms.widgets.Select(
-                choices=[(0,'符合'),(1,'不符合'),(2,'不适用')],
-
+                choices=[(0, '符合'), (1, '不符合'), (2, '不适用')],
 
             ),
 
@@ -71,3 +69,43 @@ class XcpshcbForm(ModelForm):
             'psneirong': '评审内容',
         }
 
+
+class BFHXForm(ModelForm):
+    class Meta:
+        model = Xcpshcb71
+        fields = ['psxxb', 'pshcxx', 'psjd',  'psjg', 'psyj', 'pssm', 'jzfs', 'bsfyj','pszzyj']
+
+
+
+
+        widgets = {
+            "pssm": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
+                }
+
+            ),
+            "psneirong": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
+                },
+            ),
+
+            "psjg": forms.widgets.Select(
+                choices=[(0, '符合'), (1, '不符合'), (2, '不适用')],
+
+            ),
+
+            "psyj": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "jjjjjjjjjjj",
+                    'style': "height:100px;width:100%",
+                },
+            ),
+        }
+        labels = {
+            'zhangbh': '序号',
+            'psneirong': '评审内容',
+        }
