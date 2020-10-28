@@ -201,15 +201,21 @@ def add_Pingshenxxb(request):
 def add_Xcpshcb(request):
     mlstbiao = Xcpshcb.objects.all()
     data1 = split_page(mlstbiao, request, 20)
+
     return render(request, "Xcpshcb71.html", data1)
 
 
 def edit_bufuhexiang(request):
+    username = request.COOKIES.get("user1")
+    is_login = request.COOKIES.get("is_login")
+    print(username,is_login)
+
     if request.method == "GET":
         id = request.GET.get('id')
         obj = Xcpshcb.objects.filter(id=id).first()
         form = XcpshcbForm(instance=obj)
-        return render(request, "bufuhexiang.html", {"form": form})
+
+        return render(request, "bufuhexiang.html", {"form": form,"username":username,"is_login":is_login})
     else:
         form = XcpshcbForm(request.POST)
         if form.is_valid():
@@ -222,4 +228,4 @@ def edit_bufuhexiang(request):
             return  redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors,"username":username,"is_login":is_login})

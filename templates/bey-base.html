@@ -74,8 +74,14 @@
                                     <img src="/static/lib/beyond/img/avatars/adam-jansen.jpg">
                                 </div>
                                 <section>
+                                    <h2><span class="profile"><span>
+                                         {% if  is_login  %}
+                                             {{ username }}
+                                          {% else %}
+                                            未登录 &nbsp;
 
-                                    <h2><span class="profile"><span>&nbsp;&nbsp;admina&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
+                                         {% endif %}
+                                    </span></span>
                                     </h2>
                                 </section>
                             </a>
