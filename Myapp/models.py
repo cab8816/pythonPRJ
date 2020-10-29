@@ -44,6 +44,18 @@ class ImportFile(models.Model):
         return str(self.importtype)
 
 
+class UserInfo(models.Model):
+    username = models.CharField(max_length=150, verbose_name='用户名')
+    realname = models.CharField(max_length=10, verbose_name='真名')
+
+    class Meta:
+        verbose_name = "用户信息表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.username)
+
+
 class PsyuanDetail(models.Model):
     name = models.CharField(max_length=8, verbose_name='姓名')
     gender = models.CharField(max_length=4, verbose_name="性别")
@@ -113,6 +125,7 @@ class Pingshenxxb(models.Model):
     psadress = models.CharField(max_length=100, verbose_name="评审地点", default="评审地点")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="用户Id", null=True)
     bpsdwxx = models.ForeignKey('Bpsdwxx', on_delete=models.CASCADE, verbose_name="被评审单位Id", null=True)
+    userinfo = models.ManyToManyField('UserInfo')
 
     class Meta:
         verbose_name = "评审任务信息总表"
@@ -207,15 +220,15 @@ class Xcpshcb(models.Model):
 
 class Xcpshcb71(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE, null=True)
-    pshcxx = models.ForeignKey('Xcpshcb',verbose_name="核查信息",on_delete=models.CASCADE,null=True)
-    psjd = models.CharField(max_length=1,verbose_name="不符合阶段")
-    psdate = models.DateField(verbose_name="日期",auto_now=True)
+    pshcxx = models.ForeignKey('Xcpshcb', verbose_name="核查信息", on_delete=models.CASCADE, null=True)
+    psjd = models.CharField(max_length=1, verbose_name="不符合阶段")
+    psdate = models.DateField(verbose_name="日期", auto_now=True)
     psjg = models.CharField(max_length=1, verbose_name="评审结果")
     psyj = models.CharField(max_length=500, verbose_name="依据")
     pssm = models.CharField(max_length=500, verbose_name="评审说明")
-    jzfs = models.CharField(max_length=1,verbose_name="纠正确认方式")
-    bsfyj = models.CharField(max_length=1 , verbose_name="被评审方确认意见")
-    pszzyj = models.CharField(max_length=1 , verbose_name="评审组长确认意见")
+    jzfs = models.CharField(max_length=1, verbose_name="纠正确认方式")
+    bsfyj = models.CharField(max_length=1, verbose_name="被评审方确认意见")
+    pszzyj = models.CharField(max_length=1, verbose_name="评审组长确认意见")
 
     class Meta:
         verbose_name = "现场评审核查表7.1"

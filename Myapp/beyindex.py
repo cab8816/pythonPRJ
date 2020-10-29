@@ -211,7 +211,8 @@ def edit_bufuhexiang(request):
         id = request.GET.get('id')
         obj = Xcpshcb.objects.filter(id=id).first()
         form = XcpshcbForm(instance=obj)
-        return render(request, "bufuhexiang.html", {"form": form, "username": username, "is_login": is_login})
+        data = {"form": form, "username": username, "is_login": is_login}
+        return render(request, "bufuhexiang.html", data)
     else:
         form = XcpshcbForm(request.POST)
         if form.is_valid():
@@ -224,7 +225,8 @@ def edit_bufuhexiang(request):
             return redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "bufuhexiang.html", {"form": form, "clean_errors": clean_errors, "username": username, "is_login": is_login})
+        data = {"form": form, "clean_errors": clean_errors, "username": username, "is_login": is_login}
+        return render(request, "bufuhexiang.html", data )
 
 
 def add_bufuhexiang(request):
