@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 
 from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm
-from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo
 from django.urls import reverse
 
 
@@ -22,6 +22,8 @@ def beybiao4(request):
 
     data1 = split_page(mlstbiao4, request, 10)
     return render(request, "bey-biao4.html", data1)
+
+
 
 
 @login_required(login_url='/myapp/signin/')
@@ -142,10 +144,12 @@ def register(request):
         captchaStr = request.POST.get("captcha")
         bashkey_isok = jarge_captcha(captchaStr, captchaHashkey)
         username = request.POST.get("username")
+        name = request.POST.get("name")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
         if password1 == password2 and bashkey_isok:
             User.objects.create_user(username=username, password=password1)
+            UserInfo.objects.create(username=username,realname=name)
             return redirect("/myapp/signin/")
         else:
             return redirect("/myapp/register/")
@@ -181,6 +185,13 @@ def add_Bpsdwxx(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
 
+@login_required(login_url='/myapp/signin/')
+def lst_Pingshenxxb(request):
+    lst_psxxb = Pingshenxxb.objects.all()
+
+    data1 = split_page(lst_psxxb, request, 10)
+    return render(request, "lst-psxxb.html", data1)
+
 
 def add_Pingshenxxb(request):
     if request.method == "GET":
@@ -207,6 +218,7 @@ def add_Xcpshcb(request):
 def edit_bufuhexiang(request):
     username = request.COOKIES.get("user1")
     is_login = request.COOKIES.get("is_login")
+    print(username, is_login)
     if request.method == "GET":
         id = request.GET.get('id')
         obj = Xcpshcb.objects.filter(id=id).first()
@@ -230,8 +242,9 @@ def edit_bufuhexiang(request):
 
 
 def add_bufuhexiang(request):
-
-    print (username,is_login)
+    username = request.cookies.get('username')
+    is_login = request.cookies.get('is_login')
+    print(username,is_login)
     if request.method == "GET":
 
         id = request.GET.get('id')
