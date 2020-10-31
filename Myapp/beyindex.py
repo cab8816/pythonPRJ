@@ -187,9 +187,12 @@ def add_Bpsdwxx(request):
 
 @login_required(login_url='/myapp/signin/')
 def lst_Pingshenxxb(request):
-    lst_psxxb = Pingshenxxb.objects.all()
+
+    username = request.COOKIES.get("user1")
+    lst_psxxb = Pingshenxxb.objects.filter(userinfo__username=username)
 
     data1 = split_page(lst_psxxb, request, 10)
+
     return render(request, "lst-psxxb.html", data1)
 
 
