@@ -24,8 +24,6 @@ def beybiao4(request):
     return render(request, "bey-biao4.html", data1)
 
 
-
-
 @login_required(login_url='/myapp/signin/')
 def beybiao71(request):
     mlstbiao4 = Biao4.objects.all()
@@ -149,7 +147,7 @@ def register(request):
         password2 = request.POST.get("password2")
         if password1 == password2 and bashkey_isok:
             User.objects.create_user(username=username, password=password1)
-            UserInfo.objects.create(username=username,realname=name)
+            UserInfo.objects.create(username=username, realname=name)
             return redirect("/myapp/signin/")
         else:
             return redirect("/myapp/register/")
@@ -185,15 +183,8 @@ def add_Bpsdwxx(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
 
-@login_required(login_url='/myapp/signin/')
-def lst_Pingshenxxb(request):
 
-    username = request.COOKIES.get("user1")
-    lst_psxxb = Pingshenxxb.objects.filter(userinfo__username=username)
 
-    data1 = split_page(lst_psxxb, request, 10)
-
-    return render(request, "lst-psxxb.html", data1)
 
 
 def add_Pingshenxxb(request):
@@ -203,10 +194,47 @@ def add_Pingshenxxb(request):
     else:
         form = PingshenxxbForm(request.POST)
         if form.is_valid():
+            # data = form.cleaned_data
+            # Pingshenxxb.objects.create(**data)
+            form = PingshenxxbForm(request.POST)
+            form.save()
+
+            # return render(request, "pingshengxxbForm.html", {"form": form})
+            return redirect(lst_Pingshenxxb)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
+
+@login_required(login_url='/myapp/signin/')
+def lst_Pingshenxxb(request):
+    username = request.COOKIES.get("user1")
+    lst_psxxb = Pingshenxxb.objects.filter(userinfo__username=username)
+    data1 = split_page(lst_psxxb, request, 10)
+    return render(request, "lst-psxxb.html", data1)
+
+def edit_Pingshenxxb(request):
+    if request.method == "GET":
+        id = request.GET.get('id')
+        obj = Pingshenxxb.objects.filter(id=id).first()
+        form = PingshenxxbForm(instance=obj)
+        return render(request, "pingshengxxbForm.html", {"form": form})
+    else:
+        form = PingshenxxbForm(request.POST)
+        if form.is_valid():
             data = form.cleaned_data
-            Pingshenxxb.objects.create(**data)
+            obj = Pingshenxxb.objects.filter(pstzh = data['pstzh']).first()
+            print(obj)
+            form = PingshenxxbForm(request.POST,instance=obj)
+            form.save()
+
+
+            # obj.update(**data)
+
+            # Pingshenxxb.objects.create(**data)
+
             form = PingshenxxbForm()
-            return render(request, "pingshengxxbForm.html", {"form": form})
+            # return render(request, "pingshengxxbForm.html", {"form": form})
+            return redirect(lst_Pingshenxxb)
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
@@ -241,13 +269,13 @@ def edit_bufuhexiang(request):
         else:
             clean_errors = form.errors.get("__all__")
         data = {"form": form, "clean_errors": clean_errors, "username": username, "is_login": is_login}
-        return render(request, "bufuhexiang.html", data )
+        return render(request, "bufuhexiang.html", data)
 
 
 def add_bufuhexiang(request):
     username = request.cookies.get('username')
     is_login = request.cookies.get('is_login')
-    print(username,is_login)
+    print(username, is_login)
     if request.method == "GET":
 
         id = request.GET.get('id')

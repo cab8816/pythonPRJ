@@ -16,9 +16,10 @@ class PsdwxxForm(forms.Form):
 class PingshenxxbForm(ModelForm):
     class Meta:
         model = Pingshenxxb
-        fields = ['pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx']
+        fields = ['id', 'pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx']
 
         labels = {
+
             'pstzh': '评审通知号1',
             'jcjgmc': '检测机构名称',
         }
@@ -31,6 +32,7 @@ class PingshenxxbForm(ModelForm):
             },
         }
 
+        # widgets = {'id': forms.HiddenInput()}
 
 class XcpshcbForm(ModelForm):
     class Meta:
@@ -73,10 +75,7 @@ class XcpshcbForm(ModelForm):
 class BFHXForm(ModelForm):
     class Meta:
         model = Xcpshcb71
-        fields = ['psxxb', 'pshcxx', 'psjd',  'psjg', 'psyj', 'pssm', 'jzfs', 'bsfyj','pszzyj']
-
-
-
+        fields = ['psxxb', 'pshcxx', 'psjd', 'psjg', 'psyj', 'pssm', 'jzfs', 'bsfyj', 'pszzyj']
 
         widgets = {
             "pssm": forms.widgets.Textarea(

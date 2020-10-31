@@ -116,15 +116,15 @@
                                                               Notes : activate to sort column ascending">
                                                         评审地点
                                                     </th>
-                                                     <th class="sorting"
+                                                    <th class="sorting"
                                                         aria-controls="editabledatatable"
                                                         rowspan="1"
-                                                        style="width: 190px;"
+                                                        style="width: 100px;"
                                                         colspan="1" aria-label="
                                                               Notes : activate to sort column ascending">
                                                         用户Id
                                                     </th>
-                                                     <th class="sorting"
+                                                    <th class="sorting"
                                                         aria-controls="editabledatatable"
                                                         rowspan="1"
                                                         style="width: 190px;"
@@ -132,7 +132,7 @@
                                                               Notes : activate to sort column ascending">
                                                         被评审单位Id
                                                     </th>
-                                                     <th class="sorting"
+                                                    <th class="sorting"
                                                         aria-controls="editabledatatable"
                                                         rowspan="1"
                                                         style="width: 90px;"
@@ -143,7 +143,7 @@
 
 
                                                     <th class="sorting_disabled" rowspan="1" colspan="1"
-                                                        style="width: 50px;"
+                                                        style="width: 150px;"
                                                         aria-label=" ">
 
                                                     </th>
@@ -157,27 +157,24 @@
                                                     <tr class="odd">
 
                                                         <td>{{ lst.pstzh }}</td>
-                                                        <td >{{ lst.jcjgmc }}</td>
+                                                        <td>{{ lst.jcjgmc }}</td>
                                                         <td class="hidden-xs "
                                                             style="text-align: left">{{ lst.psslh }}</td>
-                                                       <td >{{ lst.sqsx }}</td>
-                                                       <td >{{ lst.psdate }}</td>
-                                                       <td >{{ lst.psadress }}</td>
-                                                       <td >{{ lst.user }}</td>
-                                                       <td >{{ lst.bpsdwxx}}</td>
+                                                        <td>{{ lst.sqsx }}</td>
+                                                        <td>{{ lst.psdate }}</td>
+                                                        <td>{{ lst.psadress }}</td>
+                                                        <td>{{ lst.user }}</td>
+                                                        <td>{{ lst.bpsdwxx }}</td>
 
-                                                       <td >{{ lst.userinfo.all.first}}</td>
-
-
-
+                                                        <td>{{ lst.userinfo.all.first }}</td>
 
 
                                                         <td class=" " style="padding: 1px">
-                                                            <a href="/myapp/edit_bufuhexiang/?id={{ lst.id }}"
+                                                            <a href="/myapp/edit_Pingshenxxb/?id={{ lst.id }}"
                                                                class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
                                                                     class="glyphicon glyphicon-pencil"></i>
                                                             </a>
-                                                            <a href="/myapp/add_bufuhexiang/?id={{ lst.id }}"
+                                                            <a href="/myapp/add_Pingshenxxb/?id={{ lst.id }}"
                                                                class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
                                                                     class="glyphicon glyphicon-ok"></i>
                                                             </a>
@@ -207,19 +204,19 @@
 
                                                             <li class="prev {% if not page.has_previous %}disabled{% endif %}">
                                                                 {% if page.has_previous %}
-                                                                    <a href="/myapp/add_Xcpshcb/?page={{ page.previous_page_number }}"><</a>
+                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ page.previous_page_number }}"><</a>
                                                                 {% endif %}
                                                             </li>
 
                                                             {% for num in dis_range %}
                                                                 <li>
-                                                                    <a href="/myapp/add_Xcpshcb/?page={{ num }}">{{ num }}</a>
+                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ num }}">{{ num }}</a>
                                                                 </li>
 
                                                             {% endfor %}
                                                             <li class="next {% if not page.has_next %}disabled{% endif %}">
                                                                 {% if page.has_next %}
-                                                                    <a href="/myapp/add_Xcpshcb/?page={{ page.next_page_number }}">></a>
+                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ page.next_page_number }}">></a>
                                                                 {% endif %}
                                                             </li>
 
