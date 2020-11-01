@@ -117,7 +117,7 @@ class Bpsdwxx(models.Model):
 
 
 class Pingshenxxb(models.Model):
-    # uid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     pstzh = models.CharField(max_length=30, verbose_name="评审通知号", default="评审通知号")
     jcjgmc = models.CharField(max_length=100, verbose_name="检测机构名称", default="检测机构名称")
     psslh = models.CharField(max_length=50, verbose_name="受理号", default="受理号")

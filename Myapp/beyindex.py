@@ -190,7 +190,7 @@ def add_Bpsdwxx(request):
 def add_Pingshenxxb(request):
     if request.method == "GET":
         form = PingshenxxbForm()
-        return render(request, "pingshengxxbForm.html", {"form": form})
+        return render(request, "edit-psxxb.html", {"form": form})
     else:
         form = PingshenxxbForm(request.POST)
         if form.is_valid():
@@ -199,45 +199,53 @@ def add_Pingshenxxb(request):
             form = PingshenxxbForm(request.POST)
             form.save()
 
-            # return render(request, "pingshengxxbForm.html", {"form": form})
+            # return render(request, "edit-psxxb.html", {"form": form})
             return redirect(lst_Pingshenxxb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
 
 @login_required(login_url='/myapp/signin/')
 def lst_Pingshenxxb(request):
     username = request.COOKIES.get("user1")
+    print(username)
+    # lst_psxxb = Pingshenxxb.objects.all()
     lst_psxxb = Pingshenxxb.objects.filter(userinfo__username=username)
     data1 = split_page(lst_psxxb, request, 10)
     return render(request, "lst-psxxb.html", data1)
 
-def edit_Pingshenxxb(request):
+
+def del_Pingshenxxb(request):
     if request.method == "GET":
-        id = request.GET.get('id')
-        obj = Pingshenxxb.objects.filter(id=id).first()
+        mid = request.GET.get('id')
+        obj = Pingshenxxb.objects.filter(id=mid).first()
+        obj.delete()
+    return redirect(lst_Pingshenxxb)
+
+
+
+def edit_Pingshenxxb(request):
+    global obj
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Pingshenxxb.objects.filter(id=mid).first()
         form = PingshenxxbForm(instance=obj)
-        return render(request, "pingshengxxbForm.html", {"form": form})
+        return render(request, "edit-psxxb.html", {"form": form})
     else:
         form = PingshenxxbForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            obj = Pingshenxxb.objects.filter(pstzh = data['pstzh']).first()
+            # obj = Pingshenxxb.objects.filter(pstzh = data['pstzh']).first()
             print(obj)
             form = PingshenxxbForm(request.POST,instance=obj)
             form.save()
 
-
             # obj.update(**data)
 
-            # Pingshenxxb.objects.create(**data)
-
-            form = PingshenxxbForm()
-            # return render(request, "pingshengxxbForm.html", {"form": form})
             return redirect(lst_Pingshenxxb)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "pingshengxxbForm.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
 
 
 def add_Xcpshcb(request):

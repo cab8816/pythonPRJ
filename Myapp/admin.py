@@ -141,6 +141,10 @@ class Biao5admin(admin.ModelAdmin):
 class PsyuanDetailAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'gender', 'danwei', 'psybh',)
 
+@admin.register(UserInfo)
+class PsyuanDetailAdmin(admin.ModelAdmin):
+    list_display = ('id', 'username','realname',)
+
 
 @admin.register(Pingshenxxb)
 class PingshenxxbAdmin(admin.ModelAdmin):
