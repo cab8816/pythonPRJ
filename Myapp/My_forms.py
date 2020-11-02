@@ -16,7 +16,7 @@ class PsdwxxForm(forms.Form):
 class PingshenxxbForm(ModelForm):
     class Meta:
         model = Pingshenxxb
-        fields = ['id', 'pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx']
+        fields = ['id', 'pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx','userinfo']
 
         labels = {
 

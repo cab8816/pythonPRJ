@@ -53,7 +53,7 @@ class UserInfo(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.realname)
+        return str(self.username)
 
 
 class PsyuanDetail(models.Model):

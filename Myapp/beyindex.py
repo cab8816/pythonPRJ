@@ -11,9 +11,11 @@ from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm
 from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo
 from django.urls import reverse
 
-
+@login_required(login_url='/myapp/signin/')
 def beyindex(request):
-    return render(request, "bey-base.html")
+    return redirect(lst_Pingshenxxb)
+    # username = request.COOKIES.get("user1")
+    # return render(request, "bey-base.html")
 
 
 @login_required(login_url='/myapp/signin/')
@@ -205,13 +207,23 @@ def add_Pingshenxxb(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
 
+def getlogonstatus(request):
+    username = request.COOKIES.get("user1")
+    is_login = request.COOKIES.get("is_login")
+    return ({"username": username, "is_login": is_login})
+
+
 @login_required(login_url='/myapp/signin/')
 def lst_Pingshenxxb(request):
-    username = request.COOKIES.get("user1")
-    print(username)
+    mlogon = getlogonstatus(request)
+    username = mlogon['username']
+    # username = request.COOKIES.get("user1")
+    # is_login = request.COOKIES.get("is_login")
     # lst_psxxb = Pingshenxxb.objects.all()
     lst_psxxb = Pingshenxxb.objects.filter(userinfo__username=username)
     data1 = split_page(lst_psxxb, request, 10)
+    # data1.update({"username": username, "is_login": is_login})
+    data1.update(mlogon)
     return render(request, "lst-psxxb.html", data1)
 
 
@@ -247,7 +259,7 @@ def edit_Pingshenxxb(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
 
-
+@login_required(login_url='/myapp/signin/')
 def add_Xcpshcb(request):
     mlstbiao = Xcpshcb.objects.all()
     data1 = split_page(mlstbiao, request, 20)
@@ -255,14 +267,18 @@ def add_Xcpshcb(request):
 
 
 def edit_bufuhexiang(request):
-    username = request.COOKIES.get("user1")
-    is_login = request.COOKIES.get("is_login")
-    print(username, is_login)
+    # username = request.COOKIES.get("user1")
+    # is_login = request.COOKIES.get("is_login")
+    # print(username, is_login)
+
+    mlogon = getlogonstatus(request)
+    username = mlogon['username']
     if request.method == "GET":
         id = request.GET.get('id')
         obj = Xcpshcb.objects.filter(id=id).first()
         form = XcpshcbForm(instance=obj)
-        data = {"form": form, "username": username, "is_login": is_login}
+        data = {"form": form}
+        data.update(mlogon)
         return render(request, "bufuhexiang.html", data)
     else:
         form = XcpshcbForm(request.POST)
@@ -276,7 +292,9 @@ def edit_bufuhexiang(request):
             return redirect(add_Xcpshcb)
         else:
             clean_errors = form.errors.get("__all__")
-        data = {"form": form, "clean_errors": clean_errors, "username": username, "is_login": is_login}
+        data = {"form": form, "clean_errors": clean_errors}
+        data.update(mlogon)
+
         return render(request, "bufuhexiang.html", data)
 
 
