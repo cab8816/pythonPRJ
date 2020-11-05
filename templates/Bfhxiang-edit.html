@@ -1,0 +1,55 @@
+{% extends "bey-base.html" %}
+{% block mainbody %}
+
+    <div class="page-content">
+        <!-- 面包屑导航 -->
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">资质评审</a>
+                </li>
+                <li class="active">不符合项信息</li>
+            </ul>
+        </div>
+        <!-- /面包屑导航 -->
+        <!-- 页面主体 -->
+        <form action="" method="Post" novalidate>
+            {% csrf_token %}
+
+
+            <div class="widget">
+                <div class="widget-header bordered-top bordered-palegreen">
+                    <span class="widget-caption">Default Inputs</span>
+                </div>
+                <div class="widget-body">
+                    <div class="collapse in">
+                        <form role="form">
+
+                            {% for field in form %}
+                                <div class="row">
+                                    <div class="col-xs-3 col-sm-3 col-md-3 ">
+                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                    </div>
+                                    <div class="col-xs-5 col-md-5 col-sm-5">
+                                        <div>{{ field }}</div>
+                                    </div>
+                                    <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <div class="row" ><input style="margin-right: 80px" class="btn btn-primary pull-right" type="submit"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+
+        <!-- /页面主体 -->
+    </div>
+
+{% endblock %}

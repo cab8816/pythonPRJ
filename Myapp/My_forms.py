@@ -1,7 +1,8 @@
 from django import forms
 from django.forms import ModelForm
+from django.utils import timezone
 
-from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb
+from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb, Bfhxiang
 
 
 class PsdwxxForm(forms.Form):
@@ -108,3 +109,37 @@ class BFHXForm(ModelForm):
             'zhangbh': '序号',
             'psneirong': '评审内容',
         }
+
+
+class Bfhxiangform(ModelForm):
+    # 不符合项编辑表
+    class Meta:
+        model = Bfhxiang
+        fields = ['psxxb', 'bfhxwc', 'bfhxwcdate', 'bpsbm', 'ptren', 'yiju', 'bfhms', 'jielun', 'tkhao','qrfs','psyname','bfsqueren','zzqueren']
+
+        widgets = {
+            "yiju": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "依据",
+                    'style': "height:100px;width:100%",
+                }
+
+            ),
+            "bfhms": forms.widgets.Textarea(
+                attrs={
+                    "placeholder": "不符合项事实描述",
+                    'style': "height:100px;width:100%",
+                },
+            ),
+
+            "bfhxwcdate":forms.widgets.SelectDateWidget(
+                attrs={
+                    "input_type": 'text',
+                    "template_name": 'django/forms/widgets/SelectDateWidget.html',
+
+
+                },
+
+            ),
+        }
+

@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
-from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm
-from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm, Bfhxiangform
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo, Bfhxiang
 from django.urls import reverse
 
 @login_required(login_url='/myapp/signin/')
@@ -325,3 +325,53 @@ def add_bufuhexiang(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "add-bufuhexiang.html",
                       {"form": form, "clean_errors": clean_errors})
+
+
+def Bfhxiang_edit(request):
+    global obj
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Bfhxiang.objects.filter(id=mid).first()
+        form = Bfhxiangform(instance=obj)
+        return render(request, "Bfhxiang-edit.html", {"form": form})
+    else:
+        form = Bfhxiangform(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            form = Bfhxiangform(request.POST,instance=obj)
+            form.save()
+            return redirect(Bfhxiang_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Bfhxiang_list(request):
+    mlogon = getlogonstatus(request)
+    username = mlogon['username']
+    lst = Bfhxiang.objects.all()
+    # lst = Pingshenxxb.objects.filter(userinfo__username=username)
+    data1 = split_page(lst, request, 10)
+    # data1.update({"username": username, "is_login": is_login})
+    data1.update(mlogon)
+    return render(request, "Bfhxiang-list.html", data1)
+
+def Bfhxiang_add(request):
+    if request.method == "GET":
+        form = Bfhxiangform()
+        return render(request, "Bfhxiang-edit.html", {"form": form})
+    else:
+        form = Bfhxiangform(request.POST)
+        if form.is_valid():
+            form = Bfhxiangform(request.POST)
+            form.save()
+            return redirect(Bfhxiang_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Bfhxiang_del(request):
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Bfhxiang.objects.filter(id=mid).first()
+        obj.delete()
+    return redirect(Bfhxiang_list)
