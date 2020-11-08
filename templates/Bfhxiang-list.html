@@ -168,19 +168,19 @@
 
                                                             <li class="prev {% if not page.has_previous %}disabled{% endif %}">
                                                                 {% if page.has_previous %}
-                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ page.previous_page_number }}"><</a>
+                                                                    <a href="/myapp/Bfhxiang_list/?page={{ page.previous_page_number }}"><</a>
                                                                 {% endif %}
                                                             </li>
 
                                                             {% for num in dis_range %}
                                                                 <li>
-                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ num }}">{{ num }}</a>
+                                                                    <a href="/myapp/Bfhxiang_list/?page={{ num }}">{{ num }}</a>
                                                                 </li>
 
                                                             {% endfor %}
                                                             <li class="next {% if not page.has_next %}disabled{% endif %}">
                                                                 {% if page.has_next %}
-                                                                    <a href="/myapp/lst_Pingshenxxb/?page={{ page.next_page_number }}">></a>
+                                                                    <a href="/myapp/Bfhxiang_list/?page={{ page.next_page_number }}">></a>
                                                                 {% endif %}
                                                             </li>
 

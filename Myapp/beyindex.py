@@ -14,7 +14,13 @@ from django.urls import reverse
 
 @login_required(login_url='/myapp/signin/')
 def beyindex(request):
-    return redirect(Pingshenxxb_list)
+
+    if request.COOKIES.get("is_login") :
+        return redirect(Pingshenxxb_list)
+
+    else:
+        return redirect("/myapp/signin/")
+
     # username = request.COOKIES.get("user1")
     # return render(request, "bey-base.html")
 
