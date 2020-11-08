@@ -11,9 +11,10 @@ from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm, B
 from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo, Bfhxiang
 from django.urls import reverse
 
+
 @login_required(login_url='/myapp/signin/')
 def beyindex(request):
-    return redirect(lst_Pingshenxxb)
+    return redirect(Pingshenxxb_list)
     # username = request.COOKIES.get("user1")
     # return render(request, "bey-base.html")
 
@@ -94,7 +95,8 @@ def signin(request):
 
 def logout(request):
     ppp = auth.logout(request)
-    return redirect("/myapp/signin/")
+
+    return redirect("/myapp/index/")
 
 
 # 创建验证码
@@ -186,13 +188,16 @@ def add_Bpsdwxx(request):
         return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
 
 
+def getlogonstatus(request):
+    username = request.COOKIES.get("user1")
+    is_login = request.COOKIES.get("is_login")
+    return ({"username": username, "is_login": is_login})
 
 
-
-def add_Pingshenxxb(request):
+def Pingshenxxb_add(request):
     if request.method == "GET":
         form = PingshenxxbForm()
-        return render(request, "edit-psxxb.html", {"form": form})
+        return render(request, "psxxb-edit.html", {"form": form})
     else:
         form = PingshenxxbForm(request.POST)
         if form.is_valid():
@@ -201,22 +206,18 @@ def add_Pingshenxxb(request):
             form = PingshenxxbForm(request.POST)
             form.save()
 
-            # return render(request, "edit-psxxb.html", {"form": form})
-            return redirect(lst_Pingshenxxb)
+            # return render(request, "psxxb-edit.html", {"form": form})
+            return redirect(Pingshenxxb_list)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
-
-def getlogonstatus(request):
-    username = request.COOKIES.get("user1")
-    is_login = request.COOKIES.get("is_login")
-    return ({"username": username, "is_login": is_login})
+        return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
 
 
 @login_required(login_url='/myapp/signin/')
-def lst_Pingshenxxb(request):
+def Pingshenxxb_list(request):
     mlogon = getlogonstatus(request)
     username = mlogon['username']
+    print('username=',username,'islogon=',mlogon['is_login'])
     # username = request.COOKIES.get("user1")
     # is_login = request.COOKIES.get("is_login")
     # lst_psxxb = Pingshenxxb.objects.all()
@@ -224,40 +225,40 @@ def lst_Pingshenxxb(request):
     data1 = split_page(lst_psxxb, request, 10)
     # data1.update({"username": username, "is_login": is_login})
     data1.update(mlogon)
-    return render(request, "lst-psxxb.html", data1)
+    return render(request, "psxxb-list.html", data1)
 
 
-def del_Pingshenxxb(request):
+def Pingshenxxb_del(request):
     if request.method == "GET":
         mid = request.GET.get('id')
         obj = Pingshenxxb.objects.filter(id=mid).first()
         obj.delete()
-    return redirect(lst_Pingshenxxb)
+    return redirect(Pingshenxxb_list)
 
 
-
-def edit_Pingshenxxb(request):
+def Pingshenxxb_edit(request):
     global obj
     if request.method == "GET":
         mid = request.GET.get('id')
         obj = Pingshenxxb.objects.filter(id=mid).first()
         form = PingshenxxbForm(instance=obj)
-        return render(request, "edit-psxxb.html", {"form": form})
+        return render(request, "psxxb-edit.html", {"form": form})
     else:
         form = PingshenxxbForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             # obj = Pingshenxxb.objects.filter(pstzh = data['pstzh']).first()
             print(obj)
-            form = PingshenxxbForm(request.POST,instance=obj)
+            form = PingshenxxbForm(request.POST, instance=obj)
             form.save()
 
             # obj.update(**data)
 
-            return redirect(lst_Pingshenxxb)
+            return redirect(Pingshenxxb_list)
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "edit-psxxb.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
+
 
 @login_required(login_url='/myapp/signin/')
 def add_Xcpshcb(request):
@@ -338,12 +339,13 @@ def Bfhxiang_edit(request):
         form = Bfhxiangform(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            form = Bfhxiangform(request.POST,instance=obj)
+            form = Bfhxiangform(request.POST, instance=obj)
             form.save()
             return redirect(Bfhxiang_list)
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
+
 
 def Bfhxiang_list(request):
     mlogon = getlogonstatus(request)
@@ -354,6 +356,7 @@ def Bfhxiang_list(request):
     # data1.update({"username": username, "is_login": is_login})
     data1.update(mlogon)
     return render(request, "Bfhxiang-list.html", data1)
+
 
 def Bfhxiang_add(request):
     if request.method == "GET":
@@ -368,6 +371,7 @@ def Bfhxiang_add(request):
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
+
 
 def Bfhxiang_del(request):
     if request.method == "GET":

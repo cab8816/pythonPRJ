@@ -120,6 +120,7 @@ class Bfhxiangform(ModelForm):
         widgets = {
             "yiju": forms.widgets.Textarea(
                 attrs={
+                    " template_name": "django/forms/widgets/textarea.html",
                     "placeholder": "依据",
                     'style': "height:100px;width:100%",
                 }
