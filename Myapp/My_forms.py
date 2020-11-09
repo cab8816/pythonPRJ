@@ -38,7 +38,7 @@ class PingshenxxbForm(ModelForm):
 class XcpshcbForm(ModelForm):
     class Meta:
         model = Xcpshcb
-        fields = ['id', 'zhangbh', 'zhangmc', 'tkhao', 'psneirong', 'psjg', 'psyj', 'pssm']
+        fields = ['zhangbh', 'zhangmc', 'tkhao', 'psneirong']
 
         widgets = {
             "pssm": forms.widgets.Textarea(

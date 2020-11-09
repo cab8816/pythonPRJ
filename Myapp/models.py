@@ -207,9 +207,6 @@ class Xcpshcb(models.Model):
     zhangmc = models.CharField(max_length=8, verbose_name="条款章名")
     tkhao = models.CharField(max_length=10, verbose_name="条款号")
     psneirong = models.CharField(max_length=1000, verbose_name="评审内容")
-    psjg = models.CharField(max_length=1, verbose_name="评审结果")
-    psyj = models.CharField(max_length=500, verbose_name="依据")
-    pssm = models.CharField(max_length=500, verbose_name="评审说明")
 
     class Meta:
         verbose_name = "检验检测机构资质认定现场评审核查表"
