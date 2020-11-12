@@ -339,8 +339,9 @@ def Bfhxiang_edit(request):
     if request.method == "GET":
         mid = request.GET.get('id')
         obj = Bfhxiang.objects.filter(id=mid).first()
+        hcblst = Xcpshcb.objects.all().values('zhangbh','zhangmc').distinct()
         form = Bfhxiangform(instance=obj)
-        return render(request, "Bfhxiang-edit.html", {"form": form})
+        return render(request, "Bfhxiang-edit.html", {"form": form,'hcblst':hcblst})
     else:
         form = Bfhxiangform(request.POST)
         if form.is_valid():

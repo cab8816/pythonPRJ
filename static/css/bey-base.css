@@ -1,3 +1,4 @@
+/*è°·æ­Œæµè§ˆå™¨ cssæ ·å¼å¸ƒæ›´æ–°çš„è§£å†³åŠžæ³•:åªéœ€è¦æŒ‰ä½ctrl+f5 å°±å¯ä»¥è§£å†³çš„,æˆ–è€…å°†Network ä¸‹çš„Disable cache é€‰é¡¹å‹¾é€‰ä¸Š*/
 body {
     font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
 }
@@ -93,7 +94,7 @@ body {
 }
 
 
-/*begin覆盖调整导航栏*/
+/*beginè¦†ç›–è°ƒæ•´å¯¼èˆªæ */
 
 .navbar .sidebar-collapse {
     text-align: center;
@@ -137,7 +138,7 @@ body {
     }
 }
 
-/*end 覆盖调整导航栏*/
+/*end è¦†ç›–è°ƒæ•´å¯¼èˆªæ */
 
 
 .firstcol{
@@ -163,4 +164,11 @@ body {
     padding: 1px 2px;
 }
 
+
+/*  bfhxiang_edit*/
+#s2id_e1 {
+    width:100%;
+    float: right;
+    padding-right: 10px;
+}
 
