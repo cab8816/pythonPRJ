@@ -24,6 +24,8 @@ urlpatterns = [
     path('Bfhxiang_add/', beyindex.Bfhxiang_add),
     path('Bfhxiang_edit/', beyindex.Bfhxiang_edit),
     path('Bfhxiang_list/', beyindex.Bfhxiang_list),
+    path('showhctkxx/', beyindex.showhctkxx),
+
     path('add_Bpsdwxx/', beyindex.add_Bpsdwxx),
     path('Pingshenxxb_add/', beyindex.Pingshenxxb_add),
     path('Pingshenxxb_edit/', beyindex.Pingshenxxb_edit),

@@ -178,6 +178,18 @@ def ajax_checkuser(request):
 
 # 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$
 
+def showhctkxx(request):
+    if request.method == "POST":
+        zbh = request.POST.get('zbh')
+        try:
+            tiaokuans = Xcpshcb.objects.get(zhangbh=zbh)
+            print(tiaokuans)
+            return HttpResponse(tiaokuans)
+
+        except:
+            return HttpResponse("0")
+    return redirect("/myapp/Bfhxiang_edit/")
+
 def add_Bpsdwxx(request):
     if request.method == "GET":
         form = PsdwxxForm()
