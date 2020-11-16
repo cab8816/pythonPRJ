@@ -1,15 +1,12 @@
-
-
-$(document).ready(function () {
-
-// 条款章节选择框点击
-
-  $("#e1").change(function() {
-     alert('点击select');
-      showhctk(self);
-  });
-});
-
+// $(document).ready(function () {
+//
+// // 条款章节选择框点击
+//
+//     $("#e1").change(function () {
+//
+//
+//     });
+// });
 
 
 function createXMLHttpRequest() {
@@ -44,13 +41,20 @@ function showhctk(self) {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            var s = xmlhttp.responseText
-            for (tk in s)
-            {
-                document.getElementById()
-            }
+            var s = xmlhttp.responseText;
+            ss = JSON.parse(s);
+            alert(ss);
 
-            if(s==="0"){
+             $("#e2").append("<option value='1'>" + ss+ " </option>");
+
+            // for (i = 0; i < s.length; i++)
+            //     // for (tk in s)
+            // {
+            //     $("#e2").append("<option value='1'>" + s[i].childNodes[0].nodeValue + " </option>");
+            // }
+
+
+            if (s === "0") {
                 // document.getElementById("error").innerHTML = "";
                 // document.getElementById("submitid1").removeAttribute('disabled');
             }

@@ -41,14 +41,16 @@
                                         <div class="col-xs-3 col-sm-3 col-md-3 ">
 
                                             <div>
-                                                <select id="e1" style="width:100%;" style="float: left">
+                                                <select id="e1" style="width:100%;" style="float: left" onchange="showhctk(this)" >
                                                     {% for field in hcblst %}
-                                                        <option value={{ field.zhangbh }}/>
+                                                        <option value={{ field.zhangbh }}>
                                                         {{ field.zhangbh }} {{ field.zhangmc }}
 
                                                     {% endfor %}
 
                                                 </select>
+
+
                                             </div>
 
 
@@ -57,13 +59,16 @@
                                         <div class="col-xs-9 col-sm-9 col-md-9 ">
 
                                             <select class="tkhhh" id="e2" style="width:100%;">
-                                                {% for field in hcblst %}
-                                                    <option  value="AL"/>
-                                                    {{ field.zhangbh }} {{ field.zhangmc }}
+{#                                                {% for field in hcblst %}#}
+                                                    <option  value="AL">ssss
+{#                                                    {{ field.zhangbh }} {{ field.zhangmc }}#}
 
-                                                {% endfor %}
+{#                                                {% endfor %}#}
 
                                             </select>
+{#                                               <label id="lbid">#}
+{#                                                    sdsdsfffffffffffffffffffffffff#}
+{#                                                </label>#}
 
 
                                         </div>

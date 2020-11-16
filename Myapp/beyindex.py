@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import auth
 
+from Myapp import models
 from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm, Bfhxiangform
 from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo, Bfhxiang
 from django.urls import reverse
@@ -14,8 +15,7 @@ from django.urls import reverse
 
 @login_required(login_url='/myapp/signin/')
 def beyindex(request):
-
-    if request.COOKIES.get("is_login") :
+    if request.COOKIES.get("is_login"):
         return redirect(Pingshenxxb_list)
 
     else:
@@ -178,17 +178,6 @@ def ajax_checkuser(request):
 
 # 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$
 
-def showhctkxx(request):
-    if request.method == "POST":
-        zbh = request.POST.get('zbh')
-        try:
-            tiaokuans = Xcpshcb.objects.get(zhangbh=zbh)
-            print(tiaokuans)
-            return HttpResponse(tiaokuans)
-
-        except:
-            return HttpResponse("0")
-    return redirect("/myapp/Bfhxiang_edit/")
 
 def add_Bpsdwxx(request):
     if request.method == "GET":
@@ -235,7 +224,7 @@ def Pingshenxxb_add(request):
 def Pingshenxxb_list(request):
     mlogon = getlogonstatus(request)
     username = mlogon['username']
-    print('username=',username,'islogon=',mlogon['is_login'])
+    print('username=', username, 'islogon=', mlogon['is_login'])
     # username = request.COOKIES.get("user1")
     # is_login = request.COOKIES.get("is_login")
     # lst_psxxb = Pingshenxxb.objects.all()
@@ -351,9 +340,9 @@ def Bfhxiang_edit(request):
     if request.method == "GET":
         mid = request.GET.get('id')
         obj = Bfhxiang.objects.filter(id=mid).first()
-        hcblst = Xcpshcb.objects.all().values('zhangbh','zhangmc').distinct()
+        hcblst = Xcpshcb.objects.all().values('zhangbh', 'zhangmc').distinct()
         form = Bfhxiangform(instance=obj)
-        return render(request, "Bfhxiang-edit.html", {"form": form,'hcblst':hcblst})
+        return render(request, "Bfhxiang-edit.html", {"form": form, 'hcblst': hcblst})
     else:
         form = Bfhxiangform(request.POST)
         if form.is_valid():
@@ -398,3 +387,18 @@ def Bfhxiang_del(request):
         obj = Bfhxiang.objects.filter(id=mid).first()
         obj.delete()
     return redirect(Bfhxiang_list)
+
+
+def showhctkxx(request):
+    if request.method == "POST":
+        zbh = request.POST.get('zbh')
+
+        # try:
+        tiaokuans = Xcpshcb.objects.filter(zhangbh=zbh)
+        print(tiaokuans)
+
+        return HttpResponse(tiaokuans)
+
+        # except:
+        #     return HttpResponse("0")
+    return redirect("/myapp/Bfhxiang_edit/")
