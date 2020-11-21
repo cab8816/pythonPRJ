@@ -1,7 +1,10 @@
+from xml.dom.minidom import Document
+
 from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -393,12 +396,11 @@ def showhctkxx(request):
     if request.method == "POST":
         zbh = request.POST.get('zbh')
 
-        # try:
-        tiaokuans = Xcpshcb.objects.filter(zhangbh=zbh)
-        print(tiaokuans)
+        tiaokuans = Xcpshcb.objects.only('tkhao','psneirong').filter(zhangbh=zbh)
 
-        return HttpResponse(tiaokuans)
+        data = serializers.serialize("xml",tiaokuans)
+        print(data)
+        return HttpResponse(data)
 
-        # except:
-        #     return HttpResponse("0")
+
     return redirect("/myapp/Bfhxiang_edit/")

@@ -41,11 +41,32 @@ function showhctk(self) {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            var s = xmlhttp.responseText;
-            ss = JSON.parse(s);
-            alert(ss);
+            var xmldoc = xmlhttp.responseText;
+            var x =$.parseXML(xmldoc)
+            $("#e2").empty();
+            $(x).find('object').each( function () {
+                var v=$(this).children('field').text()
+                $("#e2").append("<option value='1'>" +v+ " </option>");
+            })
+            // var x = xmldoc.getElementsByTagName("object");
+            //
+            // for (i =0 ;i < 10;i++){
+            //  $("#e2").append("<option value='1'>" +"111"+ " </option>");
+            //
+            // }
 
-             $("#e2").append("<option value='1'>" + ss+ " </option>");
+            //
+
+
+// + x[i].getElementsByTagName("field").childNodes[0].nodeValue
+
+
+
+            // $("#e2").appendMany(xmldoc);
+
+
+
+
 
             // for (i = 0; i < s.length; i++)
             //     // for (tk in s)
@@ -53,7 +74,7 @@ function showhctk(self) {
             //     $("#e2").append("<option value='1'>" + s[i].childNodes[0].nodeValue + " </option>");
             // }
 
-
+             
             if (s === "0") {
                 // document.getElementById("error").innerHTML = "";
                 // document.getElementById("submitid1").removeAttribute('disabled');
