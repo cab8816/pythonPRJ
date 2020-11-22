@@ -43,15 +43,15 @@ function showhctk(self) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var xmldoc = xmlhttp.responseText;
-            var x =$.parseXML(xmldoc)
+            var x = $.parseXML(xmldoc)
             var obj = x.getElementsByTagName("object");
 
-             $("#e2").empty();
+            $("#e2").empty();
 
-            for( i = 0 ; i < obj.length;i++){
+            for (i = 0; i < obj.length; i++) {
                 var tkhao = obj[i].getElementsByTagName("field")[0].childNodes[0].nodeValue;
                 var tkneirong = obj[i].getElementsByTagName("field")[1].childNodes[0].nodeValue;
-                $("#e2").append("<option value = "+tkhao+" >" +tkhao+" : "+tkneirong+ " </option>");
+                $("#e2").append("<option value = " + tkhao + " >" + tkhao + " : " + tkneirong + " </option>");
 
             }
 
@@ -64,6 +64,13 @@ function selecthctk(self) {
     var txt = self.value;
 
     $("#id_tkhao").val(txt);
+}
 
+function deleteJob() {
+    if (confirm("确定要删除吗?")) {
 
+        return true;
+    } else {
+        return false;
+    }
 }

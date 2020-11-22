@@ -370,8 +370,10 @@ def Bfhxiang_list(request):
 
 def Bfhxiang_add(request):
     if request.method == "GET":
+
+        hcblst = Xcpshcb.objects.all().values('zhangbh', 'zhangmc').distinct()
         form = Bfhxiangform()
-        return render(request, "Bfhxiang-edit.html", {"form": form})
+        return render(request, "Bfhxiang-edit.html", {"form": form, 'hcblst': hcblst})
     else:
         form = Bfhxiangform(request.POST)
         if form.is_valid():
@@ -398,7 +400,7 @@ def showhctkxx(request):
         tiaokuans = Xcpshcb.objects.filter(zhangbh=zbh)
 
         data = serializers.serialize("xml",tiaokuans,fields=('tkhao','psneirong'))
-        print(data)
+        # print(data)
         return HttpResponse(data)
 
 
