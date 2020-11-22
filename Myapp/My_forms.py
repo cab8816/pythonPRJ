@@ -17,7 +17,7 @@ class PsdwxxForm(forms.Form):
 class PingshenxxbForm(ModelForm):
     class Meta:
         model = Pingshenxxb
-        fields = ['id', 'pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx','userinfo']
+        fields = ['id', 'pstzh', 'jcjgmc', 'psslh', 'sqsx', 'psdate', 'psadress', 'user', 'bpsdwxx', 'userinfo']
 
         labels = {
 
@@ -34,6 +34,7 @@ class PingshenxxbForm(ModelForm):
         }
 
         # widgets = {'id': forms.HiddenInput()}
+
 
 class XcpshcbForm(ModelForm):
     class Meta:
@@ -115,32 +116,44 @@ class Bfhxiangform(ModelForm):
     # 不符合项编辑表
     class Meta:
         model = Bfhxiang
-        fields = ['psxxb', 'bfhxwc', 'bfhxwcdate', 'bpsbm', 'ptren', 'yiju', 'bfhms', 'jielun', 'tkhao','qrfs','psyname','bfsqueren','zzqueren']
+        fields = ['psxxb', 'bfhxwc', 'bfhxwcdate', 'bpsbm', 'ptren', 'yiju', 'bfhms', 'jielun', 'tkhao', 'qrfs',
+                  'psyname', 'bfsqueren', 'zzqueren']
 
         widgets = {
             "yiju": forms.widgets.Textarea(
                 attrs={
                     " template_name": "django/forms/widgets/textarea.html",
+                    'style': "height:75px;width:100%;margin:1px;",
                     "placeholder": "依据",
-                    'style': "height:100px;width:100%",
+                    'class': 'form-control',
+
+
                 }
 
             ),
+            #
             "bfhms": forms.widgets.Textarea(
                 attrs={
                     "placeholder": "不符合项事实描述",
-                    'style': "height:100px;width:100%",
+                    'style': "height:75px;width:100%;margin:1px",
+                    'class': 'form-control',
+
                 },
             ),
 
-            "bfhxwcdate":forms.widgets.SelectDateWidget(
+            "jielun": forms.widgets.Select(
+
+                choices=[(0, '符11合'), (1, '不符合'), (2, '不适用')],
+
+            ),
+
+            "bfhxwcdate": forms.widgets.SelectDateWidget(
                 attrs={
                     "input_type": 'text',
-                    "template_name": 'django/forms/widgets/SelectDateWidget.html',
 
+                    "template_name": 'django/forms/widgets/SelectDateWidget.html',
 
                 },
 
             ),
         }
-

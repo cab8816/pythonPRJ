@@ -49,49 +49,21 @@ function showhctk(self) {
              $("#e2").empty();
 
             for( i = 0 ; i < obj.length;i++){
-                var tkhao = obj[i].getElementsByTagName("field")[2].childNodes[0].nodeValue;
-                var tkneirong = obj[i].getElementsByTagName("field")[3].childNodes[0].nodeValue;
+                var tkhao = obj[i].getElementsByTagName("field")[0].childNodes[0].nodeValue;
+                var tkneirong = obj[i].getElementsByTagName("field")[1].childNodes[0].nodeValue;
                 $("#e2").append("<option value = "+tkhao+" >" +tkhao+" : "+tkneirong+ " </option>");
 
             }
 
-            //
-            // $(x).find('object').each( function () {
-            //     // var v=$(this).children('field').text()
-            //     var v = x.getElementsByTagName("field")[3].childNodes[0].nodeValue;
-            //     $("#e2").append("<option value='1'>" +v+ " </option>");
-            // })
-            // var x = xmldoc.getElementsByTagName("object");
-            //
-            // for (i =0 ;i < 10;i++){
-            //  $("#e2").append("<option value='1'>" +"111"+ " </option>");
-            //
-            // }
 
-            //
-
-
-// + x[i].getElementsByTagName("field").childNodes[0].nodeValue
-
-
-
-            // $("#e2").appendMany(xmldoc);
-
-
-
-
-
-            // for (i = 0; i < s.length; i++)
-            //     // for (tk in s)
-            // {
-            //     $("#e2").append("<option value='1'>" + s[i].childNodes[0].nodeValue + " </option>");
-            // }
-
-             
-            if (s === "0") {
-                // document.getElementById("error").innerHTML = "";
-                // document.getElementById("submitid1").removeAttribute('disabled');
-            }
         }
     }
+}
+
+function selecthctk(self) {
+    var txt = self.value;
+
+    $("#id_tkhao").val(txt);
+
+
 }

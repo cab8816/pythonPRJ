@@ -20,81 +20,67 @@
 
             <div class="widget">
                 <div class="widget-header bordered-top bordered-palegreen">
-                    <span class="widget-caption">Default Inputs</span>
+                    <span class="widget-caption">不符合信息编辑</span>
                 </div>
+
                 <div class="widget-body">
                     <div class="collapse in">
                         <form role="form">
 
                             {% for field in form %}
                                 <div class="row">
-                                    <div class="col-xs-3 col-sm-3 col-md-3 ">
-                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                    </div>
-                                    <div class="col-xs-5 col-md-5 col-sm-5">
-                                        <div>{{ field }}</div>
-                                    </div>
-                                    <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                    <div class="form-group">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 ">
+                                            <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                        </div>
+                                        <div class="col-xs-5 col-md-5 col-sm-5">
+                                            <div>{{ field }}</div>
+                                        </div>
+                                        <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                        </div>
                                     </div>
                                     {% if field.label == "条款号" %}
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-xs-3 col-sm-3 col-md-3 " >
 
-                                        <div class="col-xs-3 col-sm-3 col-md-3 ">
+                                                        <select class="tkzj" id="e1"  onchange="showhctk(this)">
 
-                                            <div>
-                                                <select id="e1" style="width:100%;" style="float: left" onchange="showhctk(this)" >
-                                                    {% for field in hcblst %}
-                                                        <option value={{ field.zhangbh }}>
-                                                        {{ field.zhangbh }} {{ field.zhangmc }}
+                                                            {% for field in hcblst %}
+                                                                <option value={{ field.zhangbh }}>
+                                                                {{ field.zhangbh }} {{ field.zhangmc }}
+                                                            {% endfor %}
+                                                        </select>
 
-                                                    {% endfor %}
+                                                </div>
+                                                <div class=" col-xs-9 col-sm-9 col-md-9 ">
 
-                                                </select>
+                                                    <select  class="tkjn" id="e2" onchange="selecthctk(this)">
 
-
+                                                        <option value="AL">
+                                                    </select>
+                                                </div>
                                             </div>
-
-
                                         </div>
-
-                                        <div class="col-xs-9 col-sm-9 col-md-9 ">
-
-                                            <select class="tkhhh" id="e2" style="width:100%;">
-{#                                                {% for field in hcblst %}#}
-                                                    <option  value="AL">ssss
-{#                                                    {{ field.zhangbh }} {{ field.zhangmc }}#}
-
-{#                                                {% endfor %}#}
-
-                                            </select>
-{#                                               <label id="lbid">#}
-{#                                                    sdsdsfffffffffffffffffffffffff#}
-{#                                                </label>#}
-
-
-                                        </div>
-
-
-
-
                                     {% endif %}
 
                                 </div>
 
                             {% endfor %}
 
-
-                            <div class="row"><input style="margin-right: 80px" class="btn btn-primary pull-right"
-                                                    type="submit"></div>
-                        </form>
                     </div>
-                </div>
-            </div>
-
-
+                    <div class="row"><input style="margin-right: 80px" class="btn btn-primary pull-right"
+                                            type="submit"></div>
         </form>
+    </div>
+    </div>
+    </div>
 
 
-        <!-- /页面主体 -->
+    </form>
+
+
+    <!-- /页面主体 -->
     </div>
 
 {% endblock %}

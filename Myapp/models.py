@@ -248,8 +248,10 @@ class Bfhxiang(models.Model):
     yiju = models.CharField(max_length=100,verbose_name='依据的管理体系文件/检测标准')
     bfhms = models.CharField(max_length=200,verbose_name='不符合项事实描述')
     bfhjltype_choices = {
-        ('0', u'不符合'),
-        ('1', u'不适用'),
+
+        ('0', u'符  合'),
+        ('1', u'不符合'),
+        ('2', u'不适用'),
     }
     jielun = models.CharField(max_length=10,verbose_name='评审结果',choices=bfhjltype_choices,default=0)
     tkhao = models.CharField(max_length=10,verbose_name='条款号')

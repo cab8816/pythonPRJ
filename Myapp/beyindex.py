@@ -349,7 +349,6 @@ def Bfhxiang_edit(request):
     else:
         form = Bfhxiangform(request.POST)
         if form.is_valid():
-            data = form.cleaned_data
             form = Bfhxiangform(request.POST, instance=obj)
             form.save()
             return redirect(Bfhxiang_list)
@@ -391,14 +390,14 @@ def Bfhxiang_del(request):
         obj.delete()
     return redirect(Bfhxiang_list)
 
-
+# ajax
 def showhctkxx(request):
     if request.method == "POST":
         zbh = request.POST.get('zbh')
 
-        tiaokuans = Xcpshcb.objects.only('tkhao','psneirong').filter(zhangbh=zbh)
+        tiaokuans = Xcpshcb.objects.filter(zhangbh=zbh)
 
-        data = serializers.serialize("xml",tiaokuans)
+        data = serializers.serialize("xml",tiaokuans,fields=('tkhao','psneirong'))
         print(data)
         return HttpResponse(data)
 
