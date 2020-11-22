@@ -34,6 +34,7 @@ function createXMLHttpRequest() {
 
 function showhctk(self) {
     var zbh = self.value;
+    var i;
     var xmlhttp = createXMLHttpRequest();
     xmlhttp.open("POST", "/myapp/showhctkxx/", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -43,11 +44,23 @@ function showhctk(self) {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             var xmldoc = xmlhttp.responseText;
             var x =$.parseXML(xmldoc)
-            $("#e2").empty();
-            $(x).find('object').each( function () {
-                var v=$(this).children('field').text()
-                $("#e2").append("<option value='1'>" +v+ " </option>");
-            })
+            var obj = x.getElementsByTagName("object");
+
+             $("#e2").empty();
+
+            for( i = 0 ; i < obj.length;i++){
+                var tkhao = obj[i].getElementsByTagName("field")[2].childNodes[0].nodeValue;
+                var tkneirong = obj[i].getElementsByTagName("field")[3].childNodes[0].nodeValue;
+                $("#e2").append("<option value = "+tkhao+" >" +tkhao+" : "+tkneirong+ " </option>");
+
+            }
+
+            //
+            // $(x).find('object').each( function () {
+            //     // var v=$(this).children('field').text()
+            //     var v = x.getElementsByTagName("field")[3].childNodes[0].nodeValue;
+            //     $("#e2").append("<option value='1'>" +v+ " </option>");
+            // })
             // var x = xmldoc.getElementsByTagName("object");
             //
             // for (i =0 ;i < 10;i++){
