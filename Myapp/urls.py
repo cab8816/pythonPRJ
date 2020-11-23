@@ -20,20 +20,20 @@ urlpatterns = [
     path('beybiao4/', beyindex.beybiao4),
     path('signin/', beyindex.signin),
     path('person/', beyindex.person),
+
     path('Bfhxiang_del/', beyindex.Bfhxiang_del),
     path('Bfhxiang_add/', beyindex.Bfhxiang_add),
     path('Bfhxiang_edit/', beyindex.Bfhxiang_edit),
     path('Bfhxiang_list/', beyindex.Bfhxiang_list),
     path('showhctkxx/', beyindex.showhctkxx),
 
-    path('add_Bpsdwxx/', beyindex.add_Bpsdwxx),
+    path('Bpsdwxx_add/', beyindex.Bpsdwxx_add),
+
     path('Pingshenxxb_add/', beyindex.Pingshenxxb_add),
     path('Pingshenxxb_edit/', beyindex.Pingshenxxb_edit),
     path('Pingshenxxb_del/', beyindex.Pingshenxxb_del),
     path('Pingshenxxb_list/', beyindex.Pingshenxxb_list),
-    path('edit_bufuhexiang/', beyindex.edit_bufuhexiang),
-    path('add_bufuhexiang/', beyindex.add_bufuhexiang),
-    path('add_Xcpshcb/', beyindex.add_Xcpshcb),
+
     path('register/', beyindex.register),
     path('logout/', beyindex.logout),
     path('ajax_checkuser/', beyindex.ajax_checkuser),

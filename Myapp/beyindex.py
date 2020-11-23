@@ -182,20 +182,20 @@ def ajax_checkuser(request):
 # 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$
 
 
-def add_Bpsdwxx(request):
+def Bpsdwxx_add(request):
     if request.method == "GET":
         form = PsdwxxForm()
-        return render(request, "bpsdwxx.html", {"form": form})
+        return render(request, "bpsdwxx-edit.html", {"form": form})
     else:
         form = PsdwxxForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             Bpsdwxx.objects.create(**data)
             form = PsdwxxForm()
-            return render(request, "bpsdwxx.html", {"form": form})
+            return render(request, "bpsdwxx-edit.html", {"form": form})
         else:
             clean_errors = form.errors.get("__all__")
-        return render(request, "bpsdwxx.html", {"form": form, "clean_errors": clean_errors})
+        return render(request, "bpsdwxx-edit.html", {"form": form, "clean_errors": clean_errors})
 
 
 def getlogonstatus(request):
@@ -268,74 +268,6 @@ def Pingshenxxb_edit(request):
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
-
-
-@login_required(login_url='/myapp/signin/')
-def add_Xcpshcb(request):
-    mlstbiao = Xcpshcb.objects.all()
-    data1 = split_page(mlstbiao, request, 20)
-    return render(request, "Xcpshcb71.html", data1)
-
-
-def edit_bufuhexiang(request):
-    # username = request.COOKIES.get("user1")
-    # is_login = request.COOKIES.get("is_login")
-    # print(username, is_login)
-
-    mlogon = getlogonstatus(request)
-    username = mlogon['username']
-    if request.method == "GET":
-        id = request.GET.get('id')
-        obj = Xcpshcb.objects.filter(id=id).first()
-        form = XcpshcbForm(instance=obj)
-        data = {"form": form}
-        data.update(mlogon)
-        return render(request, "bufuhexiang.html", data)
-    else:
-        form = XcpshcbForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            print(data['tkhao'])
-            obj = Xcpshcb.objects.filter(tkhao=data['tkhao'])
-            obj.update(**data)
-            form = XcpshcbForm(instance=obj.first())
-            # return render(request, "bufuhexiang.html", {"form": form})
-            return redirect(add_Xcpshcb)
-        else:
-            clean_errors = form.errors.get("__all__")
-        data = {"form": form, "clean_errors": clean_errors}
-        data.update(mlogon)
-
-        return render(request, "bufuhexiang.html", data)
-
-
-def add_bufuhexiang(request):
-    username = request.cookies.get('username')
-    is_login = request.cookies.get('is_login')
-    print(username, is_login)
-    if request.method == "GET":
-
-        id = request.GET.get('id')
-        print(id)
-        obj = Xcpshcb.objects.filter(id=id).first()
-        obj2 = Pingshenxxb.objects.filter(id='1').first()
-        obj = Xcpshcb71.objects.create(psxxb=obj2, pshcxx=obj)
-        form = BFHXForm(instance=obj)
-        return render(request, "add-bufuhexiang.html", {"form": form})
-    else:
-        form = BFHXForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-
-            obj = Xcpshcb.objects.filter(tkhao=data['dis_tkhao'])
-            obj.update(**data)
-            form = XcpshcbForm(instance=obj.first())
-            # return render(request, "bufuhexiang.html", {"form": form})
-            return redirect(add_Xcpshcb)
-        else:
-            clean_errors = form.errors.get("__all__")
-        return render(request, "add-bufuhexiang.html",
-                      {"form": form, "clean_errors": clean_errors})
 
 
 def Bfhxiang_edit(request):

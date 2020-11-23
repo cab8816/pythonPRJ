@@ -1,0 +1,253 @@
+{% extends "bey-base.html" %}
+{% block mainbody %}
+
+
+    {#tbody>tr>td{#}
+    {#  position: relative;#}
+    {#}#}
+    {##}
+    {##}
+    {##}
+    {#.icon-0,.icon-1,.icon-2{#}
+    {#  position: absolute;#}
+    {#  top: -1px;#}
+    {#  left: -1px;#}
+    {#  font-size: 40px;#}
+    {#}    #}
+
+
+    <div class="page-content">
+        <!-- 面包屑导航 -->
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">资质评审</a>
+                </li>
+                <li class="active">评审信息表</li>
+            </ul>
+        </div>
+        <!-- /面包屑导航 -->
+        <!-- 页面主体 -->
+
+        <div class="page-body">
+            <div class="row">
+
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane active">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="widget">
+                                <div class="widget-header ">
+
+                            <span class="widget-caption">
+                                <span class="label label-primary graded">
+                                               评审信息列表
+                                </span>
+                            </span>
+                                    <div class="widget-buttons">
+                                        <a href="#" data-toggle="maximize">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="#" data-toggle="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="#" data-toggle="dispose">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="table-toolbar">
+
+
+                                        <div role="grid" id="editabledatatable_wrapper"
+                                             class="dataTables_wrapper form-inline no-footer">
+
+
+                                            <table class="table table-striped table-hover table-bordered dataTable no-footer"
+                                                   id="editabledatatable" aria-describedby="editabledatatable_info">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1" colspan="1" style="width: 80px;"
+                                                        aria-sort="ascending"
+                                                        aria-label="
+                                                                      Username   : activate to sort column ascending">
+                                                        通知号
+                                                    </th>
+
+                                                    <th class="sorting  hidden-xs"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        colspan="1" style="width: 280px;" aria-label="
+                                                                 Full Name  : activate to sort column ascending">
+                                                        机构名称
+                                                    </th>
+
+                                                    <th class="sorting  hidden-xs"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        colspan="1" style="width: 199px;" aria-label="
+                                                                  Full Name  : activate to sort column ascending">
+                                                        受理号
+                                                    </th>
+                                                    <th class="sorting  hidden-xs"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        colspan="1" style="width: 60px;" aria-label="
+                                                            Points  : activate to sort column ascending">
+                                                        申请事项
+                                                    </th>
+                                                    <th class="sorting"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        colspan="1" style="width: 190px;" aria-label="
+                                                              Notes : activate to sort column ascending">
+                                                        评审时间
+                                                    </th>
+
+                                                    <th class="sorting"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        style="width: 190px;"
+                                                        colspan="1" aria-label="
+                                                              Notes : activate to sort column ascending">
+                                                        评审地点
+                                                    </th>
+                                                    <th class="sorting"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        style="width: 100px;"
+                                                        colspan="1" aria-label="
+                                                              Notes : activate to sort column ascending">
+                                                        用户Id
+                                                    </th>
+                                                    <th class="sorting"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        style="width: 190px;"
+                                                        colspan="1" aria-label="
+                                                              Notes : activate to sort column ascending">
+                                                        被评审单位Id
+                                                    </th>
+                                                    <th class="sorting"
+                                                        aria-controls="editabledatatable"
+                                                        rowspan="1"
+                                                        style="width: 90px;"
+                                                        colspan="1" aria-label="
+                                                              Notes : activate to sort column ascending">
+                                                        UserInfo
+                                                    </th>
+
+
+                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                        style="width: 150px;"
+                                                        aria-label=" ">
+
+                                                    </th>
+
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                {% for lst in page %}
+                                                    <tr class="odd">
+
+                                                        <td>{{ lst.pstzh }}</td>
+                                                        <td>{{ lst.jcjgmc }}</td>
+                                                        <td class="hidden-xs "
+                                                            style="text-align: left">{{ lst.psslh }}</td>
+                                                        <td>{{ lst.sqsx }}</td>
+                                                        <td>{{ lst.psdate }}</td>
+                                                        <td>{{ lst.psadress }}</td>
+                                                        <td>{{ lst.user }}</td>
+                                                        <td>{{ lst.bpsdwxx }}</td>
+
+                                                        <td>{{ lst.userinfo.all.first }}</td>
+
+
+                                                        <td class=" " style="padding: 1px">
+                                                            <a href="/myapp/Pingshenxxb_edit/?id={{ lst.id }}"
+                                                               class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
+                                                                    class="glyphicon glyphicon-pencil"></i>
+                                                            </a>
+                                                            <a href="/myapp/Pingshenxxb_add/?id={{ lst.id }}"
+                                                               class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
+                                                                    class="glyphicon glyphicon-ok"></i>
+                                                            </a>
+                                                            <a onclick="return deleteobj()"  href="/myapp/Pingshenxxb_del/?id={{ lst.id }}"
+                                                               class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
+                                                                    class=" glyphicon glyphicon-remove"></i></a>
+
+                                                        </td>
+
+                                                    </tr>
+                                                {% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                            <div class="row DTTTFooter">
+                                                <div class="col-sm-6 col-xs-1">
+                                                    <div class="dataTables_info" id="editabledatatable_info"
+                                                         role="alert"
+                                                         aria-live="polite"
+                                                         aria-relevant="all"> {{ page.number }}/{{ paginator.num_pages }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-11">
+                                                    <div class="dataTables_paginate paging_bootstrap"
+                                                         id="editabledatatable_paginate">
+                                                        <ul class="pagination">
+
+                                                            <li class="prev {% if not page.has_previous %}disabled{% endif %}">
+                                                                {% if page.has_previous %}
+                                                                    <a href="/myapp/Pingshenxxb_list/?page={{ page.previous_page_number }}"><</a>
+                                                                {% endif %}
+                                                            </li>
+
+                                                            {% for num in dis_range %}
+                                                                <li>
+                                                                    <a href="/myapp/Pingshenxxb_list/?page={{ num }}">{{ num }}</a>
+                                                                </li>
+
+                                                            {% endfor %}
+                                                            <li class="next {% if not page.has_next %}disabled{% endif %}">
+                                                                {% if page.has_next %}
+                                                                    <a href="/myapp/Pingshenxxb_list/?page={{ page.next_page_number }}">></a>
+                                                                {% endif %}
+                                                            </li>
+
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div id="profile" class="tab-pane">
+                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
+                            squid.</p>
+                    </div>
+
+
+                </div>
+
+
+                <!-- \row -->
+            </div>
+
+
+            <!-- /页面主体 -->
+        </div>
+
+{% endblock %}

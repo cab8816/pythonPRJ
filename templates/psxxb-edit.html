@@ -9,7 +9,7 @@
                     <i class="fa fa-home"></i>
                     <a href="#">资质评审</a>
                 </li>
-                <li class="active">被评审单位信息</li>
+                <li class="active">评审任务信息</li>
             </ul>
         </div>
         <!-- /面包屑导航 -->
@@ -28,18 +28,21 @@
 
                             {% for field in form %}
                                 <div class="row">
-                                    <div class="col-xs-3 col-sm-3 col-md-3 "  style="height: 200px">
-                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                    </div>
-                                    <div class="col-xs-5 col-md-5 col-sm-5" style="height: 200px">
-                                        <div>{{ field }}</div>
-                                    </div>
-                                    <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                    <div class="form-group">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 ">
+                                            <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                        </div>
+                                        <div class="col-xs-5 col-md-5 col-sm-5" >
+                                            <div>{{ field }}</div>
+                                        </div>
+                                        <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             {% endfor %}
 
-                            <div class="row" ><input style="margin-right: 80px" class="btn btn-primary pull-right" type="submit"></div>
+                            <div class="row"><input style="margin-right: 80px" class="btn btn-primary pull-right"
+                                                    type="submit"></div>
                         </form>
                     </div>
                 </div>

@@ -66,11 +66,17 @@ function selecthctk(self) {
     $("#id_tkhao").val(txt);
 }
 
-function deleteJob() {
-    if (confirm("确定要删除吗?")) {
+function deleteobj() {
+    if (confirm("确定要删除吗11?")) {
 
         return true;
     } else {
         return false;
     }
 }
+// 为什么要调出开发模式，因为官方对于Disable cache功能是这样解释的：Disable cache(while DevTools is open)
+// 也就是调出开发模式时，选择Disable cache才会清除缓存。
+// Chrome官方推荐使用如下快捷键，就可以不使用页面缓存进行刷新
+//
+// Windows和Linux操作系统: Shift+F5 或 Ctrl+Shift+R
+// Mac OS: Cmd+Shft+R

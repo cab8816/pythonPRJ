@@ -16,202 +16,203 @@
         <!-- 页面主体 -->
 
         <div class="page-body">
+
             <div class="row">
+                {#            <div class="tab-content">#}
+                {#                <div id="home" class="tab-pane active">#}
 
+                <div class="col-xs-12 col-md-12">
+                    <div class="widget">
+                        <div class="widget-header ">
 
-                <div class="tab-content">
-                    <div id="home" class="tab-pane active">
-                        <div class="col-xs-12 col-md-12">
-                            <div class="widget">
-                                <div class="widget-header ">
 
                             <span class="widget-caption">
                                 <span class="label label-primary graded">
                                                不符合项信息表列表
                                 </span>
                             </span>
-                                    <div class="widget-buttons">
-                                        <a href="#" data-toggle="maximize">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
-                                        <a href="#" data-toggle="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                        <a href="#" data-toggle="dispose">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="table-toolbar">
+                            <div class="widget-buttons">
+                                <a href="#" data-toggle="maximize">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                                <a href="#" data-toggle="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                                <a href="#" data-toggle="dispose">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="table-toolbar">
 
 
-                                        <div role="grid" id=""
-                                             class="dataTables_wrapper form-inline no-footer">
+                                <div role="grid" id=""
+                                     class="dataTables_wrapper form-inline no-footer">
 
 
-                                            <table class="table table-striped table-hover table-bordered dataTable no-footer" >
-                                                <thead>
-                                                <tr role="row">
-                                                    <th class="" rowspan="1" colspan="1" style="width: 80px;">
-                                                        评审通知号
-                                                    </th>
+                                    <table class="table table-striped table-hover table-bordered dataTable no-footer">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="" rowspan="1" colspan="1" style="width: 80px;">
+                                                评审通知号
+                                            </th>
 
-                                                    <th class="hidden-xs"
+                                            <th class="hidden-xs"
 
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 280px;" >
-                                                        完成场所
-                                                    </th>
+                                                rowspan="1"
+                                                colspan="1" style="width: 280px;">
+                                                完成场所
+                                            </th>
 
-                                                    <th class="  hidden-xs"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 199px;" >
-                                                        完成日期
-                                                    </th>
-                                                    <th class="  hidden-xs"
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 60px;" >
-                                                        被评审部门
-                                                    </th>
-                                                    <th class=""
-                                                        rowspan="1"
-                                                        colspan="1" style="width: 190px;" >
-                                                        陪同人
-                                                    </th>
+                                            <th class="  hidden-xs"
+                                                rowspan="1"
+                                                colspan="1" style="width: 199px;">
+                                                完成日期
+                                            </th>
+                                            <th class="  hidden-xs"
+                                                rowspan="1"
+                                                colspan="1" style="width: 60px;">
+                                                被评审部门
+                                            </th>
+                                            <th class=""
+                                                rowspan="1"
+                                                colspan="1" style="width: 190px;">
+                                                陪同人
+                                            </th>
 
-                                                    <th class=""
-                                                        rowspan="1"
-                                                        style="width: 190px;"
-                                                        colspan="1" >
-                                                        评审结果
-                                                    </th>
-                                                    <th class=""
-                                                        rowspan="1"
-                                                        style="width: 100px;"
-                                                        colspan="1" >
-                                                        条款号
-                                                    </th>
-                                                    <th class=""
-                                                        rowspan="1"
-                                                        style="width: 190px;"
-                                                        colspan="1" >
-                                                        确认方式
-                                                    </th>
-                                                    <th class=""
-                                                        rowspan="1"
-                                                        style="width: 90px;"
-                                                        colspan="1" >
-                                                        评审员
-                                                    </th>
-
-
-                                                    <th class="sorting_disabled" rowspan="1" colspan="1"
-                                                        style="width: 150px;"
-                                                        aria-label=" ">
-
-                                                    </th>
-
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
-
-                                                {% for lst in page %}
-                                                    <tr class="odd">
-
-                                                        <td>{{ lst.psxxb }}</td>
-                                                        <td>{{ lst.bfhxwc }}</td>
-                                                        <td class="hidden-xs "
-                                                            style="text-align: left">{{ lst.bfhxwcdate }}</td>
-                                                        <td>{{ lst.bpsbm }}</td>
-                                                        <td>{{ lst.ptren }}</td>
-                                                        <td>{{ lst.jielun }}</td>
-                                                        <td>{{ lst.tkhao }}</td>
-                                                        <td>{{ lst.qrfs }}</td>
-
-                                                        <td>{{ lst.psyname }}</td>
+                                            <th class=""
+                                                rowspan="1"
+                                                style="width: 190px;"
+                                                colspan="1">
+                                                评审结果
+                                            </th>
+                                            <th class=""
+                                                rowspan="1"
+                                                style="width: 100px;"
+                                                colspan="1">
+                                                条款号
+                                            </th>
+                                            <th class=""
+                                                rowspan="1"
+                                                style="width: 190px;"
+                                                colspan="1">
+                                                确认方式
+                                            </th>
+                                            <th class=""
+                                                rowspan="1"
+                                                style="width: 90px;"
+                                                colspan="1">
+                                                评审员
+                                            </th>
 
 
-                                                        <td class=" " style="padding: 1px">
-                                                            <a href="/myapp/Bfhxiang_edit/?id={{ lst.id }}"
-                                                               class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
-                                                                    class="glyphicon glyphicon-pencil"></i>
-                                                            </a>
-                                                            <a href="/myapp/Bfhxiang_add/?id={{ lst.id }}"
-                                                               class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
-                                                                    class="glyphicon glyphicon-plus"></i>
-                                                            </a>
-                                                            <a onclick="return deleteJob()" href="/myapp/Bfhxiang_del/?id={{ lst.id }}"
-                                                               class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
-                                                                    class=" glyphicon glyphicon-remove"></i></a>
+                                            <th class="sorting_disabled" rowspan="1" colspan="1"
+                                                style="width: 150px;"
+                                                aria-label=" ">
 
-                                                        </td>
+                                            </th>
 
-                                                    </tr>
-                                                {% endfor %}
+                                        </tr>
+                                        </thead>
 
-                                                </tbody>
-                                            </table>
-                                            <div class="row DTTTFooter">
-                                                <div class="col-sm-6 col-xs-1">
-                                                    <div class="dataTables_info" id="editabledatatable_info"
-                                                         role="alert"
-                                                         aria-live="polite"
-                                                         aria-relevant="all"> {{ page.number }}/{{ paginator.num_pages }}
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 col-xs-11">
-                                                    <div class="dataTables_paginate paging_bootstrap"
-                                                         id="editabledatatable_paginate">
-                                                        <ul class="pagination">
+                                        <tbody>
 
-                                                            <li class="prev {% if not page.has_previous %}disabled{% endif %}">
-                                                                {% if page.has_previous %}
-                                                                    <a href="/myapp/Bfhxiang_list/?page={{ page.previous_page_number }}"><</a>
-                                                                {% endif %}
-                                                            </li>
+                                        {% for lst in page %}
+                                            <tr class="odd">
 
-                                                            {% for num in dis_range %}
-                                                                <li>
-                                                                    <a href="/myapp/Bfhxiang_list/?page={{ num }}">{{ num }}</a>
-                                                                </li>
+                                                <td>{{ lst.psxxb }}</td>
+                                                <td>{{ lst.bfhxwc }}</td>
+                                                <td class="hidden-xs "
+                                                    style="text-align: left">{{ lst.bfhxwcdate }}</td>
+                                                <td>{{ lst.bpsbm }}</td>
+                                                <td>{{ lst.ptren }}</td>
+                                                <td>{{ lst.jielun }}</td>
+                                                <td>{{ lst.tkhao }}</td>
+                                                <td>{{ lst.qrfs }}</td>
 
-                                                            {% endfor %}
-                                                            <li class="next {% if not page.has_next %}disabled{% endif %}">
-                                                                {% if page.has_next %}
-                                                                    <a href="/myapp/Bfhxiang_list/?page={{ page.next_page_number }}">></a>
-                                                                {% endif %}
-                                                            </li>
+                                                <td>{{ lst.psyname }}</td>
 
 
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <td class=" " style="padding: 1px">
+                                                    <a href="/myapp/Bfhxiang_edit/?id={{ lst.id }}"
+                                                       class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
+                                                            class="glyphicon glyphicon-pencil"></i>
+                                                    </a>
+                                                    <a href="/myapp/Bfhxiang_add/?id={{ lst.id }}"
+                                                       class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
+                                                            class="glyphicon glyphicon-plus"></i>
+                                                    </a>
+                                                    <a onclick="return deleteobj()"
+                                                       href="/myapp/Bfhxiang_del/?id={{ lst.id }}"
+                                                       class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
+                                                            class=" glyphicon glyphicon-remove"></i></a>
+
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                    <div class="row DTTTFooter">
+                                        <div class="col-sm-6 col-xs-1">
+                                            <div class="dataTables_info" id="editabledatatable_info"
+                                                 role="alert"
+                                                 aria-live="polite"
+                                                 aria-relevant="all"> {{ page.number }}/{{ paginator.num_pages }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-11">
+                                            <div class="dataTables_paginate paging_bootstrap"
+                                                 id="editabledatatable_paginate">
+                                                <ul class="pagination">
+
+                                                    <li class="prev {% if not page.has_previous %}disabled{% endif %}">
+                                                        {% if page.has_previous %}
+                                                            <a href="/myapp/Bfhxiang_list/?page={{ page.previous_page_number }}"><</a>
+                                                        {% endif %}
+                                                    </li>
+
+                                                    {% for num in dis_range %}
+                                                        <li>
+                                                            <a href="/myapp/Bfhxiang_list/?page={{ num }}">{{ num }}</a>
+                                                        </li>
+
+                                                    {% endfor %}
+                                                    <li class="next {% if not page.has_next %}disabled{% endif %}">
+                                                        {% if page.has_next %}
+                                                            <a href="/myapp/Bfhxiang_list/?page={{ page.next_page_number }}">></a>
+                                                        {% endif %}
+                                                    </li>
+
+
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-                    </div>
-
-                    <div id="profile" class="tab-pane">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
-                            squid.</p>
                     </div>
 
 
                 </div>
+            </div>
 
-
-                <!-- \row -->
+            <div id="profile" class="tab-pane">
+                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
+                    squid.</p>
             </div>
 
 
-            <!-- /页面主体 -->
         </div>
+
+        <!-- \row -->
+    </div>
+
+
+    <!-- /页面主体 -->
+    </div>
 
 {% endblock %}
