@@ -11,8 +11,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 
 from Myapp import models
-from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm, Bfhxiangform
-from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo, Bfhxiang
+from Myapp.My_forms import PsdwxxForm, PingshenxxbForm, XcpshcbForm, BFHXForm, Bfhxiangform, Bpsdwxxform, Biao72form
+from Myapp.models import Biao4, Bpsdwxx, Pingshenxxb, Xcpshcb71, Xcpshcb, UserInfo, Bfhxiang, Biao72
 from django.urls import reverse
 
 
@@ -181,21 +181,63 @@ def ajax_checkuser(request):
 
 # 密码 组成  ^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$
 
+# 被评审单位信息
+
+
+@login_required(login_url='/myapp/signin/')
+def Bpsdwxx_list(request):
+    mlogon = getlogonstatus(request)
+    username = mlogon['username']
+
+    lst_bpsdwxx = Bpsdwxx.objects.all()
+    data1 = split_page(lst_bpsdwxx, request, 10)
+    # data1.update({"username": username, "is_login": is_login})
+    data1.update(mlogon)
+    return render(request, "bpsdwxx-list.html", data1)
 
 def Bpsdwxx_add(request):
     if request.method == "GET":
-        form = PsdwxxForm()
+        form = Bpsdwxxform()
         return render(request, "bpsdwxx-edit.html", {"form": form})
     else:
-        form = PsdwxxForm(request.POST)
+        form = Bpsdwxxform(request.POST)
         if form.is_valid():
-            data = form.cleaned_data
-            Bpsdwxx.objects.create(**data)
-            form = PsdwxxForm()
-            return render(request, "bpsdwxx-edit.html", {"form": form})
+            form = Bpsdwxxform(request.POST)
+            form.save()
+            return redirect(Bpsdwxx_list)
         else:
             clean_errors = form.errors.get("__all__")
         return render(request, "bpsdwxx-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Bpsdwxx_edit(request):
+    global obj
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Bpsdwxx.objects.filter(id=mid).first()
+        form = Bpsdwxxform(instance=obj)
+        return render(request, "psxxb-edit.html", {"form": form})
+    else:
+        form = Bpsdwxxform(request.POST)
+        if form.is_valid():
+            form = Bpsdwxxform(request.POST, instance=obj)
+            form.save()
+            return redirect(Bpsdwxx_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Bpsdwxx_del(request):
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Bpsdwxx.objects.filter(id=mid).first()
+        obj.delete()
+    return redirect(Bpsdwxx_list)
+
+
+
+
+
+
 
 
 def getlogonstatus(request):
@@ -204,23 +246,7 @@ def getlogonstatus(request):
     return ({"username": username, "is_login": is_login})
 
 
-def Pingshenxxb_add(request):
-    if request.method == "GET":
-        form = PingshenxxbForm()
-        return render(request, "psxxb-edit.html", {"form": form})
-    else:
-        form = PingshenxxbForm(request.POST)
-        if form.is_valid():
-            # data = form.cleaned_data
-            # Pingshenxxb.objects.create(**data)
-            form = PingshenxxbForm(request.POST)
-            form.save()
 
-            # return render(request, "psxxb-edit.html", {"form": form})
-            return redirect(Pingshenxxb_list)
-        else:
-            clean_errors = form.errors.get("__all__")
-        return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
 
 
 @login_required(login_url='/myapp/signin/')
@@ -237,13 +263,19 @@ def Pingshenxxb_list(request):
     data1.update(mlogon)
     return render(request, "psxxb-list.html", data1)
 
-
-def Pingshenxxb_del(request):
+def Pingshenxxb_add(request):
     if request.method == "GET":
-        mid = request.GET.get('id')
-        obj = Pingshenxxb.objects.filter(id=mid).first()
-        obj.delete()
-    return redirect(Pingshenxxb_list)
+        form = PingshenxxbForm()
+        return render(request, "psxxb-edit.html", {"form": form})
+    else:
+        form = PingshenxxbForm(request.POST)
+        if form.is_valid():
+            form = PingshenxxbForm(request.POST)
+            form.save()
+            return redirect(Pingshenxxb_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
 
 
 def Pingshenxxb_edit(request):
@@ -269,24 +301,17 @@ def Pingshenxxb_edit(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "psxxb-edit.html", {"form": form, "clean_errors": clean_errors})
 
-
-def Bfhxiang_edit(request):
-    global obj
+def Pingshenxxb_del(request):
     if request.method == "GET":
         mid = request.GET.get('id')
-        obj = Bfhxiang.objects.filter(id=mid).first()
-        hcblst = Xcpshcb.objects.all().values('zhangbh', 'zhangmc').distinct()
-        form = Bfhxiangform(instance=obj)
-        return render(request, "Bfhxiang-edit.html", {"form": form, 'hcblst': hcblst})
-    else:
-        form = Bfhxiangform(request.POST)
-        if form.is_valid():
-            form = Bfhxiangform(request.POST, instance=obj)
-            form.save()
-            return redirect(Bfhxiang_list)
-        else:
-            clean_errors = form.errors.get("__all__")
-        return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
+        obj = Pingshenxxb.objects.filter(id=mid).first()
+        obj.delete()
+    return redirect(Pingshenxxb_list)
+
+
+
+
+
 
 
 def Bfhxiang_list(request):
@@ -316,6 +341,23 @@ def Bfhxiang_add(request):
             clean_errors = form.errors.get("__all__")
         return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
 
+def Bfhxiang_edit(request):
+    global obj
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Bfhxiang.objects.filter(id=mid).first()
+        hcblst = Xcpshcb.objects.all().values('zhangbh', 'zhangmc').distinct()
+        form = Bfhxiangform(instance=obj)
+        return render(request, "Bfhxiang-edit.html", {"form": form, 'hcblst': hcblst})
+    else:
+        form = Bfhxiangform(request.POST)
+        if form.is_valid():
+            form = Bfhxiangform(request.POST, instance=obj)
+            form.save()
+            return redirect(Bfhxiang_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "Bfhxiang-edit.html", {"form": form, "clean_errors": clean_errors})
 
 def Bfhxiang_del(request):
     if request.method == "GET":
@@ -324,6 +366,7 @@ def Bfhxiang_del(request):
         obj.delete()
     return redirect(Bfhxiang_list)
 
+
 # ajax
 def showhctkxx(request):
     if request.method == "POST":
@@ -331,9 +374,59 @@ def showhctkxx(request):
 
         tiaokuans = Xcpshcb.objects.filter(zhangbh=zbh)
 
-        data = serializers.serialize("xml",tiaokuans,fields=('tkhao','psneirong'))
+        data = serializers.serialize("xml", tiaokuans, fields=('tkhao', 'psneirong'))
         # print(data)
         return HttpResponse(data)
 
-
     return redirect("/myapp/Bfhxiang_edit/")
+
+
+# biao72
+@login_required(login_url='/myapp/signin/')
+def Biao72_list(request):
+    mlogon = getlogonstatus(request)
+    username = mlogon['username']
+
+    lst_bpsdwxx = Biao72.objects.all()
+    data1 = split_page(lst_bpsdwxx, request, 10)
+    # data1.update({"username": username, "is_login": is_login})
+    data1.update(mlogon)
+    return render(request, "Biao72-list.html", data1)
+
+def Biao72_add(request):
+    if request.method == "GET":
+        form = Biao72form()
+        return render(request, "bpsdwxx-edit.html", {"form": form})
+    else:
+        form = Biao72form(request.POST)
+        if form.is_valid():
+            form = Biao72form(request.POST)
+            form.save()
+            return redirect(Biao72_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "Biao72-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Biao72_edit(request):
+    global obj
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Biao72.objects.filter(id=mid).first()
+        form = Biao72form(instance=obj)
+        return render(request, "Biao72-edit.html", {"form": form})
+    else:
+        form = Biao72form(request.POST)
+        if form.is_valid():
+            form = Biao72form(request.POST, instance=obj)
+            form.save()
+            return redirect(Biao72_list)
+        else:
+            clean_errors = form.errors.get("__all__")
+        return render(request, "Biao72-edit.html", {"form": form, "clean_errors": clean_errors})
+
+def Biao72_del(request):
+    if request.method == "GET":
+        mid = request.GET.get('id')
+        obj = Biao72.objects.filter(id=mid).first()
+        obj.delete()
+    return redirect(Biao72_list)

@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.utils import timezone
 
-from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb, Bfhxiang
+from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb, Bfhxiang, Bpsdwxx, Biao72
 
 
 class PsdwxxForm(forms.Form):
@@ -126,10 +126,7 @@ class Bfhxiangform(ModelForm):
                     'style': "height:75px;width:100%;margin:1px;",
                     "placeholder": "依据",
                     'class': 'form-control',
-
-
                 }
-
             ),
             #
             "bfhms": forms.widgets.Textarea(
@@ -137,23 +134,34 @@ class Bfhxiangform(ModelForm):
                     "placeholder": "不符合项事实描述",
                     'style': "height:75px;width:100%;margin:1px",
                     'class': 'form-control',
-
                 },
             ),
 
             "jielun": forms.widgets.Select(
-
                 choices=[(0, '符11合'), (1, '不符合'), (2, '不适用')],
-
             ),
 
             "bfhxwcdate": forms.widgets.SelectDateWidget(
                 attrs={
                     "input_type": 'text',
-
                     "template_name": 'django/forms/widgets/SelectDateWidget.html',
-
                 },
 
             ),
         }
+
+
+
+class Bpsdwxxform(ModelForm):
+    # 被评审单位信息编辑表
+    class Meta:
+        model = Bpsdwxx
+        fields = ['jyjcjgmc', 'zcdz', 'jydz', 'yzbm', 'chuanz', 'email', 'fzr', 'fzrzw', 'fzrgddh', 'fzryddh',
+                  'llr', 'llrzw', 'llrgddh', 'llryddh', 'sfrdw', 'sfrdwdz']
+
+class Biao72form(ModelForm):
+    # 被评审单位信息编辑表
+    class Meta:
+        model = Biao72
+        fields = ['psxxb', 'xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'yjbztk', 'xcsy', 'nlyz', 'clsh',
+                  'bdjg', 'xcys', 'xctw', 'cyjlbg', 'hcyq', 'sfqr', 'beizu']

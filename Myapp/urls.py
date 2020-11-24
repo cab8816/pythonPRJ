@@ -21,13 +21,24 @@ urlpatterns = [
     path('signin/', beyindex.signin),
     path('person/', beyindex.person),
 
-    path('Bfhxiang_del/', beyindex.Bfhxiang_del),
+
+    path('Bfhxiang_list/', beyindex.Bfhxiang_list),
     path('Bfhxiang_add/', beyindex.Bfhxiang_add),
     path('Bfhxiang_edit/', beyindex.Bfhxiang_edit),
-    path('Bfhxiang_list/', beyindex.Bfhxiang_list),
+    path('Bfhxiang_del/', beyindex.Bfhxiang_del),
+
+    path('Biao72_list/', beyindex.Biao72_list),
+    path('Biao72_add/', beyindex.Biao72_add),
+    path('Biao72_edit/', beyindex.Biao72_edit),
+    path('Biao72_del/', beyindex.Biao72_del),
+
     path('showhctkxx/', beyindex.showhctkxx),
 
+
+    path('Bpsdwxx_list/', beyindex.Bpsdwxx_list),
     path('Bpsdwxx_add/', beyindex.Bpsdwxx_add),
+    path('Bpsdwxx_edit/', beyindex.Bpsdwxx_edit),
+    path('Bpsdwxx_del/', beyindex.Bpsdwxx_del),
 
     path('Pingshenxxb_add/', beyindex.Pingshenxxb_add),
     path('Pingshenxxb_edit/', beyindex.Pingshenxxb_edit),

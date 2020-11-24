@@ -67,7 +67,7 @@ function selecthctk(self) {
 }
 
 function deleteobj() {
-    if (confirm("确定要删除吗11?")) {
+    if (confirm("确定要删除吗?")) {
 
         return true;
     } else {

@@ -9,7 +9,7 @@
                     <i class="fa fa-home"></i>
                     <a href="#">资质评审</a>
                 </li>
-                <li class="active">被评审单位信息表</li>
+                <li class="active">7-2表 信息表</li>
             </ul>
         </div>
         <!-- /面包屑导航 -->
@@ -26,10 +26,13 @@
 
                             <span class="widget-caption">
                                 <span class="label label-primary graded">
-                                               被评审单位信息表列表
+                                               表7-2 信息表列表
                                 </span>
                             </span>
                             <div class="widget-buttons">
+                                 <a href="/myapp/Biao72_add/" data-toggle="">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </a>
                                 <a href="#" data-toggle="maximize">
                                     <i class="fa fa-expand"></i>
                                 </a>
@@ -119,30 +122,30 @@
                                         {% for lst in page %}
                                             <tr class="odd">
 
-                                                <td>{{ lst.jyjcjgmc }}</td>
-                                                <td>{{ lst.zcdz }}</td>
+                                                <td>{{ lst.psxxb }}</td>
+                                                <td>{{ lst.xuhao }}</td>
                                                 <td class="hidden-xs "
-                                                    style="text-align: left">{{ lst.jydz }}</td>
-                                                <td>{{ lst.yzbm }}</td>
-                                                <td>{{ lst.chuanz }}</td>
-                                                <td>{{ lst.email }}</td>
-                                                <td>{{ lst.fzr }}</td>
-                                                <td>{{ lst.fzrzw }}</td>
+                                                    style="text-align: left">{{ lst.xmmc }}</td>
+                                                <td>{{ lst.yjbz }}</td>
+                                                <td>{{ lst.xmxh }}</td>
+                                                <td>{{ lst.csmc }}</td>
+                                                <td>{{ lst.yjbztk }}</td>
+                                                <td>{{ lst.xcsy }}</td>
 
-                                                <td>{{ lst.fzrgddh }}</td>
+                                                <td>{{ lst.nlyz }}</td>
 
 
                                                 <td class=" " style="padding: 1px">
-                                                    <a href="/myapp/Bpsdwxx_edit/?id={{ lst.id }}"
+                                                    <a href="/myapp/Biao72_edit/?id={{ lst.id }}"
                                                        class="btn btn-purple btn-xs  col-sm-4 col-xs-12"><i
                                                             class="glyphicon glyphicon-pencil"></i>
                                                     </a>
-                                                    <a href="/myapp/Bpsdwxx_add/?id={{ lst.id }}"
+                                                    <a href="/myapp/Biao72_add/?id={{ lst.id }}"
                                                        class="btn btn-success btn-xs  col-sm-4 col-xs-12"><i
                                                             class="glyphicon glyphicon-plus"></i>
                                                     </a>
                                                     <a onclick="return deleteobj()"
-                                                       href="/myapp/Bpsdwxx_del/?id={{ lst.id }}"
+                                                       href="/myapp/Biao72_del/?id={{ lst.id }}"
                                                        class="btn btn-danger btn-xs  col-sm-4 col-xs-12"><i
                                                             class=" glyphicon glyphicon-remove"></i></a>
 
@@ -168,19 +171,19 @@
 
                                                     <li class="prev {% if not page.has_previous %}disabled{% endif %}">
                                                         {% if page.has_previous %}
-                                                            <a href="/myapp/Bpsdwxx_list/?page={{ page.previous_page_number }}"><</a>
+                                                            <a href="/myapp/Biao72_list/?page={{ page.previous_page_number }}"><</a>
                                                         {% endif %}
                                                     </li>
 
                                                     {% for num in dis_range %}
                                                         <li>
-                                                            <a href="/myapp/Bpsdwxx_list/?page={{ num }}">{{ num }}</a>
+                                                            <a href="/myapp/Biao72_list/?page={{ num }}">{{ num }}</a>
                                                         </li>
 
                                                     {% endfor %}
                                                     <li class="next {% if not page.has_next %}disabled{% endif %}">
                                                         {% if page.has_next %}
-                                                            <a href="/myapp/Bpsdwxx_list/?page={{ page.next_page_number }}">></a>
+                                                            <a href="/myapp/Biao72_list/?page={{ page.next_page_number }}">></a>
                                                         {% endif %}
                                                     </li>
 
