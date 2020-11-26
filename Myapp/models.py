@@ -174,7 +174,7 @@ class Biao5(models.Model):
     def __str__(self):
         return self.name
 
-
+BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 class Biao72(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
     xuhao = models.CharField(max_length=4, verbose_name="序号")
@@ -183,8 +183,8 @@ class Biao72(models.Model):
     xmxh = models.CharField(max_length=20, verbose_name="参数序号")
     csmc = models.CharField(max_length=100, verbose_name="参数名称")
     yjbztk = models.CharField(max_length=300, verbose_name="标准条款号")
-    xcsy = models.BooleanField(verbose_name="现场试验", default=False)
-    nlyz = models.BooleanField(verbose_name="利用能力验证结果", default=False)
+    xcsy = models.BooleanField(verbose_name="现场试验", default=True)
+    nlyz = models.BooleanField(verbose_name="利用能力验证结果", default=False,)
     clsh = models.BooleanField(verbose_name="测量审核盲样试验", default=False)
     bdjg = models.BooleanField(verbose_name="利用实验室间比对结果", default=False)
     xcys = models.BooleanField(verbose_name="现场演示", default=False)
@@ -235,6 +235,7 @@ class Xcpshcb71(models.Model):
     def __str__(self):
         return self.psjg
 
+
 class Bfhxiang(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', verbose_name="评审通知号", on_delete=models.CASCADE, null=True)
     bfhxtype_choices = {
@@ -243,18 +244,18 @@ class Bfhxiang(models.Model):
     }
     bfhxwc = models.CharField(max_length=1, verbose_name='完成场所', choices=bfhxtype_choices, default=1)
     bfhxwcdate = models.DateField(verbose_name='完成日期')
-    bpsbm = models.CharField(max_length=20,verbose_name='被评审部门')
-    ptren = models.CharField(max_length=10,verbose_name='陪同人')
-    yiju = models.CharField(max_length=100,verbose_name='依据的管理体系文件/检测标准')
-    bfhms = models.CharField(max_length=200,verbose_name='不符合项事实描述')
+    bpsbm = models.CharField(max_length=20, verbose_name='被评审部门')
+    ptren = models.CharField(max_length=10, verbose_name='陪同人')
+    yiju = models.CharField(max_length=100, verbose_name='依据的管理体系文件/检测标准')
+    bfhms = models.CharField(max_length=200, verbose_name='不符合项事实描述')
     bfhjltype_choices = {
 
         ('0', u'符  合'),
         ('1', u'不符合'),
         ('2', u'不适用'),
     }
-    jielun = models.CharField(max_length=10,verbose_name='评审结果',choices=bfhjltype_choices,default=0)
-    tkhao = models.CharField(max_length=10,verbose_name='条款号')
+    jielun = models.CharField(max_length=10, verbose_name='评审结果', choices=bfhjltype_choices, default=0)
+    tkhao = models.CharField(max_length=10, verbose_name='条款号')
 
     qrfstype_choices = {
         ('0', u'提供必要的见证材料'),
@@ -262,14 +263,14 @@ class Bfhxiang(models.Model):
         ('2', u'其他'),
     }
     qrfs = models.CharField(max_length=1, verbose_name='确认方式', choices=qrfstype_choices, default=0)
-    psyname = models.CharField(max_length=50,verbose_name='评审员签字')
+    psyname = models.CharField(max_length=50, verbose_name='评审员签字')
 
     qryj_choices = {
         ('0', u'确认'),
         ('1', u'不确认'),
     }
     bfsqueren = models.CharField(max_length=1, verbose_name='被评审方确认意见', choices=qryj_choices, default=0)
-    zzqueren  = models.CharField(max_length=1, verbose_name='评审组长确认意见', choices=qryj_choices, default=0)
+    zzqueren = models.CharField(max_length=1, verbose_name='评审组长确认意见', choices=qryj_choices, default=0)
 
     class Meta:
         verbose_name = "不符合项记录表6"
@@ -277,6 +278,3 @@ class Bfhxiang(models.Model):
 
     def __str__(self):
         return self.tkhao
-
-
-

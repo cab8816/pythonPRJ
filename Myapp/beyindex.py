@@ -430,3 +430,6 @@ def Biao72_del(request):
         obj = Biao72.objects.filter(id=mid).first()
         obj.delete()
     return redirect(Biao72_list)
+
+def beee(request):
+    return render(request,"teee.html")

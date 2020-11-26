@@ -126,7 +126,7 @@ class Bfhxiangform(ModelForm):
                     'style': "height:75px;width:100%;margin:1px;",
                     "placeholder": "依据",
                     'class': 'form-control',
-                }
+                },
             ),
             #
             "bfhms": forms.widgets.Textarea(
@@ -150,8 +150,6 @@ class Bfhxiangform(ModelForm):
             ),
         }
 
-
-
 class Bpsdwxxform(ModelForm):
     # 被评审单位信息编辑表
     class Meta:
@@ -165,3 +163,24 @@ class Biao72form(ModelForm):
         model = Biao72
         fields = ['psxxb', 'xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'yjbztk', 'xcsy', 'nlyz', 'clsh',
                   'bdjg', 'xcys', 'xctw', 'cyjlbg', 'hcyq', 'sfqr', 'beizu']
+
+        # widgets = {
+        #     "nlyz": forms.widgets.Select(
+        #
+        #         attrs={
+        #             'class': 'form-control btn-label glyphicon glyphicon-ok',
+        #             "template_name": 'django/forms/widgets/select.html',
+        #             'option_template_name': 'django/forms/widgets/select_option.html',
+        #
+        #         },
+        #
+        #
+        #     ),
+        #
+        #
+        #
+        #
+        # },
+        # labels = {
+        #      'nlyz': '序号',
+        #          },

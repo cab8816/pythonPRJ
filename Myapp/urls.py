@@ -32,6 +32,8 @@ urlpatterns = [
     path('Biao72_edit/', beyindex.Biao72_edit),
     path('Biao72_del/', beyindex.Biao72_del),
 
+    path('beee/', beyindex.beee),
+
     path('showhctkxx/', beyindex.showhctkxx),
 
 

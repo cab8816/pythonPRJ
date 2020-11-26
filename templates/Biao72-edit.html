@@ -20,7 +20,7 @@
 
             <div class="widget">
                 <div class="widget-header bordered-top bordered-palegreen">
-                    <span class="widget-caption">Default Inputs</span>
+                    <span class="widget-caption">表7-2 信息表列表编辑</span>
                 </div>
                 <div class="widget-body">
                     <div class="collapse in">
@@ -31,15 +31,33 @@
                                     <div class="col-xs-3 col-sm-3 col-md-3 ">
                                         <label for="id_{{ field.name }}">{{ field.label }}</label>
                                     </div>
+
                                     <div class="col-xs-5 col-md-5 col-sm-5">
-                                        <div>{{ field }}</div>
+
+                                        {% if field.widget_type == 'checkbox' %}
+
+
+                                            <label>
+                                                <input class="checkbox-slider toggle colored-blue" type="checkbox">
+                                                <span class="text"></span>
+                                            </label>
+                                        {% else %}
+                                            <div>{{ field }}</div>
+                                        {% endif %}
+
                                     </div>
                                     <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
                                     </div>
                                 </div>
                             {% endfor %}
-
-                            <div class="row" ><input style="margin-right: 80px" class="btn btn-primary pull-right" type="submit"></div>
+                            <form>
+                                <label>
+                                    <input class="checkbox-slider toggle colored-blue" type="checkbox">
+                                    <span class="text">sss</span>
+                                </label>
+                            </form>
+                            <div class="row"><input style="margin-right: 80px" class="btn btn-primary pull-right"
+                                                    type="submit"></div>
                         </form>
                     </div>
                 </div>
