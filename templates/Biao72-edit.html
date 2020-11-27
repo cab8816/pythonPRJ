@@ -28,34 +28,34 @@
 
                             {% for field in form %}
                                 <div class="row">
-                                    <div class="col-xs-3 col-sm-3 col-md-3 ">
-                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 ">
+
+                                        <label {% if field.errors.0  %} style="color: red" {% endif %}
+                                                                             for="id_{{ field.name }}">{{ field.label }}</label>
                                     </div>
 
-                                    <div class="col-xs-5 col-md-5 col-sm-5">
+                                    <div class="col-xs-8 col-md-5 col-sm-5">
 
                                         {% if field.widget_type == 'checkbox' %}
 
-
-                                            <label>
-                                                <input class="checkbox-slider toggle colored-blue" type="checkbox">
-                                                <span class="text"></span>
-                                            </label>
+                                            <div>
+                                                <label>
+                                                    <input type="checkbox" class="colored-success"
+                                                           name="{{ field.name }}"
+                                                           {% if field.value %}checked="checked" {% endif %}>
+                                                    <span class="text"></span>
+                                                </label>
+                                            </div>
                                         {% else %}
                                             <div>{{ field }}</div>
                                         {% endif %}
 
                                     </div>
-                                    <div class="col-xs-4 col-md-4 col-sm-4"><span>{{ field.errors.0 }}</span>
+                                    <div class="hidden-xs col-xs-12 col-md-4 col-sm-4"><span style="color: blue">{{ field.errors.0 }}</span>
                                     </div>
                                 </div>
                             {% endfor %}
-                            <form>
-                                <label>
-                                    <input class="checkbox-slider toggle colored-blue" type="checkbox">
-                                    <span class="text">sss</span>
-                                </label>
-                            </form>
+
                             <div class="row"><input style="margin-right: 80px" class="btn btn-primary pull-right"
                                                     type="submit"></div>
                         </form>
