@@ -1,8 +1,20 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea, CheckboxInput
 from django.utils import timezone
-
+from django.utils.translation import gettext_lazy as _
 from Myapp.models import Pingshenxxb, Xcpshcb71, Xcpshcb, Bfhxiang, Bpsdwxx, Biao72
+
+#
+# {{ field.label }}	字段对应的label信息
+# {{ field.label_tag }}	自动生成字段的label标签，注意与{{ field.label }}的区别。
+# {{ field.id_for_label }}	自定义字段标签的id
+# {{ field.value }}	当前字段的值，比如一个Email字段的值someone@example.com
+# {{ field.html_name }}	指定字段生成的input标签中name属性的值
+# {{ field.help_text }}	字段的帮助信息
+# {{ field.errors }}	包含错误信息的元素
+# {{ field.is_hidden }}	用于判断当前字段是否为隐藏的字段，如果是，返回True
+# {{ field.field }}	返回字段的参数列表。例如{{ char_field.field.max_length }}
+
 
 
 class PsdwxxForm(forms.Form):
@@ -159,28 +171,42 @@ class Bpsdwxxform(ModelForm):
 
 class Biao72form(ModelForm):
     # 被评审单位信息编辑表
+    # def __init__(self, *args, **kwargs):
+    #     super(Biao72form, self).__init__(*args, **kwargs)
+    #     super().__init__()
+    #     instance = getattr(self, 'instance', None)
+    #     if instance and instance.pk:
+    #         self.fields['psxxb'].widget.attrs['readonly'] = True
+
     class Meta:
         model = Biao72
-        fields = ['psxxb', 'xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'yjbztk', 'xcsy', 'nlyz', 'clsh',
-                  'bdjg', 'xcys', 'xctw', 'cyjlbg', 'hcyq', 'sfqr', 'beizu']
+        # exclude = ['xmmc','xmxh']
+        fields = "__all__"
+        # fields = ['psxxb', 'xuhao', 'xmmc', 'yjbz', 'xmxh', 'csmc', 'yjbztk', 'xcsy', 'nlyz', 'clsh',
+        #           'bdjg', 'xcys', 'xctw', 'cyjlbg', 'hcyq', 'sfqr', 'beizu']
 
-        # widgets = {
-        #     "nlyz": forms.widgets.Select(
-        #
-        #         attrs={
-        #             'class': 'form-control btn-label glyphicon glyphicon-ok',
-        #             "template_name": 'django/forms/widgets/select.html',
-        #             'option_template_name': 'django/forms/widgets/select_option.html',
-        #
-        #         },
-        #
-        #
-        #     ),
-        #
-        #
-        #
-        #
-        # },
-        # labels = {
-        #      'nlyz': '序号',
-        #          },
+        widgets = {
+            "xmmc": Textarea(
+                attrs={'cols':30,'rows':12}
+            ),
+
+
+
+            "xcsy": CheckboxInput(
+                attrs={
+                    "checked": "False",
+                },
+
+            ),
+        }
+
+        error_messages = {
+
+            'csmc': {'required': _("This writer's name is too long."), }  # 每个字段的错误都可以写
+        },
+
+        # def __init__(self, *args, **kwargs):  # 批量操作
+        #     super().__init__(*args, **kwargs)
+        #     for field in self.fields:
+        #         field.error_messages = {'required':'不能为空'} #批量添加错误信息,这是都一样的错误，不一样的还是要单独写。
+        #         # self.fields[field].widget.attrs.update({'class': 'form-control'})

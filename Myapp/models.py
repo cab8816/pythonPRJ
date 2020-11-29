@@ -174,11 +174,14 @@ class Biao5(models.Model):
     def __str__(self):
         return self.name
 
+# If the model field has blank=True, then required is set to False on the form field. Otherwise,
+# required=True.
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 class Biao72(models.Model):
     psxxb = models.ForeignKey('Pingshenxxb', on_delete=models.CASCADE)
     xuhao = models.CharField(max_length=4, verbose_name="序号")
-    xmmc = models.CharField(max_length=100, verbose_name="检测类别项目或产品名称")
+    xmmc = models.CharField(max_length=100, verbose_name="检测类别项目或产品名称",blank=True)
+
     yjbz = models.CharField(max_length=300, verbose_name="依据标准及代号")
     xmxh = models.CharField(max_length=20, verbose_name="参数序号")
     csmc = models.CharField(max_length=100, verbose_name="参数名称")

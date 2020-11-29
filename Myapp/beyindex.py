@@ -394,8 +394,14 @@ def Biao72_list(request):
     return render(request, "Biao72-list.html", data1)
 
 def Biao72_add(request):
+    global obj
     if request.method == "GET":
-        form = Biao72form()
+        mid = request.GET.get('id')
+        psxxb=Pingshenxxb.objects.filter(pstzh=mid).first()
+        # obj = Biao72.objects.create(psxxb=psxxb)
+        form = Biao72form(initial={'psxxb':psxxb,'xcsy':True,'cyjlbg':False})
+        # form = Biao72form(instance=obj)
+        # form.save(commit=False)
         return render(request, "bpsdwxx-edit.html", {"form": form})
     else:
         form = Biao72form(request.POST)
